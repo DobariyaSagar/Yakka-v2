@@ -198,6 +198,12 @@
   display: block;
 }
 
+@media(max-width:1200px){
+  .custom-hero-{{ section.id }} h1 {
+    font-size: 72px;
+  }
+}
+
 @media(max-width:1024px){
   .custom-hero-{{ section.id }} {
     padding: 60px 0 70px;
@@ -216,6 +222,15 @@
   .custom-hero-{{ section.id }} .chip.b {
     right: 10px;
     bottom: 8%;
+  }
+}
+
+@media(max-width:768px){
+  .custom-hero-{{ section.id }} h1 {
+    font-size: 48px;
+  }
+  .custom-hero-{{ section.id }} p.lede {
+    font-size: 18px;
   }
 }
 
@@ -252,6 +267,18 @@
   }
   .custom-hero-{{ section.id }} .chip span {
     font-size: 10px;
+  }
+}
+
+@media(max-width:380px){
+  .custom-hero-{{ section.id }} h1 {
+    font-size: 32px;
+  }
+  .custom-hero-{{ section.id }} .chip.a {
+    left: 0px;
+  }
+  .custom-hero-{{ section.id }} .chip.b {
+    right: 0px;
   }
 }
 {%- endstyle -%}
