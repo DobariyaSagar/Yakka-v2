@@ -1,0 +1,241 @@
+{%- style -%}
+.custom-steps-{{ section.id }} {
+  --canvas: #F7F4EF;
+  --surface: #FFFFFF;
+  --contrast: #17150F;
+  --text: #1A1815;
+  --text-2: #6B6660;
+  --text-3: #4A4640;
+  --border: #E3DDD4;
+  --accent: #E8500F;
+  --accent-2: #FF8A2B;
+  --max: 1180px;
+
+  background: var(--canvas);
+  color: var(--text);
+  font-family: {{ settings.type_body_font.family }}, system-ui, sans-serif;
+  font-style: {{ settings.type_body_font.style }};
+  font-weight: {{ settings.type_body_font.weight }};
+  font-size: 18px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  padding: 150px 0;
+}
+
+.custom-steps-{{ section.id }} * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.custom-steps-{{ section.id }} .wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.custom-steps-{{ section.id }} .center {
+  text-align: center;
+}
+
+.custom-steps-{{ section.id }} h2 {
+  font-family: {{ settings.type_header_font.family }}, Georgia, serif;
+  font-style: {{ settings.type_header_font.style }};
+  font-weight: {{ settings.type_header_font.weight }};
+  font-size: 50px;
+  line-height: 1.04;
+  letter-spacing: -.025em;
+}
+
+.custom-steps-{{ section.id }} .eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  display: block;
+}
+
+.custom-steps-{{ section.id }} .steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin-top: 64px;
+}
+
+.custom-steps-{{ section.id }} .step {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 28px 30px;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+}
+
+.custom-steps-{{ section.id }} .step p {
+  margin: 0;
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-3);
+}
+
+.custom-steps-{{ section.id }} .step .n {
+  font-family: {{ settings.type_header_font.family }}, Georgia, serif;
+  font-style: {{ settings.type_header_font.style }};
+  font-weight: {{ settings.type_header_font.weight }};
+  font-size: 92px;
+  line-height: .78;
+  color: var(--accent);
+  opacity: .14;
+  position: absolute;
+  right: 14px;
+  top: 6px;
+}
+
+.custom-steps-{{ section.id }} .step h3 {
+  font-family: {{ settings.type_header_font.family }}, Georgia, serif;
+  font-style: {{ settings.type_header_font.style }};
+  font-weight: {{ settings.type_header_font.weight }};
+  font-size: 23px;
+  line-height: 1.15;
+  margin-bottom: 10px;
+  letter-spacing: -.025em;
+}
+
+.custom-steps-{{ section.id }} .step .tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  display: block;
+  margin-bottom: 16px;
+}
+
+@media(max-width:1024px){
+  .custom-steps-{{ section.id }} h2 {
+    font-size: 36px;
+  }
+  .custom-steps-{{ section.id }} .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width:600px){
+  .custom-steps-{{ section.id }} h2 {
+    font-size: 28px;
+  }
+  .custom-steps-{{ section.id }} .steps {
+    grid-template-columns: 1fr;
+  }
+}
+{%- endstyle -%}
+
+<div class="custom-steps-{{ section.id }}">
+  <div class="wrap center">
+    <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+    <h2 style="margin:16px auto 0">{{ section.settings.heading }}</h2>
+    <div class="steps">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.title != blank -%}
+          <div class="step">
+            <span class="n">{{ forloop.index }}</span>
+            <span class="tag">{{ block.settings.tag }}</span>
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.text }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Steps grid",
+  "tag": "section",
+  "class": "section-custom-steps",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "How it works"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Four steps. Hot food."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Timeline/Tag",
+          "default": "Morning"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Step Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Step description goes here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Steps grid",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "tag": "Evening",
+            "title": "Charge it",
+            "text": "Plug in the battery pack before bed. A full charge takes ~3 hrs and lasts 2 heating cycles."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "tag": "Morning",
+            "title": "Pack it",
+            "text": "Load yesterday's leftovers, curries, pasta, stew — anything you'd microwave. Seal it up."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "tag": "Smoko",
+            "title": "Press start",
+            "text": "Hit the single button 10–15 min before break. The even-heat base warms everything uniformly."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "tag": "Lunchtime",
+            "title": "Eat properly",
+            "text": "Open the lid to steam and a piping-hot, home-cooked meal. No queue. No microwave."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
