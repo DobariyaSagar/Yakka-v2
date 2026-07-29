@@ -40,10 +40,13 @@
 }
 
 @media(max-width:600px){
+  .custom-marquee-{{ section.id }} {
+    padding: 14px 0;
+  }
   .custom-marquee-{{ section.id }} ul {
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
   }
 }
 {%- endstyle -%}

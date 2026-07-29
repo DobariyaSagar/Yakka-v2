@@ -104,14 +104,28 @@
 }
 
 @media(max-width:1024px){
+  .custom-faq-{{ section.id }} {
+    padding: 80px 0;
+  }
   .custom-faq-{{ section.id }} h2 {
     font-size: 36px;
+    margin-bottom: 36px;
   }
 }
 
 @media(max-width:600px){
+  .custom-faq-{{ section.id }} {
+    padding: 60px 0;
+  }
   .custom-faq-{{ section.id }} h2 {
     font-size: 28px;
+    margin-bottom: 24px;
+  }
+  .custom-faq-{{ section.id }} summary {
+    font-size: 16px;
+  }
+  .custom-faq-{{ section.id }} p {
+    font-size: 14px;
   }
 }
 {%- endstyle -%}

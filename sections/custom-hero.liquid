@@ -199,6 +199,9 @@
 }
 
 @media(max-width:1024px){
+  .custom-hero-{{ section.id }} {
+    padding: 60px 0 70px;
+  }
   .custom-hero-{{ section.id }} h1 {
     font-size: 56px;
   }
@@ -208,19 +211,47 @@
   }
   .custom-hero-{{ section.id }} .chip.a {
     left: 10px;
+    top: 10%;
   }
   .custom-hero-{{ section.id }} .chip.b {
     right: 10px;
+    bottom: 8%;
   }
 }
 
 @media(max-width:600px){
+  .custom-hero-{{ section.id }} {
+    padding: 40px 0 50px;
+  }
   .custom-hero-{{ section.id }} h1 {
-    font-size: 40px;
+    font-size: 38px;
+    margin: 16px 0 20px;
+  }
+  .custom-hero-{{ section.id }} p.lede {
+    font-size: 16px;
+    margin-bottom: 24px;
   }
   .custom-hero-{{ section.id }} .hero-cta {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
+  }
+  .custom-hero-{{ section.id }} .btn {
+    width: 100%;
+    height: 54px;
+  }
+  .custom-hero-{{ section.id }} .microc {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .custom-hero-{{ section.id }} .chip {
+    padding: 10px 14px;
+  }
+  .custom-hero-{{ section.id }} .chip b {
+    font-size: 20px;
+  }
+  .custom-hero-{{ section.id }} .chip span {
+    font-size: 10px;
   }
 }
 {%- endstyle -%}
