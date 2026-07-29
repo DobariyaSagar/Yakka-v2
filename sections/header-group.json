@@ -1,55 +1,94 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
     "announcement-bar": {
       "type": "announcement-bar",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "show_line_separator": true,
-        "show_social": false,
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "enable_country_selector": false,
-        "enable_language_selector": false
-      },
       "blocks": {
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
             "text": "Welcome to our store",
-            "text_alignment": "center",
-            "color_scheme": "scheme-1",
             "link": ""
           }
         }
       },
       "block_order": [
         "announcement-bar-0"
-      ]
+      ],
+      "settings": {
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "color_scheme": "scheme-1",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
     },
     "header": {
       "type": "header",
       "settings": {
-        "color_scheme": "scheme-1",
-        "menu_color_scheme": "scheme-1",
         "logo_position": "middle-left",
+        "mobile_logo_position": "center",
         "menu": "main-menu",
         "menu_type_desktop": "dropdown",
         "sticky_header_type": "on-scroll-up",
         "show_line_separator": true,
+        "color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-1",
         "enable_country_selector": true,
         "enable_language_selector": true,
         "enable_customer_avatar": true,
-        "mobile_logo_position": "center",
         "margin_bottom": 0,
         "padding_top": 20,
         "padding_bottom": 20
+      }
+    },
+    "homepage_hero_VMP67T": {
+      "type": "homepage-hero",
+      "name": "Homepage Hero (Yakka)",
+      "settings": {
+        "ann_1": "Free express shipping AU & NZ",
+        "ann_2": "In stock — ships today",
+        "ann_3": "60-day money back",
+        "hero_badge": "In stock — ships today",
+        "hero_heading": "Hot food.<br>No microwave.<br><em>No queue.</em>",
+        "hero_subtext": "Charge it overnight, pack it in the morning, press start before smoko. The Yakka Essential is completely cordless — a proper hot feed anywhere the job takes you.",
+        "hero_rating": "4.8",
+        "hero_rating_text": "from 1,200+ verified Aussie tradies",
+        "hero_btn_text": "Shop the Lunchbox — $139.99",
+        "hero_btn_url": "",
+        "hero_btn2_text": "See how it works",
+        "hero_btn2_url": "",
+        "feature_eyebrow": "One-touch heating",
+        "feature_heading": "A proper hot feed — anywhere the job takes you.",
+        "feature_text": "The Yakka Essential heats your food from cold to 75 °C+ in about 45 minutes using its own rechargeable battery. No outlet. No microwave. Just real, hot food on your terms.",
+        "feature_btn_text": "Shop the Yakka Essential",
+        "feature_btn_url": "",
+        "product_price": "$139.99",
+        "product_compare_price": "$189.99",
+        "product_save_text": "Save $50",
+        "guarantee_heading": "Love it — or your money back.",
+        "guarantee_text": "We're so confident you'll love the Yakka Essential that every order is backed by our 60-day, no-questions-asked money-back guarantee. If it doesn't change your lunch break, we'll refund every cent.",
+        "cta_heading": "Ready to ditch the queue?",
+        "cta_text": "Join 1,200+ Aussie tradies who've upgraded their lunch break. Order today and get free express shipping, a 60-day money-back guarantee and a 12-month warranty.",
+        "cta_btn_text": "Shop the Lunchbox — $139.99"
       }
     }
   },
   "order": [
     "announcement-bar",
-    "header"
+    "header",
+    "homepage_hero_VMP67T"
   ]
 }
