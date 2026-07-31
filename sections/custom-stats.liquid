@@ -1,0 +1,159 @@
+{%- style -%}
+.custom-stats-{{ section.id }} {
+  --canvas: #F7F4EF;
+  --text: #1A1815;
+  --text-2: #6B6660;
+  --border: #E3DDD4;
+  --max: 1180px;
+
+  background: var(--canvas);
+  color: var(--text);
+  font-family: {{ settings.type_body_font.family }}, system-ui, sans-serif;
+  font-style: {{ settings.type_body_font.style }};
+  font-weight: {{ settings.type_body_font.weight }};
+  padding: 44px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.custom-stats-{{ section.id }} * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.custom-stats-{{ section.id }} .wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.custom-stats-{{ section.id }} ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  list-style: none;
+  gap: 32px;
+}
+
+.custom-stats-{{ section.id }} li {
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.custom-stats-{{ section.id }} b {
+  display: block;
+  font-family: {{ settings.type_header_font.family }}, Georgia, serif;
+  font-style: {{ settings.type_header_font.style }};
+  font-weight: {{ settings.type_header_font.weight }};
+  font-size: 34px;
+  color: var(--text);
+  letter-spacing: -.02em;
+  margin-bottom: 2px;
+}
+
+@media(max-width:1024px){
+  .custom-stats-{{ section.id }} {
+    padding: 30px 0;
+  }
+  .custom-stats-{{ section.id }} ul {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .custom-stats-{{ section.id }} b {
+    font-size: 28px;
+  }
+}
+
+@media(max-width:600px){
+  .custom-stats-{{ section.id }} {
+    padding: 24px 0;
+  }
+  .custom-stats-{{ section.id }} ul {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+  }
+  .custom-stats-{{ section.id }} b {
+    font-size: 32px;
+  }
+}
+{%- endstyle -%}
+
+<div class="custom-stats-{{ section.id }}">
+  <div class="wrap">
+    <ul>
+      {%- for block in section.blocks -%}
+        {%- if block.settings.stat_value != blank -%}
+          <li>
+            <b>{{ block.settings.stat_value }}</b>
+            {{ block.settings.stat_label }}
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Yakka Stats counter",
+  "tag": "section",
+  "class": "section-custom-stats",
+  "max_blocks": 4,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "stat_value",
+          "label": "Stat Value",
+          "default": "100%"
+        },
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Stat Label",
+          "default": "Verified custom details"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Stats counter",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "stat_value": "1,200+",
+            "stat_label": "Verified 5-star reviews"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "stat_value": "45 min",
+            "stat_label": "Cold to piping hot"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "stat_value": "1.5 L",
+            "stat_label": "Generous capacity"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "stat_value": "100%",
+            "stat_label": "Cordless — no power needed"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

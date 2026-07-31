@@ -1,72 +1,133 @@
-{%- comment -%}
-  Section: main-cart-footer
-  Order note, discounts, subtotal and checkout. Re-rendered by yk-cart.js
-  whenever a line changes.
-  Styles: assets/section-cart.css
-{%- endcomment -%}
+{{ 'component-cart.css' | asset_url | stylesheet_tag }}
+{{ 'component-totals.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-discounts.css' | asset_url | stylesheet_tag }}
 
-{{ 'section-cart.css' | asset_url | stylesheet_tag }}
-{% render 'yk-section-style', section: section %}
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
 
 <div
-  class="yk-section"
-  id="YkCartFooter-{{ section.id }}"
-  data-yk-cart-footer
-  data-yk-section-id="{{ section.id }}"
-  {% if cart.item_count == 0 %}hidden{% endif %}
+  class="gradient color-{{ section.settings.color_scheme }}{% if cart == empty %} is-empty{% endif %}"
+  id="main-cart-footer"
+  data-id="{{ section.id }}"
 >
-  <div class="yk-page-width">
-    <div class="yk-cart-footer">
-      {%- if section.settings.show_cart_note -%}
-        <div class="yk-cart-footer__note">
-          <label class="yk-eyebrow" for="YkCartNote">{{ 'cart.general.note' | t }}</label>
+  <div class="page-width">
+    <div class="cart__footer isolate section-{{ section.id }}-padding">
+      {%- if settings.show_cart_note -%}
+        <cart-note class="cart__note field">
+          <label for="Cart-note">{{ 'sections.cart.note' | t }}</label>
           <textarea
-            class="yk-field"
-            id="YkCartNote"
+            class="text-area field__input"
             name="note"
-            form="YkCartNoteForm"
-            rows="4"
-            placeholder="{{ 'cart.general.note_placeholder' | t }}"
-            data-yk-cart-note
+            form="cart"
+            id="Cart-note"
+            placeholder="{{ 'sections.cart.note' | t }}"
           >{{ cart.note }}</textarea>
-          <form id="YkCartNoteForm" action="{{ routes.cart_update_url }}" method="post" hidden></form>
-        </div>
+        </cart-note>
       {%- endif -%}
 
-      <div class="yk-cart-footer__totals">
-        {%- if cart.cart_level_discount_applications.size > 0 -%}
-          <ul class="yk-cart-footer__discounts">
-            {%- for discount in cart.cart_level_discount_applications -%}
-              <li>
-                <span>{{ discount.title }}</span>
-                <span>−{% render 'yk-price', price: discount.total_allocated_amount %}</span>
-              </li>
-            {%- endfor -%}
-          </ul>
-        {%- endif -%}
+      <div class="cart__blocks">
+        {% for block in section.blocks %}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              {% render block %}
+            {%- when 'subtotal' -%}
+              <div class="js-contents" {{ block.shopify_attributes }}>
+                <div>
+                  {%- if cart.cart_level_discount_applications.size > 0 -%}
+                    <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
+                      {%- for discount in cart.cart_level_discount_applications -%}
+                        <li class="discounts__discount discounts__discount--position">
+                          {{- 'icon-discount.svg' | inline_asset_content -}}
+                          {{ discount.title | escape }}
+                          (-{{ discount.total_allocated_amount | money }})
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+                </div>
 
-        <div class="yk-cart-footer__row">
-          <span>{{ 'cart.general.subtotal' | t }}</span>
-          <span class="yk-cart-footer__subtotal" data-yk-cart-subtotal>
-            {% render 'yk-price', price: cart.total_price %}
-          </span>
-        </div>
+                <div class="totals">
+                  <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
+                  <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
+                </div>
 
-        <p class="yk-cart-footer__tax">{{ 'cart.general.taxes_and_shipping' | t }}</p>
+                <small class="tax-note caption-large rte">
+                  {%- if cart.duties_included and cart.taxes_included -%}
+                    {%- if shop.shipping_policy.body == blank -%}
+                      {{ 'sections.cart.duties_and_taxes_included_shipping_at_checkout_without_policy' | t }}
+                    {%- else -%}
+                      {{
+                        'sections.cart.duties_and_taxes_included_shipping_at_checkout_with_policy_html'
+                        | t: link: shop.shipping_policy.url
+                      }}
+                    {%- endif -%}
+                  {%- elsif cart.duties_included == false and cart.taxes_included -%}
+                    {%- if shop.shipping_policy.body == blank -%}
+                      {{ 'sections.cart.taxes_included_shipping_at_checkout_without_policy' | t }}
+                    {%- else -%}
+                      {{
+                        'sections.cart.taxes_included_shipping_at_checkout_with_policy_html'
+                        | t: link: shop.shipping_policy.url
+                      }}
+                    {%- endif -%}
+                  {%- elsif cart.duties_included and cart.taxes_included == false -%}
+                    {%- if shop.shipping_policy.body == blank -%}
+                      {{ 'sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
+                    {%- else -%}
+                      {{
+                        'sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html'
+                        | t: link: shop.shipping_policy.url
+                      }}
+                    {%- endif -%}
+                  {%- elsif cart.duties_included == false and cart.taxes_included == false -%}
+                    {%- if shop.shipping_policy.body == blank -%}
+                      {{ 'sections.cart.taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
+                    {%- else -%}
+                      {{
+                        'sections.cart.taxes_at_checkout_shipping_at_checkout_with_policy_html'
+                        | t: link: shop.shipping_policy.url
+                      }}
+                    {%- endif -%}
+                  {%- endif -%}
+                </small>
+              </div>
+            {%- else -%}
+              <div class="cart__ctas" {{ block.shopify_attributes }}>
+                <button
+                  type="submit"
+                  id="checkout"
+                  class="cart__checkout-button button"
+                  name="checkout"
+                  {% if cart == empty %}
+                    disabled
+                  {% endif %}
+                  form="cart"
+                >
+                  {{ 'sections.cart.checkout' | t }}
+                </button>
+              </div>
 
-        <form action="{{ routes.cart_url }}" method="post" novalidate>
-          <button type="submit" name="checkout" class="yk-btn yk-btn--full" {% if cart.item_count == 0 %}disabled{% endif %}>
-            {{ 'cart.general.checkout' | t }}
-          </button>
-        </form>
+              {%- if additional_checkout_buttons -%}
+                <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
+                  {{ content_for_additional_checkout_buttons }}
+                </div>
+              {%- endif -%}
+          {%- endcase -%}
+        {% endfor %}
 
-        {%- if additional_checkout_buttons and section.settings.show_dynamic_checkout -%}
-          <div class="yk-cart-footer__express">{{ content_for_additional_checkout_buttons }}</div>
-        {%- endif -%}
-
-        <a class="yk-cart-footer__continue" href="{{ routes.all_products_collection_url }}">
-          {{ 'cart.general.continue_shopping' | t }}
-        </a>
+        <div id="cart-errors"></div>
       </div>
     </div>
   </div>
@@ -74,21 +135,54 @@
 
 {% schema %}
 {
-  "name": "Cart footer",
-  "tag": "section",
-  "class": "yk-section-cart-footer",
+  "name": "t:sections.main-cart-footer.name",
+  "class": "cart__footer-wrapper",
   "settings": [
-    { "type": "checkbox", "id": "show_cart_note", "label": "Enable order note", "default": true },
-    { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show express checkout buttons", "default": true },
-
-    { "type": "header", "content": "Colours" },
-    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" },
-
-    { "type": "header", "content": "Section spacing" },
-    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 24 },
-    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 80 },
-    { "type": "range", "id": "padding_top_mobile", "label": "Top padding (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 16 },
-    { "type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 }
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },    
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "subtotal",
+      "name": "t:sections.main-cart-footer.blocks.subtotal.name",
+      "limit": 1
+    },
+    {
+      "type": "buttons",
+      "name": "t:sections.main-cart-footer.blocks.buttons.name",
+      "limit": 1
+    },
+    {
+      "type": "@app"
+    }
   ]
 }
 {% endschema %}
