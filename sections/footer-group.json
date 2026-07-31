@@ -11,6 +11,51 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "custom_footer_Dz8AFk": {
+      "type": "custom-footer",
+      "blocks": {
+        "text_FiYFzg": {
+          "type": "text",
+          "settings": {
+            "title": "Yakka Essential",
+            "text": "Practical gear for hard-working Australians. Built for work, travel, home and everyday life."
+          }
+        },
+        "link_list_UqdgeM": {
+          "type": "link_list",
+          "settings": {
+            "title": "Shop",
+            "menu": ""
+          }
+        },
+        "link_list_x6Ucgd": {
+          "type": "link_list",
+          "settings": {
+            "title": "Support",
+            "menu": ""
+          }
+        },
+        "newsletter_KYkmYb": {
+          "type": "newsletter",
+          "settings": {
+            "title": "Stay in the loop",
+            "text": "Product drops, field tips and the occasional deal.",
+            "placeholder": "Email address",
+            "btn_text": "Sign up"
+          }
+        }
+      },
+      "block_order": [
+        "text_FiYFzg",
+        "link_list_UqdgeM",
+        "link_list_x6Ucgd",
+        "newsletter_KYkmYb"
+      ],
+      "name": "Custom Footer",
+      "settings": {
+        "bottom_right_text": "Australian owned & operated"
+      }
+    },
     "footer": {
       "type": "footer",
       "disabled": true,
@@ -31,6 +76,7 @@
     }
   },
   "order": [
+    "custom_footer_Dz8AFk",
     "footer"
   ]
 }
