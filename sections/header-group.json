@@ -39,7 +39,7 @@
     "header": {
       "type": "header",
       "settings": {
-        "logo_position": "middle-left",
+        "logo_position": "middle-center",
         "mobile_logo_position": "center",
         "menu": "main-menu",
         "menu_type_desktop": "dropdown",
@@ -93,14 +93,14 @@
       "name": "Custom Hero",
       "settings": {
         "stock_text": "In stock — ships today",
-        "headline": "<p>Hot food.<br>No microwave.<br><em>No queue.</em></p>",
+        "headline": "<p>Hot food.<br/>No microwave.<br/><em>No queue.</em></p>",
         "lede": "Charge it overnight, pack it in the morning, press start before smoko. The Yakka Essential is completely cordless — a proper hot feed anywhere the job takes you.",
         "rating_text": "<p><strong>4.8</strong> from 1,200+ verified Aussie tradies</p>",
         "primary_btn_text": "Shop the Lunchbox — $139.99",
         "primary_btn_link": "",
         "secondary_btn_text": "See how it works",
         "secondary_btn_link": "",
-        "micro_text": "<p><span>▼ Free express shipping</span><span>▼ 60-day money back</span><span>▼ AU &amp; NZ support</span></p>",
+        "micro_text": "<p>▼ Free express shipping▼ 60-day money back▼ AU & NZ support</p>",
         "chip_1_value": "45 min",
         "chip_1_label": "Pack to piping hot",
         "chip_2_value": "100%",
