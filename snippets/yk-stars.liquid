@@ -1,8 +1,0 @@
-{%- comment -%}
-  Star row. Params: rating (0-5, default 5)
-  Usage: {% render 'yk-stars', rating: 4.8 %}
-{%- endcomment -%}
-{%- assign rating = rating | default: 5 | round -%}
-<span class="yk-review__stars" role="img" aria-label="{{ rating }} {{ 'general.rating.out_of_five' | t }}">
-  {%- for i in (1..5) -%}{% if i <= rating %}★{% else %}☆{% endif %}{%- endfor -%}
-</span>
