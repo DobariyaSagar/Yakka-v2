@@ -57,6 +57,7 @@
     },
     "homepage_hero_VMP67T": {
       "type": "homepage-hero",
+      "disabled": true,
       "name": "Homepage Hero (Yakka)",
       "settings": {
         "ann_1": "Free express shipping AU & NZ",
@@ -86,11 +87,31 @@
         "cta_text": "Join 1,200+ Aussie tradies who've upgraded their lunch break. Order today and get free express shipping, a 60-day money-back guarantee and a 12-month warranty.",
         "cta_btn_text": "Shop the Lunchbox — $139.99"
       }
+    },
+    "custom_hero_c6MhxG": {
+      "type": "custom-hero",
+      "name": "Custom Hero",
+      "settings": {
+        "stock_text": "In stock — ships today",
+        "headline": "<p>Hot food.<br>No microwave.<br><em>No queue.</em></p>",
+        "lede": "Charge it overnight, pack it in the morning, press start before smoko. The Yakka Essential is completely cordless — a proper hot feed anywhere the job takes you.",
+        "rating_text": "<p><strong>4.8</strong> from 1,200+ verified Aussie tradies</p>",
+        "primary_btn_text": "Shop the Lunchbox — $139.99",
+        "primary_btn_link": "",
+        "secondary_btn_text": "See how it works",
+        "secondary_btn_link": "",
+        "micro_text": "<p><span>▼ Free express shipping</span><span>▼ 60-day money back</span><span>▼ AU &amp; NZ support</span></p>",
+        "chip_1_value": "45 min",
+        "chip_1_label": "Pack to piping hot",
+        "chip_2_value": "100%",
+        "chip_2_label": "Cordless — no outlet"
+      }
     }
   },
   "order": [
     "announcement-bar",
     "header",
-    "homepage_hero_VMP67T"
+    "homepage_hero_VMP67T",
+    "custom_hero_c6MhxG"
   ]
 }
