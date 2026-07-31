@@ -1,157 +1,101 @@
-{%- style -%}
+<style>
 .custom-stats-{{ section.id }} {
-  --canvas: #F7F4EF;
-  --text: #1A1815;
-  --text-2: #6B6660;
-  --border: #E3DDD4;
-  --max: 1180px;
+  --text:#1A1815;
+  --text-2:#6B6660;
+  --border:#E3DDD4;
+  --max:1180px;
+  font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+  -webkit-font-smoothing: antialiased;
+}
+.custom-stats-{{ section.id }} * { box-sizing: border-box; margin: 0; padding: 0; }
+.custom-stats-{{ section.id }} .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 
-  background: var(--canvas);
-  color: var(--text);
-  font-family: {{ settings.type_body_font.family }}, system-ui, sans-serif;
-  font-style: {{ settings.type_body_font.style }};
-  font-weight: {{ settings.type_body_font.weight }};
-  padding: 44px 0;
+.custom-stats-{{ section.id }} .stats {
   border-bottom: 1px solid var(--border);
+  padding: 44px 0;
 }
-
-.custom-stats-{{ section.id }} * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-.custom-stats-{{ section.id }} .wrap {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-.custom-stats-{{ section.id }} ul {
+.custom-stats-{{ section.id }} .stats ul {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   list-style: none;
   gap: 32px;
+  margin: 0;
+  padding: 0;
 }
-
-.custom-stats-{{ section.id }} li {
+.custom-stats-{{ section.id }} .stats li {
   font-size: 14px;
   color: var(--text-2);
 }
-
-.custom-stats-{{ section.id }} b {
+.custom-stats-{{ section.id }} .stats b {
   display: block;
-  font-family: {{ settings.type_header_font.family }}, Georgia, serif;
-  font-style: {{ settings.type_header_font.style }};
-  font-weight: {{ settings.type_header_font.weight }};
+  font-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
   font-size: 34px;
+  font-weight: 400;
   color: var(--text);
   letter-spacing: -.02em;
   margin-bottom: 2px;
 }
-
-@media(max-width:1024px){
-  .custom-stats-{{ section.id }} {
-    padding: 30px 0;
-  }
-  .custom-stats-{{ section.id }} ul {
+@media (max-width: 900px) {
+  .custom-stats-{{ section.id }} .stats ul {
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-  .custom-stats-{{ section.id }} b {
-    font-size: 28px;
   }
 }
-
-@media(max-width:600px){
-  .custom-stats-{{ section.id }} {
-    padding: 24px 0;
-  }
-  .custom-stats-{{ section.id }} ul {
+@media (max-width: 500px) {
+  .custom-stats-{{ section.id }} .stats ul {
     grid-template-columns: 1fr;
-    gap: 20px;
     text-align: center;
   }
-  .custom-stats-{{ section.id }} b {
-    font-size: 32px;
-  }
 }
-{%- endstyle -%}
+</style>
 
 <div class="custom-stats-{{ section.id }}">
   <div class="wrap">
-    <ul>
-      {%- for block in section.blocks -%}
-        {%- if block.settings.stat_value != blank -%}
-          <li>
+    <div class="stats">
+      <ul>
+        {% for block in section.blocks %}
+          <li {{ block.shopify_attributes }}>
             <b>{{ block.settings.stat_value }}</b>
             {{ block.settings.stat_label }}
           </li>
-        {%- endif -%}
-      {%- endfor -%}
-    </ul>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "Yakka Stats counter",
-  "tag": "section",
-  "class": "section-custom-stats",
-  "max_blocks": 4,
+  "name": "Custom Stats",
   "settings": [],
   "blocks": [
     {
       "type": "stat",
       "name": "Stat Item",
+      "limit": 4,
       "settings": [
         {
           "type": "text",
           "id": "stat_value",
           "label": "Stat Value",
-          "default": "100%"
+          "default": "10,000+"
         },
         {
-          "type": "text",
+          "type": "textarea",
           "id": "stat_label",
           "label": "Stat Label",
-          "default": "Verified custom details"
+          "default": "Workers eating hot on site"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Custom Stats counter",
+      "name": "Custom Stats",
       "blocks": [
-        {
-          "type": "stat",
-          "settings": {
-            "stat_value": "1,200+",
-            "stat_label": "Verified 5-star reviews"
-          }
-        },
-        {
-          "type": "stat",
-          "settings": {
-            "stat_value": "45 min",
-            "stat_label": "Cold to piping hot"
-          }
-        },
-        {
-          "type": "stat",
-          "settings": {
-            "stat_value": "1.5 L",
-            "stat_label": "Generous capacity"
-          }
-        },
-        {
-          "type": "stat",
-          "settings": {
-            "stat_value": "100%",
-            "stat_label": "Cordless — no power needed"
-          }
-        }
+        { "type": "stat", "settings": { "stat_value": "10,000+", "stat_label": "Workers eating hot on site" } },
+        { "type": "stat", "settings": { "stat_value": "4.8 / 5", "stat_label": "From 1,200+ reviews" } },
+        { "type": "stat", "settings": { "stat_value": "60 days", "stat_label": "Money back, keep the unit" } },
+        { "type": "stat", "settings": { "stat_value": "AU & NZ", "stat_label": "Owned, stocked, supported" } }
       ]
     }
   ]

@@ -1,17 +1,14 @@
-{%- style -%}
+<style>
 .custom-marquee-{{ section.id }} {
-  --contrast: #17150F;
-  --accent-2: #FF8A2B;
-
+  --contrast:#17150F;
+  --accent-2:#FF8A2B;
   background: var(--contrast);
   color: #EFE9DF;
   padding: 20px 0;
   overflow: hidden;
-  font-family: {{ settings.type_body_font.family }}, system-ui, sans-serif;
-  font-style: {{ settings.type_body_font.style }};
-  font-weight: {{ settings.type_body_font.weight }};
+  font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+  -webkit-font-smoothing: antialiased;
 }
-
 .custom-marquee-{{ section.id }} ul {
   display: flex;
   gap: 56px;
@@ -23,14 +20,12 @@
   margin: 0;
   padding: 0;
 }
-
 .custom-marquee-{{ section.id }} li {
   display: flex;
   align-items: center;
   gap: 12px;
   color: #CFC7BB;
 }
-
 .custom-marquee-{{ section.id }} li::before {
   content: "";
   width: 6px;
@@ -38,83 +33,66 @@
   border-radius: 50%;
   background: var(--accent-2);
 }
-
-@media(max-width:600px){
-  .custom-marquee-{{ section.id }} {
-    padding: 14px 0;
-  }
+@media (max-width: 900px) {
   .custom-marquee-{{ section.id }} ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+    justify-content: flex-start;
+    animation: marquee-scroll-{{ section.id }} 20s linear infinite;
   }
 }
-{%- endstyle -%}
+@keyframes marquee-scroll-{{ section.id }} {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+</style>
 
 <div class="custom-marquee-{{ section.id }}">
   <ul>
-    {%- for block in section.blocks -%}
-      {%- if block.settings.text != blank -%}
-        <li>{{ block.settings.text }}</li>
-      {%- endif -%}
-    {%- endfor -%}
+    {% for block in section.blocks %}
+      <li {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
+    {% endfor %}
+    
+    {%- comment -%}
+      Duplicate items for seamless scrolling on mobile if needed
+    {%- endcomment -%}
+    <style>
+      @media (max-width: 900px) {
+        .custom-marquee-{{ section.id }} ul::after {
+          content: "";
+          display: flex;
+          gap: 56px;
+        }
+      }
+    </style>
   </ul>
 </div>
 
 {% schema %}
 {
-  "name": "Yakka Marquee Ticker",
-  "tag": "section",
-  "class": "section-custom-marquee",
+  "name": "Custom Marquee",
   "settings": [],
   "blocks": [
     {
-      "type": "item",
-      "name": "Ticker Item",
+      "type": "text",
+      "name": "Marquee Item",
       "settings": [
         {
           "type": "text",
           "id": "text",
           "label": "Text",
-          "default": "Text Item"
+          "default": "Completely cordless"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Custom Marquee Ticker",
+      "name": "Custom Marquee",
       "blocks": [
-        {
-          "type": "item",
-          "settings": {
-            "text": "Completely cordless"
-          }
-        },
-        {
-          "type": "item",
-          "settings": {
-            "text": "Rugged, leak-proof shell"
-          }
-        },
-        {
-          "type": "item",
-          "settings": {
-            "text": "Free insulated carry bag"
-          }
-        },
-        {
-          "type": "item",
-          "settings": {
-            "text": "Stainless inner, dishwasher safe"
-          }
-        },
-        {
-          "type": "item",
-          "settings": {
-            "text": "Australian owned & supported"
-          }
-        }
+        { "type": "text", "settings": { "text": "Completely cordless" } },
+        { "type": "text", "settings": { "text": "Rugged, leak-proof shell" } },
+        { "type": "text", "settings": { "text": "Free insulated carry bag" } },
+        { "type": "text", "settings": { "text": "Stainless inner, dishwasher safe" } },
+        { "type": "text", "settings": { "text": "Australian owned & supported" } }
       ]
     }
   ]
