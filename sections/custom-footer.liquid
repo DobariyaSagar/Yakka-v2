@@ -1,0 +1,294 @@
+<style>
+.custom-footer-{{ section.id }} {
+  --contrast: #17150F;
+  --text: #B5AEA4;
+  --text-muted: #8C857B;
+  --border: #2E2A22;
+  --accent: #E8500F;
+  --max: 1180px;
+  background: var(--contrast);
+  color: var(--text);
+  padding: 92px 0 38px;
+  font-size: 15px;
+  font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+  -webkit-font-smoothing: antialiased;
+}
+.custom-footer-{{ section.id }} * { box-sizing: border-box; margin: 0; padding: 0; }
+.custom-footer-{{ section.id }} .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+.custom-footer-{{ section.id }} .f-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 46px;
+}
+.custom-footer-{{ section.id }} .logo {
+  color: #fff;
+  margin-bottom: 16px;
+  display: block;
+  font-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+  font-size: 24px;
+  line-height: 1.2;
+}
+.custom-footer-{{ section.id }} h4 {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+  font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+}
+.custom-footer-{{ section.id }} a,
+.custom-footer-{{ section.id }} li {
+  color: var(--text);
+  text-decoration: none;
+  list-style: none;
+  line-height: 2.1;
+  transition: color 0.2s ease;
+}
+.custom-footer-{{ section.id }} a:hover {
+  color: #fff;
+}
+.custom-footer-{{ section.id }} p {
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.custom-footer-{{ section.id }} .sub {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+.custom-footer-{{ section.id }} .sub input {
+  flex: 1;
+  height: 48px;
+  background: transparent;
+  border: 1px solid #3A342B;
+  border-radius: 5px;
+  padding: 0 14px;
+  color: var(--text);
+  font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+  font-size: 14px;
+  width: 100%;
+}
+.custom-footer-{{ section.id }} .sub input:focus {
+  outline: none;
+  border-color: var(--text-muted);
+}
+.custom-footer-{{ section.id }} .sub button {
+  height: 48px;
+  padding: 0 22px;
+  white-space: nowrap;
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+  font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+.custom-footer-{{ section.id }} .sub button:hover {
+  opacity: 0.9;
+}
+
+.custom-footer-{{ section.id }} .f-bot {
+  border-top: 1px solid var(--border);
+  margin-top: 60px;
+  padding-top: 26px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #7A736A;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .custom-footer-{{ section.id }} .f-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 30px;
+  }
+}
+@media (max-width: 600px) {
+  .custom-footer-{{ section.id }} {
+    padding: 60px 0 30px;
+  }
+  .custom-footer-{{ section.id }} .f-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .custom-footer-{{ section.id }} .f-bot {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 40px;
+  }
+}
+</style>
+
+<footer class="custom-footer-{{ section.id }}">
+  <div class="wrap">
+    <div class="f-grid">
+      {% for block in section.blocks %}
+        <div {{ block.shopify_attributes }}>
+          {% case block.type %}
+            {% when 'text' %}
+              {% if block.settings.logo_image != blank %}
+                {{ block.settings.logo_image | image_url: width: 400 | image_tag: loading: 'lazy', style: 'max-width: 150px; margin-bottom: 16px; display: block;' }}
+              {% elsif block.settings.title != blank %}
+                <span class="logo">{{ block.settings.title }}</span>
+              {% endif %}
+              
+              {% if block.settings.text != blank %}
+                <p>{{ block.settings.text }}</p>
+              {% endif %}
+              
+            {% when 'link_list' %}
+              {% if block.settings.title != blank %}
+                <h4>{{ block.settings.title }}</h4>
+              {% endif %}
+              {% if block.settings.menu != blank %}
+                <ul>
+                  {% for link in block.settings.menu.links %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <ul>
+                  <li><a href="#">Link Item 1</a></li>
+                  <li><a href="#">Link Item 2</a></li>
+                  <li><a href="#">Link Item 3</a></li>
+                </ul>
+              {% endif %}
+
+            {% when 'newsletter' %}
+              {% if block.settings.title != blank %}
+                <h4>{{ block.settings.title }}</h4>
+              {% endif %}
+              {% if block.settings.text != blank %}
+                <p style="font-size:14px">{{ block.settings.text }}</p>
+              {% endif %}
+              
+              {%- form 'customer', id: 'ContactFooter', class: 'sub' -%}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <input 
+                  type="email" 
+                  name="contact[email]" 
+                  value="{{ form.email }}"
+                  placeholder="{{ block.settings.placeholder }}" 
+                  required
+                >
+                <button type="submit">{{ block.settings.btn_text }}</button>
+              {%- endform -%}
+          {% endcase %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="f-bot">
+      <span>&copy; {{ 'now' | date: "%Y" }} {{ shop.name }}</span>
+      <span>{{ section.settings.bottom_right_text }}</span>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Custom Footer",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "bottom_right_text",
+      "label": "Bottom Right Text",
+      "default": "Australian owned & operated"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text Info",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo_image",
+          "label": "Logo Image (optional)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading / Brand Name",
+          "default": "Yakka Essential"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Practical gear for hard-working Australians. Built for work, travel, home and everyday life."
+        }
+      ]
+    },
+    {
+      "type": "link_list",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Shop"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Stay in the loop"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Product drops, field tips and the occasional deal."
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Input Placeholder",
+          "default": "Email address"
+        },
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button Text",
+          "default": "Sign up"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Footer",
+      "blocks": [
+        { "type": "text" },
+        { "type": "link_list", "settings": { "title": "Shop" } },
+        { "type": "link_list", "settings": { "title": "Support" } },
+        { "type": "newsletter" }
+      ]
+    }
+  ]
+}
+{% endschema %}
