@@ -1,0 +1,40 @@
+/* section: comparison-table — scrolls inside its card on small screens */
+.yk-compare{
+  margin-top:var(--yk-compare-top,56px);overflow:hidden;
+  background:var(--yk-card-bg,var(--yk-surface));
+  border:1px solid var(--yk-border);border-radius:var(--yk-radius-lg);
+}
+.yk-compare__table th,
+.yk-compare__table td{
+  padding:20px 24px;text-align:left;font-size:16px;
+  border-bottom:1px solid var(--yk-border);
+}
+.yk-compare__table thead th{
+  background:#FBF9F6;color:var(--yk-text-2);
+  font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+}
+.yk-compare__table thead th.yk-compare__col--win{
+  background:var(--yk-tint);color:var(--yk-sec-accent,var(--yk-accent));
+}
+.yk-compare__table tbody td{color:var(--yk-sec-text,var(--yk-text-2));transition:background-color .22s ease}
+.yk-compare__table tbody td.yk-compare__col--win{background:#FEF8F4;font-weight:600;color:var(--yk-text)}
+.yk-compare__table tbody tr:last-child td{border-bottom:0}
+.yk-compare__label{color:var(--yk-text);font-weight:500}
+.yk-compare__yes{color:var(--yk-success);font-weight:700}
+.yk-compare__no{color:#C4BDB3}
+
+@media (hover:hover) and (pointer:fine){
+  .yk-compare__table tbody tr:hover td{background:#FBF7F3}
+  .yk-compare__table tbody tr:hover td.yk-compare__col--win{background:#FDECE2}
+}
+
+@media screen and (max-width:989px){
+  .yk-compare{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .yk-compare__table{min-width:640px}
+  .yk-compare__table th,.yk-compare__table td{padding:16px 18px;font-size:15px}
+}
+@media screen and (max-width:749px){
+  .yk-compare{margin-top:32px;border-radius:var(--yk-radius-md)}
+  .yk-compare__table{min-width:560px}
+  .yk-compare__table th,.yk-compare__table td{padding:14px;font-size:14px}
+}

@@ -1,99 +1,299 @@
-# Yakka V2
+# YAKKA — Ignition (Shopify theme)
 
-[![Build status](https://github.com/shopify/dawn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Shopify/dawn/actions/workflows/ci.yml?query=branch%3Amain)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?color=informational)](/.github/CONTRIBUTING.md)
+An Online Store 2.0 theme built from the `yakka-v2-ignition.html` layout. Every
+band of the page is an **independent section**: its own Liquid file, its own
+stylesheet, its own JS (only where behaviour is needed) and its own complete set
+of settings. Drop a section into any page, reorder it, duplicate it, or delete
+it — nothing else in the theme changes.
 
-[Getting started](#getting-started) |
-[Staying up to date with Dawn changes](#staying-up-to-date-with-dawn-changes) |
-[Developer tools](#developer-tools) |
-[Contributing](#contributing) |
-[Code of conduct](#code-of-conduct) |
-[Theme Store submission](#theme-store-submission) |
-[License](#license)
+---
 
-Dawn represents a HTML-first, JavaScript-only-as-needed approach to theme development. It's Shopify's first source available theme with performance, flexibility, and [Online Store 2.0 features](https://www.shopify.com/partners/blog/shopify-online-store) built-in and acts as a reference for building Shopify themes.
+## Architecture
 
-* **Web-native in its purest form:** Themes run on the [evergreen web](https://www.w3.org/2001/tag/doc/evergreen-web/). We leverage the latest web browsers to their fullest, while maintaining support for the older ones through progressive enhancement—not polyfills.
-* **Lean, fast, and reliable:** Functionality and design defaults to “no” until it meets this requirement. Code ships on quality. Themes must be built with purpose. They shouldn’t support each and every feature in Shopify.
-* **Server-rendered:** HTML must be rendered by Shopify servers using Liquid. Business logic and platform primitives such as translations and money formatting don’t belong on the client. Async and on-demand rendering of parts of the page is OK, but we do it sparingly as a progressive enhancement.
-* **Functional, not pixel-perfect:** The Web doesn’t require each page to be rendered pixel-perfect by each browser engine. Using semantic markup, progressive enhancement, and clever design, we ensure that themes remain functional regardless of the browser.
-
-You can find a more detailed version of our theme code principles in the [contribution guide](https://github.com/Shopify/dawn/blob/main/.github/CONTRIBUTING.md#theme-code-principles).
-
-## Getting started
-We recommend using Dawn as a starting point for theme development. [Learn more on Shopify.dev](https://shopify.dev/themes/getting-started/create).
-
-> If you're building a theme for the Shopify Theme Store, then you can use Dawn as a starting point. However, the theme that you submit needs to be [substantively different from Dawn](https://shopify.dev/themes/store/requirements#uniqueness) so that it provides added value for merchants. Learn about the [ways that you can use Dawn](https://shopify.dev/themes/tools/dawn#ways-to-use-dawn).
-
-Please note that the main branch may include code for features not yet released. The "stable" version of Dawn is available in the theme store.
-
-## Staying up to date with Dawn changes
-
-Say you're building a new theme off Dawn but you still want to be able to pull in the latest changes, you can add a remote `upstream` pointing to this Dawn repository.
-
-1. Navigate to your local theme folder.
-2. Verify the list of remotes and validate that you have both an `origin` and `upstream`:
-```sh
-git remote -v
 ```
-3. If you don't see an `upstream`, you can add one that points to Shopify's Dawn repository:
-```sh
-git remote add upstream https://github.com/Shopify/dawn.git
-```
-4. Pull in the latest Dawn changes into your repository:
-```sh
-git fetch upstream
-git pull upstream main
+layout/theme.liquid          loads base.css only, maps theme settings → CSS variables
+assets/base.css              tokens · reset · typography · utilities · button/field/badge
+assets/section-<name>.css    one stylesheet per section (loaded by that section)
+assets/yk-<feature>.js       one script per behaviour (loaded by the section that needs it)
+snippets/yk-section-style     settings → per-instance CSS variables
+sections/<name>.liquid       markup + schema
 ```
 
-## Developer tools
+Each section declares its own dependencies at the top of the file:
 
-There are a number of really useful tools that the Shopify Themes team uses during development. Dawn is already set up to work with these tools.
+```liquid
+{{ 'section-hero.css' | asset_url | stylesheet_tag }}
+{% render 'yk-section-style', section: section %}
+```
 
-### Shopify CLI
+so nothing loads on a page that doesn't use it, and a section can be copied into
+another theme with just its `.css` (plus `base.css` for the shared primitives).
 
-[Shopify CLI](https://github.com/Shopify/shopify-cli) helps you build Shopify themes faster and is used to automate and enhance your local development workflow. It comes bundled with a suite of commands for developing Shopify themes—everything from working with themes on a Shopify store (e.g. creating, publishing, deleting themes) or launching a development server for local theme development.
+### How settings reach CSS
 
-You can follow this [quick start guide for theme developers](https://shopify.dev/docs/themes/tools/cli) to get started.
+`snippets/yk-section-style.liquid` renders one scoped rule per section instance:
 
-### Theme Check
+```css
+#shopify-section-abc123{ --yk-sec-bg:#17150F; --yk-sec-pt:150px; --yk-sec-cols:3; … }
+```
 
-We recommend using [Theme Check](https://github.com/shopify/theme-check) as a way to validate and lint your Shopify themes.
+The section stylesheet then reads those variables with fallbacks:
 
-We've added Theme Check to Dawn's [list of VS Code extensions](/.vscode/extensions.json) so if you're using Visual Studio Code as your code editor of choice, you'll be prompted to install the [Theme Check VS Code](https://marketplace.visualstudio.com/items?itemName=Shopify.theme-check-vscode) extension upon opening VS Code after you've forked and cloned Dawn.
+```css
+.yk-steps{ grid-template-columns:repeat(var(--yk-sec-cols,4),minmax(0,1fr)) }
+```
 
-You can also run it from a terminal with the following Shopify CLI command:
+One shared snippet, static cacheable CSS, no duplicated property blocks, and two
+instances of the same section on one page can look completely different.
+
+### Settings every section exposes
+
+| Group | Settings |
+|---|---|
+| Content | headings, body, images, buttons, toggles for optional parts |
+| Layout | columns (desktop / tablet / mobile), image position, ratio, gaps, alignment |
+| Colours | background, heading, body, eyebrow, accent — empty = inherit the theme |
+| Typography | heading size + separate mobile heading size |
+| Section spacing | top / bottom padding **and** separate mobile top / bottom padding |
+
+### Sections
+
+| Section | Blocks | Own CSS | Own JS |
+|---|---|---|---|
+| `announcement-bar` | message | ✓ | — |
+| `header` | — | ✓ | `yk-header.js` |
+| `hero-product` | chip, trust | ✓ | — |
+| `marquee` | benefit | ✓ | — |
+| `stats-bar` | stat | ✓ | — |
+| `feature-banner` | — | ✓ | — |
+| `image-with-text` | caption, heading, text, button | ✓ | — |
+| `how-it-works` | step | ✓ | — |
+| `product-buy-box` | spec, assurance | ✓ | `yk-product.js` |
+| `included-kit` | item | ✓ | — |
+| `multicolumn` | column | ✓ | — |
+| `comparison-table` | row | ✓ | — |
+| `guarantee` | column | ✓ | — |
+| `reviews` | review | ✓ | — |
+| `brand-story` | benefit | ✓ | — |
+| `faq` | question | ✓ | `yk-faq.js` (only when single-open is on) |
+| `cta-band` | — | ✓ | — |
+| `contact-form` | — | ✓ | — |
+| `footer` | brand, menu, text, social, newsletter | ✓ | — |
+
+### Commerce sections (Dawn structure)
+
+| Section | Template | Own CSS | Own JS |
+|---|---|---|---|
+| `main-collection-banner` | `collection.json` | shared | — |
+| `main-collection-product-grid` | `collection.json` | `section-collection.css` | `yk-facets.js`, `yk-cart.js` |
+| `main-search` | `search.json` | shared | `yk-facets.js`, `yk-cart.js` |
+| `main-cart-items` | `cart.json` | `section-cart.css` | `yk-cart.js` |
+| `main-cart-footer` | `cart.json` | shared | — |
+| `related-products` | `product.json` | shared | `yk-recommendations.js` |
+
+Shared commerce components: `snippets/card-product.liquid` (+
+`assets/component-card-product.css`), `snippets/facets.liquid`,
+`snippets/product-variant-picker.liquid`, `snippets/yk-price.liquid`.
+
+**How the interactive bits work** — every control is a real form first, then
+upgraded:
+
+- **Filtering / sorting** — one `<form>` that GETs the collection URL. `yk-facets.js`
+  intercepts it, fetches the same URL with `section_id`, swaps the results and the
+  facet form (so counts and disabled states stay correct), and `replaceState`s the
+  URL. Any failure falls back to a normal navigation.
+- **Cart** — quantity, remove and note post to `/cart/change.js` and
+  `/cart/update.js` with `sections`, so one request returns the re-rendered cart
+  sections and header count. `<noscript>` keeps the update button.
+- **Variants** — `product-variant-picker` renders one control per option plus the
+  variant JSON; `yk-product.js` resolves the combination, strikes out
+  combinations that don't exist, updates price, availability, inventory line,
+  gallery image, quantity max, the sticky bar and the URL.
+- **Quick add / sticky add** — `/cart/add.js` with `sections`, falling back to a
+  real form submit.
+- **Recommendations** — fetched from the Recommendations API when the block nears
+  the viewport, so it never blocks render.
+
+Every section has a `preset`, so all of them appear under **Add section** in the
+customizer and can be used on any template — not just the homepage.
+
+#### Dawn-parity sections
+
+`image-with-text` and `multicolumn` mirror Dawn's settings so they behave the way
+you already expect:
+
+**Image with text**
+
+| Setting | Options |
+|---|---|
+| Desktop layout | Image first · **Text first (reversed)** |
+| Content layout | No overlap · Overlap (content card laps the image) |
+| Image height | Adapt to ratio · Small · Medium · Large |
+| Image ratio | Landscape · Square · Portrait · Wide |
+| Desktop image width | Small (⅓) · Medium (½) · Large (⅔) |
+| Desktop content position | Top · Middle · Bottom |
+| Content alignment | Left · Centre · Right — desktop and mobile set separately |
+
+Reversing swaps the columns *and* mirrors the image-width ratio so the image keeps
+its share of the row. Below 990px the image always comes first regardless of the
+desktop order, exactly as Dawn does it. The content column is block-driven
+(caption / heading / text / button), so it can be reordered in the customizer.
+
+**Multicolumn**
+
+| Setting | Options |
+|---|---|
+| Columns | 1–6 desktop · 1–4 tablet · 1–2 mobile |
+| Image width | Full · Half · One third of the column |
+| Image ratio | Adapt · Portrait · Square · **Circle** |
+| Column alignment | Left · Centre |
+| Column background | None · Card |
+| Swipe on mobile | Grid, or one scroll-snapping row |
+| Extras | Section eyebrow, heading, body, button; per-column title, text and link |
+
+Both are in `preview/index.html` — image-with-text appears twice, once default and
+once reversed with the overlap card, so you can see the flip side by side. Neither
+is on the homepage yet: add them in **Customize → Add section**, or say the word
+and I'll place them in `templates/index.json`.
+
+---
+
+## SEO
+
+| Area | What the theme does |
+|---|---|
+| Meta | Title, description (falls back to product / collection / article / shop text), canonical, `theme-color`, Open Graph (with real image dimensions and alt) and Twitter cards — `snippets/meta-tags.liquid` |
+| Robots | `index, follow, max-image-preview:large` on real content; `noindex, follow` on search, cart, 404 and every customer page. `templates/robots.txt.liquid` keeps Shopify's defaults and adds the theme's filter / sort / variant query params |
+| Structured data | `snippets/structured-data.liquid` emits Organization + WebSite (with SearchAction) on every page, then Product + Offers, CollectionPage, BlogPosting or WebPage per page type, each with a BreadcrumbList. Rendered once from the layout so sections can't duplicate it |
+| FAQ rich result | The FAQ section outputs FAQPage JSON-LD, question for question from its blocks (toggle: *Add FAQ structured data*) |
+| Headings | Exactly one `<h1>` per page — the section headline. The header logo is a `<div>`, so it never competes |
+| Alt text | Taken from the image's own alt, falling back to the section heading; decorative placeholders stay `alt=""` |
+| i18n | `hreflang` alternates for every published locale, `lang` on `<html>`, `prev` / `next` on paginated pages |
+
+## Performance
+
+- **CSS** — a slim `base.css` plus one stylesheet per section, so a page downloads only what it renders. The above-the-fold ones (`header`, `hero`) use `stylesheet_tag: preload: true`.
+- **LCP** — the hero preloads its image (`preload_tag`) and serves it `loading="eager" fetchpriority="high"`; every other image is `loading="lazy" decoding="async"`.
+- **CLS** — every image carries width/height or an `aspect-ratio`, so nothing reflows while loading.
+- **JS** — three small per-section files (header, product, FAQ), all `defer`, no framework, no globals. The animation script loads only when *Reveal sections on scroll* is on.
+- **Fonts** — Google Fonts load non-blocking (`media="print"` + `onload`) with a `<noscript>` fallback, and are skipped entirely if you switch both typefaces to Shopify fonts.
+- **Prices** — `snippets/yk-price.liquid` is the single place money is formatted, honouring *Currency format*.
+
+---
+
+## Install
 
 ```bash
-shopify theme check
+cd yakka-shopify
+shopify theme dev --store your-store.myshopify.com   # live preview
+shopify theme push --unpublished                     # upload as a draft
+shopify theme check                                  # lint
 ```
 
-### Continuous Integration
+Or zip it for Admin → Themes → Upload zip:
 
-Dawn uses [GitHub Actions](https://github.com/features/actions) to maintain the quality of the theme. [This is a starting point](https://github.com/Shopify/dawn/blob/main/.github/workflows/ci.yml) and what we suggest to use in order to ensure you're building better themes. Feel free to build off of it!
+```bash
+cd yakka-shopify && zip -r ../yakka-ignition.zip . -x '*.DS_Store' 'preview/*' 'pending.md' 'README.md'
+```
 
-#### Shopify/lighthouse-ci-action
+### After installing
 
-We love fast websites! Which is why we created [Shopify/lighthouse-ci-action](https://github.com/Shopify/lighthouse-ci-action). This runs a series of [Google Lighthouse](https://developers.google.com/web/tools/lighthouse) audits for the home, product and collections pages on a store to ensure code that gets added doesn't degrade storefront performance over time.
+1. **Menus** — create a `main-menu` and a `footer` menu in Navigation.
+2. **Product** — Customize → *Product buy box* → pick your product. Until then the
+   section shows demo pricing and placeholder images. On the product template the
+   current product is used automatically.
+3. **Colours / width / base font** — Customize → Theme settings.
 
-#### Shopify/theme-check-action
+---
 
-Dawn runs [Theme Check](#Theme-Check) on every commit via [Shopify/theme-check-action](https://github.com/Shopify/theme-check-action).
+## Conventions
 
-## Contributing
+**CSS** — BEM, namespaced `yk-`:
 
-Want to make commerce better for everyone by contributing to Dawn? We'd love your help! Please read our [contributing guide](https://github.com/Shopify/dawn/blob/main/.github/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to build for Dawn.
+```
+.yk-review              block
+.yk-review__quote       element
+.yk-btn--ghost          modifier
+.is-open / .is-active   state — set by JS only, never styled directly by sections
+data-yk-*               JS hooks — never styled, so restyling can't break behaviour
+--yk-sec-*              per-instance variables from section settings
+--yk-*                  global design tokens (base.css)
+```
 
-## Code of conduct
+**Liquid** — `{% liquid %}` blocks for logic up top, markup below; `{%- -%}` to keep
+whitespace out of the output; guarded output (`{% if x != blank %}`) so empty
+settings don't render empty tags; `section.id`-scoped element ids so two instances
+never collide.
 
-All developers who wish to contribute through code or issues, please first read our [Code of Conduct](https://github.com/Shopify/dawn/blob/main/.github/CODE_OF_CONDUCT.md).
+**JS** — one file per section, no dependencies, no globals. Every initialiser is
+idempotent (`data-ykBound`) and re-runs on `shopify:section:load`, so the theme
+editor stays live. Progressive enhancement throughout: the FAQ is native
+`<details>`, the forms are native Shopify forms, and the gallery falls back to the
+featured image if scripts fail.
 
-## Theme Store submission
+---
 
-The [Shopify Theme Store](https://themes.shopify.com/) is the place where Shopify merchants find the themes that they'll use to showcase and support their business. As a theme partner, you can create themes for the Shopify Theme Store and reach an international audience of an ever-growing number of entrepreneurs.
+## Responsive
 
-Ensure that you follow the list of [theme store requirements](https://shopify.dev/themes/store/requirements) if you're interested in becoming a [Shopify Theme Partner](https://themes.shopify.com/services/themes/guidelines) and building themes for the Shopify platform.
+Shopify's standard breakpoints: **mobile ≤749px**, **tablet 750–989px**,
+**desktop ≥990px** (plus 1199px and 479px touch-ups).
 
-## License
+| Breakpoint | What changes |
+|---|---|
+| 1199 | hero chips pull inside the viewport edge |
+| 989 | header → burger + centred logo + icons, menu opens as a **drawer** (or dropdown, per setting); hero / feature / buy box / story / contact stack image-first; grids drop to their tablet column count; marquee scrolls; comparison table scrolls inside its card |
+| 749 | single column, full-width buttons, stacked qty + add-to-cart, stacked footer and contact form, mobile padding + mobile heading sizes take over |
+| 479 | small-handset type and gutter trims |
 
-Copyright (c) 2021-present Shopify Inc. See [LICENSE](/LICENSE.md) for further details.
+Column counts at every breakpoint are settings, not hard-coded values. The page
+never scrolls horizontally — wide content scrolls inside its own container.
+
+## Hover & interaction
+
+All hover styling sits inside `@media (hover:hover) and (pointer:fine)` so touch
+devices never get stuck-on states: button lift + sheen sweep, nav underline wipe,
+header icon tint, card lifts (step / kit / review), image scale (gallery, thumbs,
+reviews, hero), swatch and quantity highlights, spec and comparison row
+highlights, FAQ `+ → ×`, footer link slide, field hover/focus rings. Pressed
+states apply on every device; `prefers-reduced-motion` disables the motion.
+
+## Mobile menu
+
+Below 990px the menu opens as an off-canvas **drawer** — Dawn-style — with a dimmed
+overlay, its own title row and close button, and an optional footer line. Settings:
+
+| Setting | Options |
+|---|---|
+| Style | **Drawer (slides in)** · Dropdown (pushes the page) |
+| Opens from | Left · Right |
+| Drawer width | 260–480px (capped at 86vw) |
+| Footer text | Free text, e.g. shipping and returns |
+| Background | Own colour setting |
+
+The drawer traps Tab inside itself, closes on overlay click, Escape, or following a
+link, locks the page behind it, and returns focus to the burger on close. The
+dropdown variant keeps the page interactive and skips the lock and focus move.
+
+## Header icons
+
+`snippets/icon-search.liquid`, `icon-user.liquid`, `icon-cart.liquid` — inline SVG,
+`currentColor`, 22px, each toggleable in the header settings. The cart bubble
+renders `cart.item_count` from Liquid and refreshes from `/cart.js`; dispatch
+`yk:cart:updated` on `document` after an AJAX add to refresh it again.
+
+---
+
+## Notes
+
+- Instrument Serif isn't in Shopify's font library, so it loads from Google Fonts
+  in `layout/theme.liquid`. Replace that `<link>` if you self-host.
+- Images in `assets/` were extracted from the base64 data URIs in the original
+  HTML; replace them through the section image pickers.
+- `preview/index.html` is a static mirror using the same CSS and JS files, for
+  checking breakpoints and hovers without a store. It isn't part of the theme and
+  is excluded from the zip command above.
+- Known gaps, unwired settings and unverified areas are tracked in `pending.md`.
+- Not yet run against a live store from this machine (no Shopify CLI here). JSON,
+  section schemas, setting references, block types, Liquid tag balance,
+  snippet/asset references and translation keys are all validated; run
+  `shopify theme check` after cloning for the full lint.

@@ -1,0 +1,58 @@
+{%- comment -%}
+  Section: marquee
+  Dark benefit strip; centred on desktop, horizontally scrollable ≤989px.
+  Styles: assets/section-marquee.css
+{%- endcomment -%}
+
+{{ 'section-marquee.css' | asset_url | stylesheet_tag }}
+{% render 'yk-section-style', section: section %}
+
+{% style %}
+  #shopify-section-{{ section.id }}{
+    --yk-marquee-gap: {{ section.settings.item_gap }}px;
+    --yk-marquee-pad: {{ section.settings.strip_padding }}px;
+  }
+{% endstyle %}
+
+{%- if section.blocks.size > 0 -%}
+  <div class="yk-marquee">
+    <ul class="yk-marquee__list">
+      {%- for block in section.blocks -%}
+        <li class="yk-marquee__item" {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Benefit marquee",
+  "tag": "section",
+  "class": "yk-section-marquee",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "item_gap", "label": "Gap between items", "min": 16, "max": 96, "step": 4, "unit": "px", "default": 56 },
+    { "type": "range", "id": "strip_padding", "label": "Strip padding", "min": 8, "max": 48, "step": 2, "unit": "px", "default": 20 },
+
+    { "type": "header", "content": "Colours" },
+    { "type": "color", "id": "color_background", "label": "Background", "default": "#17150F" },
+    { "type": "color", "id": "color_text", "label": "Text", "default": "#CFC7BB" },
+    { "type": "color", "id": "color_accent", "label": "Bullet", "default": "#FF8A2B" }
+  ],
+  "blocks": [
+    { "type": "item", "name": "Benefit",
+      "settings": [ { "type": "text", "id": "text", "label": "Text", "default": "Completely cordless" } ] }
+  ],
+  "presets": [
+    { "name": "Benefit marquee",
+      "blocks": [
+        { "type": "item", "settings": { "text": "Completely cordless" } },
+        { "type": "item", "settings": { "text": "Rugged, leak-proof shell" } },
+        { "type": "item", "settings": { "text": "Free insulated carry bag" } },
+        { "type": "item", "settings": { "text": "Stainless inner, dishwasher safe" } },
+        { "type": "item", "settings": { "text": "Australian owned & supported" } }
+      ] }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,77 @@
+{%- comment -%}
+  Section: cta-band — full-bleed gradient closing call to action.
+  Styles: assets/section-band.css
+{%- endcomment -%}
+
+{{ 'section-band.css' | asset_url | stylesheet_tag }}
+{% render 'yk-section-style', section: section %}
+
+{% style %}
+  #shopify-section-{{ section.id }}{
+    --yk-band-bg: linear-gradient({{ section.settings.gradient_angle }}deg,
+      {{ section.settings.gradient_start }} 0%,
+      {{ section.settings.gradient_mid }} 55%,
+      {{ section.settings.gradient_end }} 100%);
+  }
+{% endstyle %}
+
+<div class="yk-band yk-section">
+  <div class="yk-page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="yk-band__title yk-section__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.text != blank -%}
+      <p class="yk-band__text">{{ section.settings.text }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.cta_label != blank -%}
+      <a class="yk-btn" href="{{ section.settings.cta_link | default: routes.all_products_collection_url }}">
+        {{ section.settings.cta_label }}
+      </a>
+    {%- endif -%}
+
+    {%- if section.settings.micro != blank -%}
+      <div class="yk-band__micro">{{ section.settings.micro }}</div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CTA band",
+  "tag": "section",
+  "class": "yk-section-band",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Stop paying $30 a day for a cold compromise." },
+    { "type": "text", "id": "text", "label": "Body", "default": "One purchase, and every lunch for the next decade is a hot one." },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Shop the Lunchbox" },
+    { "type": "url", "id": "cta_link", "label": "Button link" },
+    { "type": "text", "id": "micro", "label": "Fine print", "default": "In stock · Free express shipping AU & NZ · 60-day money back" },
+
+    { "type": "header", "content": "Gradient" },
+    { "type": "color", "id": "gradient_start", "label": "Start", "default": "#E8500F" },
+    { "type": "color", "id": "gradient_mid", "label": "Middle", "default": "#FF7A1F" },
+    { "type": "color", "id": "gradient_end", "label": "End", "default": "#FF9A3D" },
+    { "type": "range", "id": "gradient_angle", "label": "Angle", "min": 0, "max": 360, "step": 5, "unit": "deg", "default": 105 },
+
+    { "type": "header", "content": "Colours" },
+    { "type": "color", "id": "color_heading", "label": "Heading", "default": "#FFFFFF" },
+    { "type": "color", "id": "color_text", "label": "Body text", "default": "#FFFFFF" },
+    { "type": "color", "id": "color_button", "label": "Button background", "default": "#FFFFFF" },
+    { "type": "color", "id": "color_button_text", "label": "Button text", "default": "#E8500F" },
+
+    { "type": "header", "content": "Typography" },
+    { "type": "range", "id": "heading_size", "label": "Heading size", "min": 24, "max": 80, "step": 2, "unit": "px", "default": 50 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Heading size (mobile)", "min": 20, "max": 48, "step": 1, "unit": "px", "default": 30 },
+
+    { "type": "header", "content": "Section spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 110 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 110 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Top padding (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 }
+  ],
+  "presets": [ { "name": "CTA band" } ]
+}
+{% endschema %}

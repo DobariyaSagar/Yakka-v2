@@ -1,0 +1,51 @@
+/* section: guarantee — dark full-bleed band with seal, CTA and columns */
+.yk-guarantee{
+  position:relative;overflow:hidden;text-align:center;
+  background:var(--yk-sec-bg,var(--yk-contrast));
+  color:var(--yk-sec-text,#F5F0E8);
+}
+.yk-guarantee::after{                    /* accent bloom */
+  content:"";position:absolute;left:50%;top:-40%;
+  width:900px;height:900px;transform:translateX(-50%);pointer-events:none;
+  background:radial-gradient(closest-side,
+    var(--yk-guarantee-glow,rgba(232,80,15,.2)),rgba(232,80,15,0) 70%);
+}
+.yk-guarantee__inner{position:relative;z-index:1}
+.yk-guarantee__title{margin:18px auto 22px;max-width:16ch;color:var(--yk-sec-heading,#fff)}
+.yk-guarantee__text{margin:0 auto 36px;max-width:58ch;text-align:center;color:var(--yk-sec-text,#B9B1A6)}
+
+.yk-seal{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  width:112px;height:112px;margin:0 auto 26px;
+  border:1px solid #3A342B;border-radius:50%;
+  font-family:var(--yk-font-heading);color:#fff;line-height:1;
+  transition:transform var(--yk-dur) var(--yk-ease),border-color .22s ease;
+}
+.yk-seal__value{font-size:34px}
+.yk-seal__label{
+  margin-top:5px;font-family:var(--yk-font-body);
+  font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#9A9287;
+}
+
+.yk-guarantee__cols{
+  display:grid;grid-template-columns:repeat(var(--yk-sec-cols,3),minmax(0,1fr));
+  gap:52px;max-width:900px;margin:66px auto 0;
+  padding-top:44px;border-top:1px solid #2E2A22;text-align:left;
+}
+.yk-guarantee__col-title{margin-bottom:8px;font-size:21px;color:#fff}
+.yk-guarantee__col-text{margin:0;text-align:left;font-size:15px;color:#9A9287}
+
+@media (hover:hover) and (pointer:fine){
+  .yk-seal:hover{border-color:var(--yk-sec-accent,var(--yk-accent));transform:scale(1.05)}
+}
+@media screen and (max-width:989px){
+  .yk-guarantee__cols{gap:34px;margin-top:52px}
+}
+@media screen and (max-width:749px){
+  .yk-guarantee__cols{
+    grid-template-columns:repeat(var(--yk-sec-cols-mobile,1),minmax(0,1fr));
+    gap:26px;max-width:520px;margin-top:44px;padding-top:32px;
+  }
+  .yk-seal{width:92px;height:92px;margin-bottom:20px}
+  .yk-seal__value{font-size:28px}
+}

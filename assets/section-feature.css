@@ -1,0 +1,26 @@
+/* section: feature-banner — gradient card, copy beside an image */
+.yk-feature{
+  display:grid;
+  grid-template-columns:var(--yk-feature-cols,1.02fr .98fr);
+  align-items:center;gap:var(--yk-feature-gap,52px);
+  padding:var(--yk-feature-pad,76px) var(--yk-feature-pad-x,64px);
+  border-radius:var(--yk-radius-xl);overflow:hidden;
+  background:var(--yk-feature-bg,linear-gradient(150deg,#FCEFE7 0%,#F4E4D6 52%,#EBD9C7 100%));
+}
+.yk-feature__title{margin-block:16px 20px;color:var(--yk-sec-heading,inherit)}
+.yk-feature__text{color:var(--yk-sec-text,var(--yk-text-3))}
+.yk-feature__actions{margin-top:26px}
+.yk-feature__image{
+  width:100%;aspect-ratio:var(--yk-feature-ratio,4/3.2);
+  object-fit:cover;border-radius:var(--yk-radius-md);
+  box-shadow:0 40px 70px -40px rgba(60,35,15,.6);
+}
+.yk-feature--media-first .yk-feature__image{order:-1}
+
+@media screen and (max-width:989px){
+  .yk-feature{grid-template-columns:1fr;gap:30px;padding:38px 30px}
+  .yk-feature__image{order:-1;aspect-ratio:16/10}
+}
+@media screen and (max-width:749px){
+  .yk-feature{padding:26px 20px;border-radius:16px;gap:22px}
+}

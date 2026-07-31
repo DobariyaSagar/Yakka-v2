@@ -1,0 +1,13 @@
+<div class="yk-page-width yk-section">
+  <h1>{{ 'collections.list.title' | t: default: 'Collections' }}</h1>
+  <div class="yk-kit" style="margin-top:40px">
+    {%- for collection in collections -%}
+      <a class="yk-kit__item" href="{{ collection.url }}">
+        <div>
+          <h3 class="yk-kit__title">{{ collection.title }}</h3>
+          <p class="yk-kit__text">{{ collection.all_products_count }} {{ 'collections.list.products' | t: default: 'products' }}</p>
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="yk-page-width yk-section">
+  <h1>{{ 'customer.addresses.title' | t: default: 'Addresses' }}</h1>
+  {%- for address in customer.addresses -%}
+    <div class="yk-kit__item" style="margin-top:16px">
+      <div>{{ address | format_address }}</div>
+    </div>
+  {%- endfor -%}
+
+  <h2 style="margin-top:40px;font-size:28px">{{ 'customer.addresses.add_new' | t: default: 'Add a new address' }}</h2>
+  {%- form 'customer_address', customer.new_address -%}
+    {{ form.errors | default_errors }}
+    <input class="yk-field" name="address[address1]" placeholder="{{ 'customer.addresses.address1' | t: default: 'Address' }}" style="margin-top:14px">
+    <input class="yk-field" name="address[city]" placeholder="{{ 'customer.addresses.city' | t: default: 'City' }}" style="margin-top:12px">
+    <input class="yk-field" name="address[zip]" placeholder="{{ 'customer.addresses.zip' | t: default: 'Postcode' }}" style="margin-top:12px">
+    <button type="submit" class="yk-btn" style="margin-top:18px">{{ 'customer.addresses.add' | t: default: 'Add address' }}</button>
+  {%- endform -%}
+</div>

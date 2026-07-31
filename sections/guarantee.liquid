@@ -1,0 +1,114 @@
+{%- comment -%}
+  Section: guarantee — dark full-bleed band: seal, promise, CTA, supporting columns.
+  Styles: assets/section-guarantee.css
+{%- endcomment -%}
+
+{{ 'section-guarantee.css' | asset_url | stylesheet_tag }}
+{% render 'yk-section-style', section: section %}
+
+{% style %}
+  #shopify-section-{{ section.id }} .yk-guarantee::after{
+    background:radial-gradient(closest-side, {{ section.settings.color_glow }}, rgba(0,0,0,0) 70%);
+    {% unless section.settings.show_glow %}display:none;{% endunless %}
+  }
+{% endstyle %}
+
+<div class="yk-guarantee yk-section">
+  <div class="yk-page-width yk-guarantee__inner">
+    {%- if section.settings.seal_value != blank -%}
+      <div class="yk-seal" aria-hidden="true">
+        <b class="yk-seal__value">{{ section.settings.seal_value }}</b>
+        <span class="yk-seal__label">{{ section.settings.seal_label }}</span>
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="yk-eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="yk-guarantee__title yk-section__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.text != blank -%}
+      <p class="yk-guarantee__text">{{ section.settings.text }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.cta_label != blank -%}
+      <a class="yk-btn yk-btn--light" href="{{ section.settings.cta_link | default: routes.all_products_collection_url }}">
+        {{ section.settings.cta_label }}
+      </a>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="yk-guarantee__cols">
+        {%- for block in section.blocks -%}
+          <div {{ block.shopify_attributes }}>
+            <h3 class="yk-guarantee__col-title">{{ block.settings.title }}</h3>
+            <p class="yk-guarantee__col-text">{{ block.settings.text }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Guarantee band",
+  "tag": "section",
+  "class": "yk-section-guarantee",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "header", "content": "Seal" },
+    { "type": "text", "id": "seal_value", "label": "Value", "default": "60" },
+    { "type": "text", "id": "seal_label", "label": "Label", "default": "Day" },
+
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our guarantee" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Love it, or your money back." },
+    { "type": "textarea", "id": "text", "label": "Body",
+      "default": "Run it for sixty days. Take it up the site, drop it in the tray, heat your feed every day of it. If it isn't the best thing you've bought for work this year, we'll refund you in full — and you don't have to send it back." },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Shop with confidence" },
+    { "type": "url", "id": "cta_link", "label": "Button link" },
+
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "columns_desktop", "label": "Columns", "min": 1, "max": 4, "step": 1, "default": 3 },
+    { "type": "range", "id": "columns_mobile", "label": "Columns (mobile)", "min": 1, "max": 2, "step": 1, "default": 1 },
+    { "type": "checkbox", "id": "show_glow", "label": "Show accent glow", "default": true },
+
+    { "type": "header", "content": "Colours" },
+    { "type": "color", "id": "color_background", "label": "Background", "default": "#17150F" },
+    { "type": "color", "id": "color_heading", "label": "Heading", "default": "#FFFFFF" },
+    { "type": "color", "id": "color_text", "label": "Body text", "default": "#B9B1A6" },
+    { "type": "color", "id": "color_eyebrow", "label": "Eyebrow", "default": "#8C857B" },
+    { "type": "color", "id": "color_accent", "label": "Accent", "default": "#E8500F" },
+    { "type": "color", "id": "color_glow", "label": "Glow", "default": "rgba(232,80,15,0.2)" },
+
+    { "type": "header", "content": "Typography" },
+    { "type": "range", "id": "heading_size", "label": "Heading size", "min": 24, "max": 80, "step": 2, "unit": "px", "default": 50 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Heading size (mobile)", "min": 20, "max": 48, "step": 1, "unit": "px", "default": 32 },
+
+    { "type": "header", "content": "Section spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 140 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 124 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Top padding (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 }
+  ],
+  "blocks": [
+    { "type": "column", "name": "Column",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Sixty full days" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Not fourteen. Long enough to know whether it actually holds up on the job." }
+      ] }
+  ],
+  "presets": [
+    { "name": "Guarantee band",
+      "blocks": [
+        { "type": "column", "settings": { "title": "Sixty full days", "text": "Not fourteen. Long enough to know whether it actually holds up on the job." } },
+        { "type": "column", "settings": { "title": "No return freight", "text": "Keep the unit. We'd rather you had it than pay to ship it back to us." } },
+        { "type": "column", "settings": { "title": "Real people", "text": "Australian support team, replies inside 24 hours, Monday to Friday." } }
+      ] }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,74 @@
+{%- comment -%}
+  Renders one section instance's settings as CSS custom properties, scoped to
+  that instance. Called once per section; the section's stylesheet reads the
+  variables with fallbacks, so the CSS file stays static and cacheable.
+
+  Order matters — later declarations win:
+    1. the chosen colour scheme (theme settings → Colors)
+    2. the section's own colour pickers, where a merchant filled one in
+    3. layout / typography / spacing settings
+
+  Settings contract (a section may implement any subset):
+    color_scheme
+    color_background  color_heading  color_text  color_eyebrow  color_accent
+    color_button      color_button_text  color_card
+    heading_size      heading_size_mobile
+    padding_top       padding_bottom
+    padding_top_mobile  padding_bottom_mobile
+    columns_desktop   columns_tablet   columns_mobile
+
+  Usage: {% render 'yk-section-style', section: section %}
+{%- endcomment -%}
+
+{%- assign s = section.settings -%}
+{%- assign scheme = s.color_scheme -%}
+
+{% style %}
+  #shopify-section-{{ section.id }}{{ scope }}{
+    {%- comment -%} 1. colour scheme {%- endcomment -%}
+    {% if scheme %}
+      --yk-canvas: {{ scheme.settings.background }};
+      --yk-surface: {{ scheme.settings.card }};
+      --yk-text: {{ scheme.settings.heading }};
+      --yk-text-2: {{ scheme.settings.text }};
+      --yk-text-3: {{ scheme.settings.text }};
+      --yk-border: {{ scheme.settings.border }};
+      --yk-accent: {{ scheme.settings.button }};
+      --yk-shadow-color: {{ scheme.settings.shadow }};
+
+      --yk-sec-bg: {% if scheme.settings.background_gradient != blank %}{{ scheme.settings.background_gradient }}{% else %}{{ scheme.settings.background }}{% endif %};
+      --yk-sec-heading: {{ scheme.settings.heading }};
+      --yk-sec-text: {{ scheme.settings.text }};
+      --yk-sec-eyebrow: {{ scheme.settings.text }};
+      --yk-sec-accent: {{ scheme.settings.button }};
+      --yk-card-bg: {{ scheme.settings.card }};
+      --yk-btn-bg: {{ scheme.settings.button }};
+      --yk-btn-text: {{ scheme.settings.button_label }};
+      --yk-btn-ghost-text: {{ scheme.settings.secondary_button_label }};
+      --yk-btn-ghost-border: {{ scheme.settings.secondary_button_label }};
+    {% endif %}
+
+    {%- comment -%} 2. per-section overrides {%- endcomment -%}
+    {% if s.color_background != blank %}--yk-sec-bg: {{ s.color_background }};{% endif %}
+    {% if s.color_heading != blank %}--yk-sec-heading: {{ s.color_heading }};{% endif %}
+    {% if s.color_text != blank %}--yk-sec-text: {{ s.color_text }};{% endif %}
+    {% if s.color_eyebrow != blank %}--yk-sec-eyebrow: {{ s.color_eyebrow }};{% endif %}
+    {% if s.color_accent != blank %}--yk-sec-accent: {{ s.color_accent }};{% endif %}
+    {% if s.color_card != blank %}--yk-card-bg: {{ s.color_card }};{% endif %}
+    {% if s.color_button != blank %}--yk-btn-bg: {{ s.color_button }};{% endif %}
+    {% if s.color_button_text != blank %}--yk-btn-text: {{ s.color_button_text }};{% endif %}
+
+    {%- comment -%} 3. typography, spacing, grid {%- endcomment -%}
+    {% if s.heading_size %}--yk-sec-h-size: {{ s.heading_size }}px;{% endif %}
+    {% if s.heading_size_mobile %}--yk-sec-h-size-mobile: {{ s.heading_size_mobile }}px;{% endif %}
+
+    {% if s.padding_top %}--yk-sec-pt: {{ s.padding_top }}px;{% endif %}
+    {% if s.padding_bottom %}--yk-sec-pb: {{ s.padding_bottom }}px;{% endif %}
+    {% if s.padding_top_mobile %}--yk-sec-pt-mobile: {{ s.padding_top_mobile }}px;{% endif %}
+    {% if s.padding_bottom_mobile %}--yk-sec-pb-mobile: {{ s.padding_bottom_mobile }}px;{% endif %}
+
+    {% if s.columns_desktop %}--yk-sec-cols: {{ s.columns_desktop }};{% endif %}
+    {% if s.columns_tablet %}--yk-sec-cols-tablet: {{ s.columns_tablet }};{% endif %}
+    {% if s.columns_mobile %}--yk-sec-cols-mobile: {{ s.columns_mobile }};{% endif %}
+  }
+{% endstyle %}

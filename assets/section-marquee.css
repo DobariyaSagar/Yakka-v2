@@ -1,0 +1,30 @@
+/* section: marquee — dark benefit strip, scrolls horizontally on small screens */
+.yk-marquee{
+  overflow:hidden;
+  padding-block:var(--yk-marquee-pad,20px);
+  background:var(--yk-sec-bg,var(--yk-contrast));
+  color:var(--yk-sec-text,#EFE9DF);
+}
+.yk-marquee__list{
+  display:flex;justify-content:center;
+  gap:var(--yk-marquee-gap,56px);
+  font-size:14px;letter-spacing:.06em;white-space:nowrap;
+}
+.yk-marquee__item{
+  display:flex;align-items:center;gap:12px;
+  color:var(--yk-sec-text,#CFC7BB);transition:color .22s ease;
+}
+.yk-marquee__item::before{
+  content:"";width:6px;height:6px;border-radius:50%;
+  background:var(--yk-sec-accent,var(--yk-accent-2));
+}
+@media (hover:hover) and (pointer:fine){ .yk-marquee__item:hover{color:#fff} }
+
+@media screen and (max-width:989px){
+  .yk-marquee{padding-block:16px}
+  .yk-marquee__list{
+    justify-content:flex-start;gap:34px;padding-inline:var(--yk-gutter);
+    overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;
+  }
+  .yk-marquee__list::-webkit-scrollbar{display:none}
+}

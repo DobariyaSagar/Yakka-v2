@@ -1,0 +1,108 @@
+{%- comment -%}
+  Section: included-kit — "everything in the box" cards, auto-numbered.
+  Styles: assets/section-kit.css
+{%- endcomment -%}
+
+{{ 'section-kit.css' | asset_url | stylesheet_tag }}
+{% render 'yk-section-style', section: section %}
+
+{% style %}
+  #shopify-section-{{ section.id }}{
+    --yk-kit-gap: {{ section.settings.grid_gap }}px;
+    --yk-kit-top: {{ section.settings.grid_offset }}px;
+    --yk-card-bg: {{ section.settings.color_card }};
+  }
+{% endstyle %}
+
+<div class="yk-section yk-align-{{ section.settings.content_alignment }}">
+  <div class="yk-page-width">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="yk-eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="yk-section__heading yk-section__heading--tight yk-measure-md">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="yk-kit">
+        {%- for block in section.blocks -%}
+          <div class="yk-kit__item" {{ block.shopify_attributes }}>
+            {%- if section.settings.show_numbers -%}
+              <b class="yk-kit__number" aria-hidden="true">
+                {{- forloop.index | prepend: '0' | slice: -2, 2 -}}
+              </b>
+            {%- endif -%}
+            <div>
+              <h3 class="yk-kit__title">{{ block.settings.title }}</h3>
+              <p class="yk-kit__text">{{ block.settings.text }}</p>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "What's included",
+  "tag": "section",
+  "class": "yk-section-kit",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "What you get" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Everything in the box." },
+    { "type": "checkbox", "id": "show_numbers", "label": "Show numbers", "default": true },
+
+    { "type": "header", "content": "Layout" },
+    { "type": "select", "id": "content_alignment", "label": "Heading alignment", "default": "center",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Centred" }
+      ] },
+    { "type": "range", "id": "columns_desktop", "label": "Columns", "min": 2, "max": 4, "step": 1, "default": 3 },
+    { "type": "range", "id": "columns_tablet", "label": "Columns (tablet)", "min": 1, "max": 3, "step": 1, "default": 2 },
+    { "type": "range", "id": "columns_mobile", "label": "Columns (mobile)", "min": 1, "max": 2, "step": 1, "default": 1 },
+    { "type": "range", "id": "grid_gap", "label": "Grid gap", "min": 8, "max": 48, "step": 2, "unit": "px", "default": 22 },
+    { "type": "range", "id": "grid_offset", "label": "Space above grid", "min": 16, "max": 96, "step": 4, "unit": "px", "default": 56 },
+
+    { "type": "header", "content": "Colours" },
+    { "type": "color", "id": "color_background", "label": "Section background" },
+    { "type": "color", "id": "color_card", "label": "Card background", "default": "#FFFFFF" },
+    { "type": "color", "id": "color_heading", "label": "Heading" },
+    { "type": "color", "id": "color_text", "label": "Body text" },
+    { "type": "color", "id": "color_eyebrow", "label": "Eyebrow" },
+    { "type": "color", "id": "color_accent", "label": "Numbers", "default": "#E8500F" },
+
+    { "type": "header", "content": "Typography" },
+    { "type": "range", "id": "heading_size", "label": "Heading size", "min": 24, "max": 80, "step": 2, "unit": "px", "default": 50 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Heading size (mobile)", "min": 20, "max": 48, "step": 1, "unit": "px", "default": 32 },
+
+    { "type": "header", "content": "Section spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 150 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Top padding (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 60 }
+  ],
+  "blocks": [
+    { "type": "item", "name": "Item",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "1.5L Heated Lunchbox" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Matte black or stone white, impact-rated outer shell." }
+      ] }
+  ],
+  "presets": [
+    { "name": "What's included",
+      "blocks": [
+        { "type": "item", "settings": { "title": "1.5L Heated Lunchbox", "text": "Matte black or stone white, impact-rated outer shell." } },
+        { "type": "item", "settings": { "title": "Stainless Inner Container", "text": "Removable, leak-proof, dishwasher safe." } },
+        { "type": "item", "settings": { "title": "USB-C Fast Charger", "text": "Charges at home, in the ute, or off a power bank." } },
+        { "type": "item", "settings": { "title": "Insulated Carry Bag", "text": "Free with every order. Built to live in the toolbox." } },
+        { "type": "item", "settings": { "title": "Cutlery Set", "text": "Fork and spoon, stored in the lid. Never left behind." } },
+        { "type": "item", "settings": { "title": "60-Day Guarantee Card", "text": "Your refund terms, in plain English, in the box." } }
+      ] }
+  ]
+}
+{% endschema %}

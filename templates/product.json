@@ -1,103 +1,201 @@
 {
   "sections": {
-    "main": {
-      "type": "main-product",
+    "buy": {
+      "type": "product-buy-box",
       "blocks": {
-        "vendor": {
-          "type": "text",
+        "sp1": {
+          "type": "spec",
           "settings": {
-            "text": "{{ product.vendor }}",
-            "text_style": "uppercase"
+            "label": "Power",
+            "value": "100% cordless · USB-C rechargeable"
           }
         },
-        "title": {
-          "type": "title"
-        },
-        "price": {
-          "type": "price"
-        },
-        "variant_picker": {
-          "type": "variant_picker",
+        "sp2": {
+          "type": "spec",
           "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
+            "label": "Heat time",
+            "value": "Steaming in ~45 min"
           }
         },
-        "quantity_selector": {
-          "type": "quantity_selector"
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
+        "sp3": {
+          "type": "spec",
           "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
+            "label": "Battery",
+            "value": "2–3 full heat cycles per charge"
           }
         },
-        "description": {
-          "type": "description"
-        },
-        "share": {
-          "type": "share",
+        "sp4": {
+          "type": "spec",
           "settings": {
-            "share_label": "Share"
+            "label": "Capacity",
+            "value": "1.5L stainless — a full tradie's feed"
+          }
+        },
+        "as1": {
+          "type": "assurance",
+          "settings": {
+            "text": "In stock, ships today"
+          }
+        },
+        "as2": {
+          "type": "assurance",
+          "settings": {
+            "text": "Free express shipping"
+          }
+        },
+        "as3": {
+          "type": "assurance",
+          "settings": {
+            "text": "60-day money back"
           }
         }
       },
       "block_order": [
-        "vendor",
-        "title",
-        "price",
-        "variant_picker",
-        "quantity_selector",
-        "buy_buttons",
-        "description",
-        "share"
+        "sp1",
+        "sp2",
+        "sp3",
+        "sp4",
+        "as1",
+        "as2",
+        "as3"
       ],
       "settings": {
-        "enable_sticky_info": true,
-        "color_scheme": "scheme-1",
-        "media_position": "left",
-        "gallery_layout": "stacked",
-        "media_size": "large",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "image_zoom": "lightbox",
-        "mobile_thumbnails": "hide",
-        "hide_variants": true,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 12
+        "eyebrow": "Self-Heating Lunchbox",
+        "badge_text": "Save 50% today",
+        "add_to_cart_label": "Add to cart",
+        "finance_text": "or 4 interest-free payments of [price]",
+        "show_dynamic_checkout": true,
+        "show_description": true,
+        "show_sticky_bar": true,
+        "padding_top": 60,
+        "padding_bottom": 100
       }
     },
-    "disclosures": {
-      "type": "disclosures",
+    "kit": {
+      "type": "included-kit",
+      "blocks": {
+        "k1": {
+          "type": "item",
+          "settings": {
+            "title": "1.5L Heated Lunchbox",
+            "text": "Matte black or stone white, impact-rated outer shell."
+          }
+        },
+        "k2": {
+          "type": "item",
+          "settings": {
+            "title": "Stainless Inner Container",
+            "text": "Removable, leak-proof, dishwasher safe."
+          }
+        },
+        "k3": {
+          "type": "item",
+          "settings": {
+            "title": "USB-C Fast Charger",
+            "text": "Charges at home, in the ute, or off a power bank."
+          }
+        }
+      },
+      "block_order": [
+        "k1",
+        "k2",
+        "k3"
+      ],
       "settings": {
-        "padding_top": 36,
-        "padding_bottom": 0
+        "eyebrow": "What you get",
+        "heading": "Everything in the box.",
+        "padding_top": 0,
+        "padding_bottom": 120
       }
     },
-    "related-products": {
+    "guarantee": {
+      "type": "guarantee",
+      "blocks": {
+        "g1": {
+          "type": "column",
+          "settings": {
+            "title": "Sixty full days",
+            "text": "Not fourteen. Long enough to know whether it actually holds up on the job."
+          }
+        },
+        "g2": {
+          "type": "column",
+          "settings": {
+            "title": "No return freight",
+            "text": "Keep the unit. We'd rather you had it than pay to ship it back to us."
+          }
+        },
+        "g3": {
+          "type": "column",
+          "settings": {
+            "title": "Real people",
+            "text": "Australian support team, replies inside 24 hours, Monday to Friday."
+          }
+        }
+      },
+      "block_order": [
+        "g1",
+        "g2",
+        "g3"
+      ],
+      "settings": {
+        "padding_top": 120,
+        "padding_bottom": 110
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "f1": {
+          "type": "question",
+          "settings": {
+            "question": "Do I need power on site?",
+            "answer": "<p>No. Charge it at home overnight and it runs entirely off its own battery all day.</p>",
+            "open": true
+          }
+        },
+        "f2": {
+          "type": "question",
+          "settings": {
+            "question": "How long does the battery last?",
+            "answer": "<p>Two to three full heating cycles per charge.</p>"
+          }
+        },
+        "f3": {
+          "type": "question",
+          "settings": {
+            "question": "What if I don't like it?",
+            "answer": "<p>Sixty days, full refund, and you keep the unit.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3"
+      ],
+      "settings": {
+        "eyebrow": "Questions",
+        "heading": "Before you buy.",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    },
+    "recommendations": {
       "type": "related-products",
       "settings": {
-        "heading": "You may also like",
-        "heading_size": "h2",
+        "heading": "You might also like",
+        "intent": "related",
         "products_to_show": 4,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "columns_mobile": "2",
-        "padding_top": 36,
-        "padding_bottom": 28
+        "columns_desktop": 4
       }
     }
   },
   "order": [
-    "main",
-    "disclosures",
-    "related-products"
+    "buy",
+    "kit",
+    "guarantee",
+    "faq",
+    "recommendations"
   ]
 }

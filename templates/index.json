@@ -1,75 +1,672 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "hero": {
+      "type": "hero-product",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "chip1": {
+          "type": "chip",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "value": "45 min",
+            "label": "Pack to piping hot",
+            "position": "top-left"
           }
         },
-        "button": {
-          "type": "buttons",
+        "chip2": {
+          "type": "chip",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "value": "100%",
+            "label": "Cordless — no outlet",
+            "position": "bottom-right"
+          }
+        },
+        "trust1": {
+          "type": "trust",
+          "settings": {
+            "text": "Free express shipping"
+          }
+        },
+        "trust2": {
+          "type": "trust",
+          "settings": {
+            "text": "60-day money back"
+          }
+        },
+        "trust3": {
+          "type": "trust",
+          "settings": {
+            "text": "AU & NZ support"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "chip1",
+        "chip2",
+        "trust1",
+        "trust2",
+        "trust3"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "heading": "Hot food.<br>No microwave.<br><em>No queue.</em>",
+        "subheading": "Charge it overnight, pack it in the morning, press start before smoko. The Yakka Essential is completely cordless — a proper hot feed anywhere the job takes you.",
+        "show_stock_badge": true,
+        "stock_text": "In stock — ships today",
+        "show_rating": true,
+        "rating_score": "4.8",
+        "rating_text": "from 1,200+ verified Aussie tradies",
+        "cta_label": "Shop the Lunchbox — $139.99",
+        "cta2_label": "See how it works",
+        "padding_top": 88,
+        "padding_bottom": 96
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "marquee": {
+      "type": "marquee",
+      "blocks": {
+        "m1": {
+          "type": "item",
+          "settings": {
+            "text": "Completely cordless"
+          }
+        },
+        "m2": {
+          "type": "item",
+          "settings": {
+            "text": "Rugged, leak-proof shell"
+          }
+        },
+        "m3": {
+          "type": "item",
+          "settings": {
+            "text": "Free insulated carry bag"
+          }
+        },
+        "m4": {
+          "type": "item",
+          "settings": {
+            "text": "Stainless inner, dishwasher safe"
+          }
+        },
+        "m5": {
+          "type": "item",
+          "settings": {
+            "text": "Australian owned & supported"
+          }
+        }
+      },
+      "block_order": [
+        "m1",
+        "m2",
+        "m3",
+        "m4",
+        "m5"
+      ],
+      "settings": {}
+    },
+    "stats": {
+      "type": "stats-bar",
+      "blocks": {
+        "s1": {
+          "type": "stat",
+          "settings": {
+            "value": "10,000+",
+            "label": "Workers eating hot on site"
+          }
+        },
+        "s2": {
+          "type": "stat",
+          "settings": {
+            "value": "4.8 / 5",
+            "label": "From 1,200+ reviews"
+          }
+        },
+        "s3": {
+          "type": "stat",
+          "settings": {
+            "value": "60 days",
+            "label": "Money back, keep the unit"
+          }
+        },
+        "s4": {
+          "type": "stat",
+          "settings": {
+            "value": "AU & NZ",
+            "label": "Owned, stocked, supported"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "settings": {}
+    },
+    "feature": {
+      "type": "feature-banner",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "eyebrow": "The Tuckerbox™",
+        "heading": "Say goodbye to cold sandwiches and site microwave queues.",
+        "text": "<p>Pack it the night before. Press start an hour out from smoko. Sealed, leak-proof and rugged enough to live in the toolbox — it heats your own food properly, instead of keeping someone else's lukewarm.</p>",
+        "padding_top": 150,
+        "padding_bottom": 0
+      }
+    },
+    "steps": {
+      "type": "how-it-works",
+      "blocks": {
+        "st1": {
+          "type": "step",
+          "settings": {
+            "tag": "Night before",
+            "title": "Charge it",
+            "text": "Plug it in on the bench with the USB-C cable. Full charge holds two to three heat cycles."
+          }
+        },
+        "st2": {
+          "type": "step",
+          "settings": {
+            "tag": "Morning",
+            "title": "Pack your feed",
+            "text": "Last night's dinner, a curry, a pasta — straight into the stainless container. 1.5L, a proper serve."
+          }
+        },
+        "st3": {
+          "type": "step",
+          "settings": {
+            "tag": "On site",
+            "title": "Press start",
+            "text": "Hit it 45 minutes out, or set the timer at seven and forget about it until the whistle."
+          }
+        },
+        "st4": {
+          "type": "step",
+          "settings": {
+            "tag": "Smoko",
+            "title": "Eat properly",
+            "text": "Open it up to a steaming, evenly heated meal. No queue, no servo pie, no cold roll."
+          }
+        }
+      },
+      "block_order": [
+        "st1",
+        "st2",
+        "st3",
+        "st4"
+      ],
+      "settings": {
+        "eyebrow": "How it works",
+        "heading": "Four steps. No outlet required.",
+        "text": "If you can charge a phone, you can run this.",
+        "padding_top": 150,
+        "padding_bottom": 150
+      }
+    },
+    "buy": {
+      "type": "product-buy-box",
+      "blocks": {
+        "sp1": {
+          "type": "spec",
+          "settings": {
+            "label": "Power",
+            "value": "100% cordless · USB-C rechargeable"
+          }
+        },
+        "sp2": {
+          "type": "spec",
+          "settings": {
+            "label": "Heat time",
+            "value": "Steaming in ~45 min"
+          }
+        },
+        "sp3": {
+          "type": "spec",
+          "settings": {
+            "label": "Battery",
+            "value": "2–3 full heat cycles per charge"
+          }
+        },
+        "sp4": {
+          "type": "spec",
+          "settings": {
+            "label": "Capacity",
+            "value": "1.5L stainless — a full tradie's feed"
+          }
+        },
+        "sp5": {
+          "type": "spec",
+          "settings": {
+            "label": "Build",
+            "value": "Leak-proof, impact-rated shell"
+          }
+        },
+        "sp6": {
+          "type": "spec",
+          "settings": {
+            "label": "Included",
+            "value": "Free insulated carry bag"
+          }
+        },
+        "as1": {
+          "type": "assurance",
+          "settings": {
+            "text": "In stock, ships today"
+          }
+        },
+        "as2": {
+          "type": "assurance",
+          "settings": {
+            "text": "Free express shipping"
+          }
+        },
+        "as3": {
+          "type": "assurance",
+          "settings": {
+            "text": "60-day money back"
+          }
+        }
+      },
+      "block_order": [
+        "sp1",
+        "sp2",
+        "sp3",
+        "sp4",
+        "sp5",
+        "sp6",
+        "as1",
+        "as2",
+        "as3"
+      ],
+      "settings": {
+        "eyebrow": "Self-Heating Lunchbox",
+        "badge_text": "Save 50% today",
+        "add_to_cart_label": "Add to cart",
+        "finance_text": "or 4 interest-free payments of [price]",
+        "show_dynamic_checkout": true,
+        "show_sticky_bar": true,
+        "sticky_meta": "In stock · Free express shipping",
+        "sticky_button_label": "Add to cart",
+        "fallback_title": "Yakka Essential Portable Food Warmer",
+        "fallback_price": 13999,
+        "fallback_compare_price": 27999,
+        "padding_top": 0,
+        "padding_bottom": 150
+      }
+    },
+    "kit": {
+      "type": "included-kit",
+      "blocks": {
+        "k1": {
+          "type": "item",
+          "settings": {
+            "title": "1.5L Heated Lunchbox",
+            "text": "Matte black or stone white, impact-rated outer shell."
+          }
+        },
+        "k2": {
+          "type": "item",
+          "settings": {
+            "title": "Stainless Inner Container",
+            "text": "Removable, leak-proof, dishwasher safe."
+          }
+        },
+        "k3": {
+          "type": "item",
+          "settings": {
+            "title": "USB-C Fast Charger",
+            "text": "Charges at home, in the ute, or off a power bank."
+          }
+        },
+        "k4": {
+          "type": "item",
+          "settings": {
+            "title": "Insulated Carry Bag",
+            "text": "Free with every order. Built to live in the toolbox."
+          }
+        },
+        "k5": {
+          "type": "item",
+          "settings": {
+            "title": "Cutlery Set",
+            "text": "Fork and spoon, stored in the lid. Never left behind."
+          }
+        },
+        "k6": {
+          "type": "item",
+          "settings": {
+            "title": "60-Day Guarantee Card",
+            "text": "Your refund terms, in plain English, in the box."
+          }
+        }
+      },
+      "block_order": [
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5",
+        "k6"
+      ],
+      "settings": {
+        "eyebrow": "What you get",
+        "heading": "Everything in the box.",
+        "padding_top": 0,
+        "padding_bottom": 150
+      }
+    },
+    "compare": {
+      "type": "comparison-table",
+      "blocks": {
+        "c1": {
+          "type": "row",
+          "settings": {
+            "label": "Wait time",
+            "value_1": "None — it's ready",
+            "value_2": "10–20 min queue",
+            "value_3": "Drive + queue"
+          }
+        },
+        "c2": {
+          "type": "row",
+          "settings": {
+            "label": "Needs power on site",
+            "value_1": "<strong>No</strong> — fully cordless",
+            "value_2": "Yes",
+            "value_3": "—"
+          }
+        },
+        "c3": {
+          "type": "row",
+          "settings": {
+            "label": "Cost per week",
+            "value_1": "$0 after purchase",
+            "value_2": "$0",
+            "value_3": "$85–$150"
+          }
+        },
+        "c4": {
+          "type": "row",
+          "settings": {
+            "label": "Eat your own food",
+            "value_1": "Yes",
+            "value_2": "Yes",
+            "value_3": "No"
+          }
+        },
+        "c5": {
+          "type": "row",
+          "settings": {
+            "label": "Heats evenly",
+            "value_1": "Yes",
+            "value_2": "Hot edges, cold centre",
+            "value_3": "—"
+          }
+        },
+        "c6": {
+          "type": "row",
+          "settings": {
+            "label": "Works on a remote site",
+            "value_1": "Yes",
+            "value_2": "No",
+            "value_3": "No"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6"
+      ],
+      "settings": {
+        "eyebrow": "The honest comparison",
+        "heading": "Against what you're doing now.",
+        "text": "Most tradies are choosing between a queue, a servo, or a cold roll.",
+        "col_1": "Yakka Essential",
+        "col_2": "Site microwave",
+        "col_3": "Servo / takeaway",
+        "padding_top": 0,
+        "padding_bottom": 150
+      }
+    },
+    "guarantee": {
+      "type": "guarantee",
+      "blocks": {
+        "g1": {
+          "type": "column",
+          "settings": {
+            "title": "Sixty full days",
+            "text": "Not fourteen. Long enough to know whether it actually holds up on the job."
+          }
+        },
+        "g2": {
+          "type": "column",
+          "settings": {
+            "title": "No return freight",
+            "text": "Keep the unit. We'd rather you had it than pay to ship it back to us."
+          }
+        },
+        "g3": {
+          "type": "column",
+          "settings": {
+            "title": "Real people",
+            "text": "Australian support team, replies inside 24 hours, Monday to Friday."
+          }
+        }
+      },
+      "block_order": [
+        "g1",
+        "g2",
+        "g3"
+      ],
+      "settings": {
+        "seal_value": "60",
+        "seal_label": "Day",
+        "eyebrow": "Our guarantee",
+        "heading": "Love it, or your money back.",
+        "text": "Run it for sixty days. Take it up the site, drop it in the tray, heat your feed every day of it. If it isn't the best thing you've bought for work this year, we'll refund you in full — and you don't have to send it back.",
+        "cta_label": "Shop with confidence",
+        "padding_top": 140,
+        "padding_bottom": 124
+      }
+    },
+    "reviews": {
+      "type": "reviews",
+      "blocks": {
+        "r1": {
+          "type": "review",
+          "settings": {
+            "fallback_image": "yakka-review-1.jpg",
+            "rating": 5,
+            "quote": "Honestly one of the best things I've bought for work. Hot lunch, no queue for the microwave, no cold servo roll.",
+            "author": "John M.",
+            "meta": "Carpenter · Brisbane, QLD",
+            "verified": true
+          }
+        },
+        "r2": {
+          "type": "review",
+          "settings": {
+            "fallback_image": "yakka-review-2.jpg",
+            "rating": 5,
+            "quote": "Charge it Sunday night, get three days out of it. Steaming by smoko every single time.",
+            "author": "William S.",
+            "meta": "Concreter · Sydney, NSW",
+            "verified": true
+          }
+        },
+        "r3": {
+          "type": "review",
+          "settings": {
+            "fallback_image": "yakka-review-3.jpg",
+            "rating": 5,
+            "quote": "Lives in the toolbox and hasn't leaked once. Bought a second one for my apprentice after a fortnight.",
+            "author": "Martin R.",
+            "meta": "Electrician · Perth, WA",
+            "verified": true
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3"
+      ],
+      "settings": {
+        "eyebrow": "From the site",
+        "heading": "What the crews are saying.",
+        "padding_top": 150,
+        "padding_bottom": 0
+      }
+    },
+    "story": {
+      "type": "brand-story",
+      "blocks": {
+        "p1": {
+          "type": "point",
+          "settings": {
+            "title": "Zero waiting.",
+            "text": "Your break is short enough. Skip the queue and eat the moment you sit down."
+          }
+        },
+        "p2": {
+          "type": "point",
+          "settings": {
+            "title": "Completely cordless.",
+            "text": "No outlet, no inverter, no gennie. It runs off its own battery."
+          }
+        },
+        "p3": {
+          "type": "point",
+          "settings": {
+            "title": "Even-heat technology.",
+            "text": "No hot centre and burnt edges — just perfectly hot food, every time."
+          }
+        },
+        "p4": {
+          "type": "point",
+          "settings": {
+            "title": "Built for big appetites.",
+            "text": "1.5L capacity designed to hold a proper, energy-packed feed."
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ],
+      "settings": {
+        "eyebrow": "From the shed to the site",
+        "heading": "Keep every meal hot.",
+        "text": "<p>Yakka Essential was built for the way Australians actually work — long drives, no kitchen, and a lunch break that's over before the queue moves. It's the simplest possible fix: charge it, pack it, eat properly.</p>",
+        "padding_top": 150,
+        "padding_bottom": 150
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "f1": {
+          "type": "question",
+          "settings": {
+            "question": "How does a cordless heated lunchbox work?",
+            "answer": "<p>A built-in rechargeable battery warms your food gently and evenly. Press start, or set the timer and let it come up to temperature while you work.</p>",
+            "open": true
+          }
+        },
+        "f2": {
+          "type": "question",
+          "settings": {
+            "question": "How long does the battery last?",
+            "answer": "<p>Two to three full heating cycles per charge — comfortably a full workday, and most blokes get two or three days out of one charge.</p>"
+          }
+        },
+        "f3": {
+          "type": "question",
+          "settings": {
+            "question": "Do I need power on site?",
+            "answer": "<p>No. That's the whole point. Charge it at home overnight and it runs entirely off its own battery all day.</p>"
+          }
+        },
+        "f4": {
+          "type": "question",
+          "settings": {
+            "question": "Will it leak in my toolbox?",
+            "answer": "<p>The stainless inner seals shut and the outer shell is impact-rated. It's built to be thrown in the tray, not carried carefully.</p>"
+          }
+        },
+        "f5": {
+          "type": "question",
+          "settings": {
+            "question": "Is it easy to clean?",
+            "answer": "<p>The stainless container lifts out and goes straight in the dishwasher. Wipe the outer shell down and you're done.</p>"
+          }
+        },
+        "f6": {
+          "type": "question",
+          "settings": {
+            "question": "What if I don't like it?",
+            "answer": "<p>Sixty days, full refund, and you keep the unit — you don't pay return freight.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6"
+      ],
+      "settings": {
+        "eyebrow": "Questions",
+        "heading": "Before you buy.",
+        "single_open": true,
+        "padding_top": 0,
+        "padding_bottom": 150
+      }
+    },
+    "band": {
+      "type": "cta-band",
+      "settings": {
+        "heading": "Stop paying $30 a day for a cold compromise.",
+        "text": "One purchase, and every lunch for the next decade is a hot one.",
+        "cta_label": "Shop the Lunchbox — $139.99",
+        "micro": "In stock · Free express shipping AU & NZ · 60-day money back",
+        "padding_top": 110,
+        "padding_bottom": 110
+      }
+    },
+    "contact": {
+      "type": "contact-form",
+      "settings": {
+        "eyebrow": "Get in touch",
+        "heading": "Questions before you buy?",
+        "text": "<p>Our Australian team answers within 24 hours, Monday to Friday, 9:00am – 5:00pm AEST.</p>",
+        "submit_label": "Send message",
+        "padding_top": 150,
+        "padding_bottom": 150
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "hero",
+    "marquee",
+    "stats",
+    "feature",
+    "steps",
+    "buy",
+    "kit",
+    "compare",
+    "guarantee",
+    "reviews",
+    "story",
+    "faq",
+    "band",
+    "contact"
   ]
 }

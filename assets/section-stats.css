@@ -1,0 +1,22 @@
+/* section: stats-bar — proof numbers in a bordered row */
+.yk-stats{padding-block:var(--yk-stats-pad,44px);border-bottom:1px solid var(--yk-border)}
+.yk-stats__list{
+  display:grid;
+  grid-template-columns:repeat(var(--yk-sec-cols,4),minmax(0,1fr));
+  gap:32px;
+}
+.yk-stats__item{font-size:14px;color:var(--yk-sec-text,var(--yk-text-2))}
+.yk-stats__value{
+  display:block;margin-bottom:2px;
+  font-family:var(--yk-font-heading);font-size:var(--yk-stats-size,34px);
+  letter-spacing:-.02em;color:var(--yk-sec-heading,var(--yk-text));
+}
+@media screen and (max-width:989px){
+  .yk-stats__list{grid-template-columns:repeat(var(--yk-sec-cols-tablet,2),minmax(0,1fr));gap:26px}
+}
+@media screen and (max-width:749px){
+  .yk-stats{padding-block:32px}
+  .yk-stats__list{grid-template-columns:repeat(var(--yk-sec-cols-mobile,2),minmax(0,1fr));gap:20px}
+  .yk-stats__value{font-size:27px}
+  .yk-stats__item{font-size:13px}
+}

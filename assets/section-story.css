@@ -1,0 +1,33 @@
+/* section: brand-story — copy + benefit list beside an image */
+.yk-story{
+  display:grid;grid-template-columns:var(--yk-story-cols,55fr 45fr);
+  gap:var(--yk-story-gap,68px);align-items:center;
+}
+.yk-story__title{margin-bottom:20px;color:var(--yk-sec-heading,inherit)}
+.yk-story__text{color:var(--yk-sec-text,var(--yk-text-3))}
+.yk-story__image{
+  width:100%;aspect-ratio:var(--yk-story-ratio,4/3.4);
+  object-fit:cover;border-radius:var(--yk-radius-lg);
+  transition:transform var(--yk-dur) var(--yk-ease);
+}
+.yk-story--media-first .yk-story__image{order:-1}
+.yk-story__list{margin-top:26px}
+.yk-story__item{
+  padding-block:17px;border-top:1px solid var(--yk-border);
+  font-size:16px;color:var(--yk-sec-text,var(--yk-text-3));
+  transition:color .22s ease,border-color .22s ease;
+}
+.yk-story__item b{color:var(--yk-text);font-weight:600}
+
+@media (hover:hover) and (pointer:fine){
+  .yk-story__item:hover{color:var(--yk-text);border-top-color:var(--yk-sec-accent,var(--yk-accent))}
+  .yk-story:hover .yk-story__image{transform:scale(1.012)}
+}
+@media screen and (max-width:989px){
+  .yk-story{grid-template-columns:1fr;gap:32px}
+  .yk-story__image{order:-1;aspect-ratio:16/10}
+}
+@media screen and (max-width:749px){
+  .yk-story__list{margin-top:20px}
+  .yk-story__item{font-size:15px;padding-block:14px}
+}

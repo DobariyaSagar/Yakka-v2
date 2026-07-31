@@ -1,0 +1,16 @@
+<div class="yk-page-width yk-section">
+  <h1>{{ 'customer.order.title' | t: default: 'Order' }} {{ order.name }}</h1>
+  <p style="margin-top:8px">{{ order.created_at | date: '%d %B %Y' }}</p>
+  <ul class="yk-specs" style="margin-top:28px">
+    {%- for line_item in order.line_items -%}
+      <li class="yk-specs__row">
+        <span class="yk-specs__label">{{ line_item.title }} × {{ line_item.quantity }}</span>
+        <span class="yk-specs__value">{% render 'yk-price', price: line_item.final_line_price %}</span>
+      </li>
+    {%- endfor -%}
+    <li class="yk-specs__row">
+      <span class="yk-specs__label">{{ 'customer.order.total' | t: default: 'Total' }}</span>
+      <span class="yk-specs__value">{% render 'yk-price', price: order.total_price %}</span>
+    </li>
+  </ul>
+</div>

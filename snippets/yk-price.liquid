@@ -1,0 +1,14 @@
+{%- comment -%}
+  Formats a price, honouring theme settings › Currency format.
+  Params: price (in cents, required), trim (true → drop trailing zeros)
+  Usage: {% render 'yk-price', price: variant.price %}
+{%- endcomment -%}
+{%- liquid
+  if settings.currency_code_enabled
+    echo price | money_with_currency
+  elsif trim
+    echo price | money_without_trailing_zeros
+  else
+    echo price | money
+  endif
+-%}

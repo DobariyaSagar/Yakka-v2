@@ -1,0 +1,132 @@
+{%- comment -%}
+  Section: brand-story — copy + benefit list beside an image.
+  Styles: assets/section-story.css
+{%- endcomment -%}
+
+{{ 'section-story.css' | asset_url | stylesheet_tag }}
+{% render 'yk-section-style', section: section %}
+
+{% style %}
+  #shopify-section-{{ section.id }}{
+    --yk-story-gap: {{ section.settings.column_gap }}px;
+    --yk-story-ratio: {{ section.settings.image_ratio }};
+  }
+{% endstyle %}
+
+{%- liquid
+  assign story_class = 'yk-story'
+  if section.settings.media_position == 'left'
+    assign story_class = story_class | append: ' yk-story--media-first'
+  endif
+-%}
+
+<div class="yk-section">
+  <div class="yk-page-width">
+    <div class="{{ story_class }}">
+      <div class="yk-story__content">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="yk-eyebrow">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+
+        {%- if section.settings.heading != blank -%}
+          <h2 class="yk-story__title yk-section__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.text != blank -%}
+          <div class="yk-story__text yk-rte">{{ section.settings.text }}</div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <ul class="yk-story__list">
+            {%- for block in section.blocks -%}
+              <li class="yk-story__item" {{ block.shopify_attributes }}>
+                <b>{{ block.settings.title }}</b> {{ block.settings.text }}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.image != blank -%}
+        {{
+          section.settings.image
+          | image_url: width: 1000
+          | image_tag:
+            class: 'yk-story__image',
+            widths: '400,600,800,1000',
+            sizes: '(max-width: 989px) 92vw, 42vw',
+            alt: section.settings.image.alt | default: section.settings.heading,
+            loading: 'lazy',
+            decoding: 'async'
+        }}
+      {%- else -%}
+        <img class="yk-story__image" src="{{ 'yakka-lifestyle.jpg' | asset_url }}"
+             alt="" width="900" height="765" loading="lazy" decoding="async">
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Brand story",
+  "tag": "section",
+  "class": "yk-section-story",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "From the shed to the site" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Keep every meal hot." },
+    { "type": "richtext", "id": "text", "label": "Body",
+      "default": "<p>Yakka Essential was built for the way Australians actually work — long drives, no kitchen, and a lunch break that's over before the queue moves. It's the simplest possible fix: charge it, pack it, eat properly.</p>" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+
+    { "type": "header", "content": "Layout" },
+    { "type": "select", "id": "media_position", "label": "Image position", "default": "right",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ] },
+    { "type": "select", "id": "image_ratio", "label": "Image ratio", "default": "4/3.4",
+      "options": [
+        { "value": "4/3.4", "label": "Landscape" },
+        { "value": "1/1", "label": "Square" },
+        { "value": "3/4", "label": "Portrait" }
+      ] },
+    { "type": "range", "id": "column_gap", "label": "Column gap", "min": 20, "max": 96, "step": 4, "unit": "px", "default": 68 },
+
+    { "type": "header", "content": "Colours" },
+    { "type": "color", "id": "color_background", "label": "Section background" },
+    { "type": "color", "id": "color_heading", "label": "Heading" },
+    { "type": "color", "id": "color_text", "label": "Body text" },
+    { "type": "color", "id": "color_eyebrow", "label": "Eyebrow" },
+    { "type": "color", "id": "color_accent", "label": "Accent", "default": "#E8500F" },
+
+    { "type": "header", "content": "Typography" },
+    { "type": "range", "id": "heading_size", "label": "Heading size", "min": 24, "max": 80, "step": 2, "unit": "px", "default": 50 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Heading size (mobile)", "min": 20, "max": 48, "step": 1, "unit": "px", "default": 32 },
+
+    { "type": "header", "content": "Section spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 150 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 150 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Top padding (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 60 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Bottom padding (mobile)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 60 }
+  ],
+  "blocks": [
+    { "type": "point", "name": "Benefit",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Bold lead", "default": "Zero waiting." },
+        { "type": "text", "id": "text", "label": "Text", "default": "Your break is short enough. Skip the queue and eat the moment you sit down." }
+      ] }
+  ],
+  "presets": [
+    { "name": "Brand story",
+      "blocks": [
+        { "type": "point", "settings": { "title": "Zero waiting.", "text": "Your break is short enough. Skip the queue and eat the moment you sit down." } },
+        { "type": "point", "settings": { "title": "Completely cordless.", "text": "No outlet, no inverter, no gennie. It runs off its own battery." } },
+        { "type": "point", "settings": { "title": "Even-heat technology.", "text": "No hot centre and burnt edges — just perfectly hot food, every time." } },
+        { "type": "point", "settings": { "title": "Built for big appetites.", "text": "1.5L capacity designed to hold a proper, energy-packed feed." } }
+      ] }
+  ]
+}
+{% endschema %}
