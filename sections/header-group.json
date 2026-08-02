@@ -36,31 +36,6 @@
         "enable_language_selector": false
       }
     },
-    "announcement_bar_nBPpA4": {
-      "type": "announcement-bar",
-      "blocks": {
-        "announcement_h3D7RN": {
-          "type": "announcement",
-          "settings": {
-            "text": "Free express shipping AU & NZ",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "announcement_h3D7RN"
-      ],
-      "name": "t:sections.announcement-bar.presets.name",
-      "settings": {
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "color_scheme": "",
-        "show_line_separator": true,
-        "show_social": false,
-        "enable_country_selector": false,
-        "enable_language_selector": false
-      }
-    },
     "header": {
       "type": "header",
       "settings": {
@@ -112,11 +87,36 @@
         "cta_text": "Join 1,200+ Aussie tradies who've upgraded their lunch break. Order today and get free express shipping, a 60-day money-back guarantee and a 12-month warranty.",
         "cta_btn_text": "Shop the Lunchbox — $139.99"
       }
+    },
+    "announcement_bar_94Bq8U": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_6HcNci": {
+          "type": "announcement",
+          "settings": {
+            "text": "Welcome to our store",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_6HcNci"
+      ],
+      "name": "t:sections.announcement-bar.presets.name",
+      "settings": {
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "color_scheme": "",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
     }
   },
   "order": [
     "announcement-bar",
-    "announcement_bar_nBPpA4",
+    "announcement_bar_94Bq8U",
     "header",
     "homepage_hero_VMP67T"
   ]
