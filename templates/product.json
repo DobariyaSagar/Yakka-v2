@@ -163,7 +163,7 @@
       "name": "Custom Comparison Table",
       "settings": {
         "bg_color": "#F7F4EF",
-        "padding_y": 80,
+        "padding_y": 32,
         "eyebrow": "THE HONEST COMPARISON",
         "heading": "Against what you're doing now.",
         "subheading": "Most tradies are choosing between a queue, a servo, or a cold roll.",
