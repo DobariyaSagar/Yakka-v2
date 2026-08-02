@@ -335,6 +335,53 @@
         "trust_text": "<p>✓ In stock, ships today ✓ Free express shipping ✓ 60-day money back</p>"
       }
     },
+    "custom_reviews_pJ9wtz": {
+      "type": "custom-reviews",
+      "blocks": {
+        "review_JwjhWU": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "text": "Honestly one of the best things I've bought for work. Hot lunch, no queue for the microwave, no cold servo roll.",
+            "author": "John M.",
+            "role": "Carpenter — Brisbane, QLD",
+            "verified": true
+          }
+        },
+        "review_hHeHVT": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "text": "Charge it Sunday night, get three days out of it. Steaming by smoko every single time.",
+            "author": "William S.",
+            "role": "Concreter — Sydney, NSW",
+            "verified": true
+          }
+        },
+        "review_ggkCVc": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "text": "Lives in the toolbox and hasn't leaked once. Bought a second one for my apprentice after a fortnight.",
+            "author": "Martin R.",
+            "role": "Electrician — Perth, WA",
+            "verified": true
+          }
+        }
+      },
+      "block_order": [
+        "review_JwjhWU",
+        "review_hHeHVT",
+        "review_ggkCVc"
+      ],
+      "name": "Custom Client Reviews",
+      "settings": {
+        "bg_color": "#fff",
+        "padding_y": 80,
+        "eyebrow": "FROM THE SITE",
+        "heading": "What the crews are saying."
+      }
+    },
     "custom_steps_U6yVDX": {
       "type": "custom-steps",
       "blocks": {
@@ -668,6 +715,7 @@
     "custom_feature_V4Q6N3",
     "featured_product_fa4cx7",
     "custom_featured_product_TAfJYr",
+    "custom_reviews_pJ9wtz",
     "custom_steps_U6yVDX",
     "custom_what_you_get_TbtTmt",
     "custom_image_text_BnmyBr",
