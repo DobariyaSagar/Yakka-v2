@@ -313,7 +313,7 @@
         "text_6Mebmx": {
           "type": "text",
           "settings": {
-            "text": "{{ section.settings.product.vendor }}",
+            "text": "<strong>Self-Heating Lunchbox</strong>",
             "text_style": "uppercase"
           }
         },
@@ -347,8 +347,9 @@
         },
         "share_rikpFa": {
           "type": "share",
+          "disabled": true,
           "settings": {
-            "share_label": "Share"
+            "share_label": ""
           }
         }
       },
