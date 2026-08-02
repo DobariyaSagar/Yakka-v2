@@ -435,19 +435,29 @@
           {% endif %}
         {% endif %}
 
-        {%- form 'product', product, id: 'product-form-installment', class: 'installment caption-large' -%}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id | default: '' }}">
-          <div class="cfp-action">
-            <div class="cfp-qty">
-              <button type="button" onclick="changeQty(-1)">-</button>
-              <input type="text" name="quantity" id="cfp-qty-val" value="1" min="1">
-              <button type="button" onclick="changeQty(1)">+</button>
-            </div>
-            <button type="submit" class="cfp-add">
-              Add to cart — <span id="cfp-btn-price">{{ product.selected_or_first_available_variant.price | default: 13999 | money }}</span>
-            </button>
+        <product-form class="product-form" data-section-id="{{ section.id }}">
+          <div class="product-form__error-message-wrapper" role="alert" hidden>
+            <span class="svg-wrapper">
+              {{- 'icon-error.svg' | inline_asset_content -}}
+            </span>
+            <span class="product-form__error-message"></span>
           </div>
-        {%- endform -%}
+
+          {%- form 'product', product, id: 'product-form-installment', class: 'installment caption-large', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id | default: '' }}">
+            <div class="cfp-action">
+              <div class="cfp-qty">
+                <button type="button" onclick="changeQty(-1)">-</button>
+                <input type="text" name="quantity" id="cfp-qty-val" value="1" min="1">
+                <button type="button" onclick="changeQty(1)">+</button>
+              </div>
+              <button type="submit" name="add" class="cfp-add product-form__submit" {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}>
+                <span>Add to cart — <span id="cfp-btn-price">{{ product.selected_or_first_available_variant.price | default: 13999 | money }}</span></span>
+                {%- render 'loading-spinner' -%}
+              </button>
+            </div>
+          {%- endform -%}
+        </product-form>
 
         {% if section.settings.trust_text != blank %}
           <div class="cfp-trust">
@@ -459,6 +469,8 @@
     </div>
   </div>
 </div>
+
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
 <script>
   function switchImage_{{ section.id | replace: '-', '_' }}(index, el) {
