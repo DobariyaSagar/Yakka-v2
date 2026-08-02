@@ -318,6 +318,56 @@
         "heading": "4 simple steps to a hot meal."
       }
     },
+    "custom_image_text_BnmyBr": {
+      "type": "custom-image-text",
+      "blocks": {
+        "list_item_67K3V4": {
+          "type": "list_item",
+          "settings": {
+            "title": "Zero waiting.",
+            "text": "Your break is short enough. Skip the queue and eat the moment you sit down."
+          }
+        },
+        "list_item_iQpEUK": {
+          "type": "list_item",
+          "settings": {
+            "title": "Completely cordless.",
+            "text": "No outlet, no inverter, no gennie. It runs off its own battery."
+          }
+        },
+        "list_item_idCfWx": {
+          "type": "list_item",
+          "settings": {
+            "title": "Even-heat technology.",
+            "text": "No hot centre and burnt edges — just perfectly hot food, every time."
+          }
+        },
+        "list_item_XPppRz": {
+          "type": "list_item",
+          "settings": {
+            "title": "Built for big appetites.",
+            "text": "1.5L capacity designed to hold a proper, energy-packed feed."
+          }
+        }
+      },
+      "block_order": [
+        "list_item_67K3V4",
+        "list_item_iQpEUK",
+        "list_item_idCfWx",
+        "list_item_XPppRz"
+      ],
+      "name": "Custom Image with Text",
+      "settings": {
+        "bg_color": "#F7F4EF",
+        "padding_y": 64,
+        "layout": "image_right",
+        "eyebrow": "FROM THE SHED TO THE SITE",
+        "heading": "Keep every meal hot.",
+        "lede": "Yakka Essential was built for the way Australians actually work — long drives, no kitchen, and a lunch break that's over before the queue moves. It's the simplest possible fix: charge it, pack it, eat properly.",
+        "image": "shopify://shop_images/Heated_lunchbox_on_Toyota_Hilux_202607130243.jpeg_2K_202607241641.jpg",
+        "image_height_auto": true
+      }
+    },
     "custom_faq_tkHGWT": {
       "type": "custom-faq",
       "blocks": {
@@ -377,56 +427,6 @@
         "subheading": "Got questions?",
         "heading": "Everything you need to know."
       }
-    },
-    "custom_image_text_BnmyBr": {
-      "type": "custom-image-text",
-      "blocks": {
-        "list_item_67K3V4": {
-          "type": "list_item",
-          "settings": {
-            "title": "Zero waiting.",
-            "text": "Your break is short enough. Skip the queue and eat the moment you sit down."
-          }
-        },
-        "list_item_iQpEUK": {
-          "type": "list_item",
-          "settings": {
-            "title": "Completely cordless.",
-            "text": "No outlet, no inverter, no gennie. It runs off its own battery."
-          }
-        },
-        "list_item_idCfWx": {
-          "type": "list_item",
-          "settings": {
-            "title": "Even-heat technology.",
-            "text": "No hot centre and burnt edges — just perfectly hot food, every time."
-          }
-        },
-        "list_item_XPppRz": {
-          "type": "list_item",
-          "settings": {
-            "title": "Built for big appetites.",
-            "text": "1.5L capacity designed to hold a proper, energy-packed feed."
-          }
-        }
-      },
-      "block_order": [
-        "list_item_67K3V4",
-        "list_item_iQpEUK",
-        "list_item_idCfWx",
-        "list_item_XPppRz"
-      ],
-      "name": "Custom Image with Text",
-      "settings": {
-        "bg_color": "#F7F4EF",
-        "padding_y": 64,
-        "layout": "image_right",
-        "eyebrow": "FROM THE SHED TO THE SITE",
-        "heading": "Keep every meal hot.",
-        "lede": "Yakka Essential was built for the way Australians actually work — long drives, no kitchen, and a lunch break that's over before the queue moves. It's the simplest possible fix: charge it, pack it, eat properly.",
-        "image": "shopify://shop_images/Heated_lunchbox_on_Toyota_Hilux_202607130243.jpeg_2K_202607241641.jpg",
-        "image_height_auto": true
-      }
     }
   },
   "order": [
@@ -438,7 +438,7 @@
     "custom_feature_V4Q6N3",
     "featured_product_fa4cx7",
     "custom_steps_U6yVDX",
-    "custom_faq_tkHGWT",
-    "custom_image_text_BnmyBr"
+    "custom_image_text_BnmyBr",
+    "custom_faq_tkHGWT"
   ]
 }
