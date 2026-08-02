@@ -341,6 +341,7 @@
         "review_JwjhWU": {
           "type": "review",
           "settings": {
+            "image": "shopify://shop_images/04_dff22476-2404-476d-8c4c-644f5e435cf8.jpg",
             "rating": 5,
             "text": "Honestly one of the best things I've bought for work. Hot lunch, no queue for the microwave, no cold servo roll.",
             "author": "John M.",
@@ -351,6 +352,7 @@
         "review_hHeHVT": {
           "type": "review",
           "settings": {
+            "image": "shopify://shop_images/03.jpg",
             "rating": 5,
             "text": "Charge it Sunday night, get three days out of it. Steaming by smoko every single time.",
             "author": "William S.",
@@ -361,6 +363,7 @@
         "review_ggkCVc": {
           "type": "review",
           "settings": {
+            "image": "shopify://shop_images/01.jpg",
             "rating": 5,
             "text": "Lives in the toolbox and hasn't leaked once. Bought a second one for my apprentice after a fortnight.",
             "author": "Martin R.",
