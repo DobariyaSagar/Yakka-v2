@@ -565,6 +565,84 @@
         "heading": "Questions before you buy?",
         "text": "Our Australian team answers within 24 hours, Monday to Friday, 9:00am - 5:00pm AEST."
       }
+    },
+    "custom_comparison_LpBzTH": {
+      "type": "custom-comparison",
+      "blocks": {
+        "row_tqfqt7": {
+          "type": "row",
+          "settings": {
+            "label": "Wait time",
+            "col1_val": "None — it's ready",
+            "col2_val": "10-20 min queue",
+            "col3_val": "Drive + queue"
+          }
+        },
+        "row_7tCBj9": {
+          "type": "row",
+          "settings": {
+            "label": "Needs power on site",
+            "col1_val": "[green]No[/green] — fully cordless",
+            "col2_val": "Yes",
+            "col3_val": "—"
+          }
+        },
+        "row_meBfxD": {
+          "type": "row",
+          "settings": {
+            "label": "Cost per week",
+            "col1_val": "$0 after purchase",
+            "col2_val": "$0",
+            "col3_val": "$85-$150"
+          }
+        },
+        "row_jnK8RX": {
+          "type": "row",
+          "settings": {
+            "label": "Eat your own food",
+            "col1_val": "[green]Yes[/green]",
+            "col2_val": "Yes",
+            "col3_val": "No"
+          }
+        },
+        "row_Gb3Q3m": {
+          "type": "row",
+          "settings": {
+            "label": "Heats evenly",
+            "col1_val": "[green]Yes[/green]",
+            "col2_val": "Hot edges, cold centre",
+            "col3_val": "—"
+          }
+        },
+        "row_mRNdAE": {
+          "type": "row",
+          "settings": {
+            "label": "Works on a remote site",
+            "col1_val": "[green]Yes[/green]",
+            "col2_val": "No",
+            "col3_val": "No"
+          }
+        }
+      },
+      "block_order": [
+        "row_tqfqt7",
+        "row_7tCBj9",
+        "row_meBfxD",
+        "row_jnK8RX",
+        "row_Gb3Q3m",
+        "row_mRNdAE"
+      ],
+      "name": "Custom Comparison Table",
+      "settings": {
+        "bg_color": "#F7F4EF",
+        "padding_y": 80,
+        "eyebrow": "THE HONEST COMPARISON",
+        "heading": "Against what you're doing now.",
+        "subheading": "Most tradies are choosing between a queue, a servo, or a cold roll.",
+        "col1_title": "YAKKA ESSENTIAL",
+        "col2_title": "SITE MICROWAVE",
+        "col3_title": "SERVO / TAKEAWAY"
+      }
     }
   },
   "order": [
@@ -580,6 +658,7 @@
     "custom_what_you_get_TbtTmt",
     "custom_image_text_BnmyBr",
     "custom_faq_tkHGWT",
-    "custom_contact_4CieLg"
+    "custom_contact_4CieLg",
+    "custom_comparison_LpBzTH"
   ]
 }
