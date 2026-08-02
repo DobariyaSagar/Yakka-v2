@@ -182,10 +182,10 @@
       "name": "Custom Stats",
       "settings": {}
     },
-    "custom_steps_DYtpfC": {
+    "custom_steps_U6yVDX": {
       "type": "custom-steps",
       "blocks": {
-        "step_6E98e7": {
+        "step_CPKcTM": {
           "type": "step",
           "settings": {
             "tag": "Prep",
@@ -193,7 +193,7 @@
             "text": "Fill the stainless inner with last night's leftovers, soup, or a frozen meal."
           }
         },
-        "step_9yGBnb": {
+        "step_CaiwCd": {
           "type": "step",
           "settings": {
             "tag": "Go",
@@ -201,7 +201,7 @@
             "text": "Chuck it in the ute or the toolbox. It's fully sealed, leak-proof, and rugged."
           }
         },
-        "step_WPzkGA": {
+        "step_zDG9wh": {
           "type": "step",
           "settings": {
             "tag": "Heat",
@@ -209,7 +209,7 @@
             "text": "Hit the button an hour before smoko. No cords, no finding a plug."
           }
         },
-        "step_wTxzBg": {
+        "step_mCV3fA": {
           "type": "step",
           "settings": {
             "tag": "Eat",
@@ -219,10 +219,10 @@
         }
       },
       "block_order": [
-        "step_6E98e7",
-        "step_9yGBnb",
-        "step_WPzkGA",
-        "step_wTxzBg"
+        "step_CPKcTM",
+        "step_CaiwCd",
+        "step_zDG9wh",
+        "step_mCV3fA"
       ],
       "name": "Custom Steps",
       "settings": {
@@ -237,6 +237,6 @@
     "custom_marquee_8RgJEf",
     "featured_collection",
     "custom_stats_fBYfTt",
-    "custom_steps_DYtpfC"
+    "custom_steps_U6yVDX"
   ]
 }
