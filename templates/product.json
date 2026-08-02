@@ -242,13 +242,6 @@
             "text": "Your break is short enough. Skip the queue and eat the moment you sit down."
           }
         },
-        "list_item_3QqTDV": {
-          "type": "list_item",
-          "settings": {
-            "title": "Completely cordless.",
-            "text": "No outlet, no inverter, no gennie. It runs off its own battery."
-          }
-        },
         "list_item_whPhNM": {
           "type": "list_item",
           "settings": {
@@ -259,7 +252,6 @@
       },
       "block_order": [
         "list_item_4KgBhE",
-        "list_item_3QqTDV",
         "list_item_whPhNM"
       ],
       "name": "Custom Image with Text",
