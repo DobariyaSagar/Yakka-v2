@@ -68,8 +68,53 @@
         "chip_2_label": "Cordless — no outlet"
       }
     },
+    "custom_marquee_8RgJEf": {
+      "type": "custom-marquee",
+      "blocks": {
+        "text_iCzek9": {
+          "type": "text",
+          "settings": {
+            "text": "Completely cordless"
+          }
+        },
+        "text_3z84bn": {
+          "type": "text",
+          "settings": {
+            "text": "Rugged, leak-proof shell"
+          }
+        },
+        "text_BXdyPV": {
+          "type": "text",
+          "settings": {
+            "text": "Free insulated carry bag"
+          }
+        },
+        "text_yhbPGM": {
+          "type": "text",
+          "settings": {
+            "text": "Stainless inner, dishwasher safe"
+          }
+        },
+        "text_EBbiJ3": {
+          "type": "text",
+          "settings": {
+            "text": "Australian owned & supported"
+          }
+        }
+      },
+      "block_order": [
+        "text_iCzek9",
+        "text_3z84bn",
+        "text_BXdyPV",
+        "text_yhbPGM",
+        "text_EBbiJ3"
+      ],
+      "name": "Custom Marquee",
+      "settings": {}
+    },
     "featured_collection": {
       "type": "featured-collection",
+      "disabled": true,
       "settings": {
         "collection": "all",
         "products_to_show": 8,
@@ -95,11 +140,103 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
+    },
+    "custom_stats_fBYfTt": {
+      "type": "custom-stats",
+      "blocks": {
+        "stat_V88VAf": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "10,000+",
+            "stat_label": "Workers eating hot on site"
+          }
+        },
+        "stat_mAYqtw": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "4.8 / 5",
+            "stat_label": "From 1,200+ reviews"
+          }
+        },
+        "stat_fMVjzH": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "60 days",
+            "stat_label": "Money back, keep the unit"
+          }
+        },
+        "stat_tQLii4": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "AU & NZ",
+            "stat_label": "Owned, stocked, supported"
+          }
+        }
+      },
+      "block_order": [
+        "stat_V88VAf",
+        "stat_mAYqtw",
+        "stat_fMVjzH",
+        "stat_tQLii4"
+      ],
+      "name": "Custom Stats",
+      "settings": {}
+    },
+    "custom_steps_DYtpfC": {
+      "type": "custom-steps",
+      "blocks": {
+        "step_6E98e7": {
+          "type": "step",
+          "settings": {
+            "tag": "Prep",
+            "title": "Pack your feed.",
+            "text": "Fill the stainless inner with last night's leftovers, soup, or a frozen meal."
+          }
+        },
+        "step_9yGBnb": {
+          "type": "step",
+          "settings": {
+            "tag": "Go",
+            "title": "Take it anywhere.",
+            "text": "Chuck it in the ute or the toolbox. It's fully sealed, leak-proof, and rugged."
+          }
+        },
+        "step_WPzkGA": {
+          "type": "step",
+          "settings": {
+            "tag": "Heat",
+            "title": "Press start.",
+            "text": "Hit the button an hour before smoko. No cords, no finding a plug."
+          }
+        },
+        "step_wTxzBg": {
+          "type": "step",
+          "settings": {
+            "tag": "Eat",
+            "title": "Proper hot food.",
+            "text": "Enjoy a steaming hot meal right where you're working, no queue required."
+          }
+        }
+      },
+      "block_order": [
+        "step_6E98e7",
+        "step_9yGBnb",
+        "step_WPzkGA",
+        "step_wTxzBg"
+      ],
+      "name": "Custom Steps",
+      "settings": {
+        "subheading": "How it works",
+        "heading": "4 simple steps to a hot meal."
+      }
     }
   },
   "order": [
     "image_banner",
     "custom_hero_MCAdzD",
-    "featured_collection"
+    "custom_marquee_8RgJEf",
+    "featured_collection",
+    "custom_stats_fBYfTt",
+    "custom_steps_DYtpfC"
   ]
 }

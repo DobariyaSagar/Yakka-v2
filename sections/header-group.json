@@ -36,6 +36,31 @@
         "enable_language_selector": false
       }
     },
+    "announcement_bar_nBPpA4": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_h3D7RN": {
+          "type": "announcement",
+          "settings": {
+            "text": "Free express shipping AU & NZ",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_h3D7RN"
+      ],
+      "name": "t:sections.announcement-bar.presets.name",
+      "settings": {
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "color_scheme": "",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
     "header": {
       "type": "header",
       "settings": {
@@ -91,6 +116,7 @@
   },
   "order": [
     "announcement-bar",
+    "announcement_bar_nBPpA4",
     "header",
     "homepage_hero_VMP67T"
   ]
