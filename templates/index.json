@@ -383,6 +383,68 @@
         "heading": "4 simple steps to a hot meal."
       }
     },
+    "custom_what_you_get_TbtTmt": {
+      "type": "custom-what-you-get",
+      "blocks": {
+        "card_b7TRRk": {
+          "type": "card",
+          "settings": {
+            "title": "1.5L Heated Lunchbox",
+            "text": "Matte black or stone white, impact-rated outer shell."
+          }
+        },
+        "card_iP9J4D": {
+          "type": "card",
+          "settings": {
+            "title": "Stainless Inner Container",
+            "text": "Removable, leak-proof, dishwasher safe."
+          }
+        },
+        "card_qVJFBj": {
+          "type": "card",
+          "settings": {
+            "title": "USB-C Fast Charger",
+            "text": "Charges at home, in the ute, or off a power bank."
+          }
+        },
+        "card_DbfGCH": {
+          "type": "card",
+          "settings": {
+            "title": "Insulated Carry Bag",
+            "text": "Free with every order. Built to live in the toolbox."
+          }
+        },
+        "card_nMRi87": {
+          "type": "card",
+          "settings": {
+            "title": "Cutlery Set",
+            "text": "Fork and spoon, stored in the lid. Never left behind."
+          }
+        },
+        "card_CqMwpk": {
+          "type": "card",
+          "settings": {
+            "title": "60-Day Guarantee Card",
+            "text": "Your refund terms, in plain English, in the box."
+          }
+        }
+      },
+      "block_order": [
+        "card_b7TRRk",
+        "card_iP9J4D",
+        "card_qVJFBj",
+        "card_DbfGCH",
+        "card_nMRi87",
+        "card_CqMwpk"
+      ],
+      "name": "Custom What You Get",
+      "settings": {
+        "bg_color": "#FFF",
+        "padding_y": 80,
+        "eyebrow": "WHAT YOU GET",
+        "heading": "Everything in the box."
+      }
+    },
     "custom_image_text_BnmyBr": {
       "type": "custom-image-text",
       "blocks": {
@@ -515,6 +577,7 @@
     "featured_product_fa4cx7",
     "custom_featured_product_TAfJYr",
     "custom_steps_U6yVDX",
+    "custom_what_you_get_TbtTmt",
     "custom_image_text_BnmyBr",
     "custom_faq_tkHGWT",
     "custom_contact_4CieLg"
