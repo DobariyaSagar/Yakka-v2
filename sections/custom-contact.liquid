@@ -1,0 +1,245 @@
+<style>
+.custom-contact-{{ section.id }} {
+  --text: #1A1815;
+  --text-2: #6B6660;
+  --text-3: #4A4640;
+  --accent: #E8500F;
+  --surface: #FFFFFF;
+  --border: #E3DDD4;
+  --max: 1180px;
+  font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+  -webkit-font-smoothing: antialiased;
+  padding: {{ section.settings.padding_y }}px 0;
+  background: {{ section.settings.bg_color }};
+}
+.custom-contact-{{ section.id }} * { box-sizing: border-box; margin: 0; padding: 0; }
+.custom-contact-{{ section.id }} .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+.custom-contact-{{ section.id }} .grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 64px;
+  align-items: flex-start;
+}
+
+.custom-contact-{{ section.id }} .text-col {
+  padding-top: 12px;
+}
+.custom-contact-{{ section.id }} .eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-bottom: 12px;
+}
+.custom-contact-{{ section.id }} h2 {
+  font-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+  font-weight: 400;
+  font-size: 44px;
+  color: var(--text);
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.custom-contact-{{ section.id }} .lede {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-3);
+}
+
+.custom-contact-{{ section.id }} .form-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.custom-contact-{{ section.id }} .form-row {
+  display: flex;
+  gap: 16px;
+}
+.custom-contact-{{ section.id }} .form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-contact-{{ section.id }} input,
+.custom-contact-{{ section.id }} textarea {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text);
+  outline: none;
+  transition: border-color .2s;
+}
+.custom-contact-{{ section.id }} input:focus,
+.custom-contact-{{ section.id }} textarea:focus {
+  border-color: var(--text-2);
+}
+.custom-contact-{{ section.id }} input::placeholder,
+.custom-contact-{{ section.id }} textarea::placeholder {
+  color: var(--text-2);
+}
+
+.custom-contact-{{ section.id }} textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.custom-contact-{{ section.id }} .btn {
+  display: inline-flex;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 16px 32px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s;
+  align-self: flex-start;
+  margin-top: 8px;
+}
+.custom-contact-{{ section.id }} .btn:hover {
+  background: #D1450C;
+}
+.custom-contact-{{ section.id }} .form-success {
+  color: #28a745;
+  font-weight: 600;
+  margin-bottom: 16px;
+  font-size: 15px;
+}
+.custom-contact-{{ section.id }} .form-error {
+  color: #dc3545;
+  font-weight: 600;
+  margin-bottom: 16px;
+  font-size: 15px;
+}
+
+@media (max-width: 900px) {
+  .custom-contact-{{ section.id }} .grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .custom-contact-{{ section.id }} h2 {
+    font-size: 36px;
+  }
+}
+@media (max-width: 600px) {
+  .custom-contact-{{ section.id }} .form-row {
+    flex-direction: column;
+  }
+  .custom-contact-{{ section.id }} h2 {
+    font-size: 32px;
+  }
+  .custom-contact-{{ section.id }} .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+</style>
+
+<div class="custom-contact-{{ section.id }}">
+  <div class="wrap">
+    <div class="grid">
+      
+      <div class="text-col">
+        {% if section.settings.eyebrow != blank %}
+          <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2>{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <div class="lede">{{ section.settings.text }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-col">
+        {%- form 'contact', id: 'ContactForm' -%}
+          {%- if form.posted_successfully? -%}
+            <div class="form-success" tabindex="-1" autofocus>
+              Thanks for getting in touch! We'll get back to you soon.
+            </div>
+          {%- elsif form.errors -%}
+            <div class="form-error">
+              Please check the errors below and try again.
+            </div>
+          {%- endif -%}
+
+          <div class="form-row" style="margin-bottom: 16px;">
+            <div class="form-group">
+              <input type="text" id="ContactForm-name" name="contact[name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="Name" required>
+            </div>
+            <div class="form-group">
+              <input type="email" id="ContactForm-email" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" placeholder="Email" required>
+            </div>
+          </div>
+          
+          <div class="form-group" style="margin-bottom: 16px;">
+            <input type="tel" id="ContactForm-phone" name="contact[phone]" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="Phone number (optional)">
+          </div>
+
+          <div class="form-group" style="margin-bottom: 16px;">
+            <textarea id="ContactForm-body" name="contact[body]" placeholder="How can we help?" required>{%- if form.body -%}{{ form.body }}{%- endif -%}</textarea>
+          </div>
+
+          <button type="submit" class="btn">Send message</button>
+        {%- endform -%}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Contact",
+  "settings": [
+    {
+      "type": "color_background",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F7F4EF"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Vertical Padding",
+      "default": 80
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "GET IN TOUCH"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Questions before you buy?"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Our Australian team answers within 24 hours, Monday to Friday, 9:00am - 5:00pm AEST."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Contact"
+    }
+  ]
+}
+{% endschema %}
