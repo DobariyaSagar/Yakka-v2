@@ -1,0 +1,154 @@
+<style>
+.custom-cta-{{ section.id }} {
+  --text: #FFFFFF;
+  --accent: #E8500F;
+  --max: 1000px;
+  font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+  -webkit-font-smoothing: antialiased;
+  padding: {{ section.settings.padding_y }}px 0;
+  background: {{ section.settings.bg_color }};
+  text-align: center;
+  color: var(--text);
+}
+.custom-cta-{{ section.id }} * { box-sizing: border-box; margin: 0; padding: 0; }
+.custom-cta-{{ section.id }} .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+.custom-cta-{{ section.id }} h2 {
+  font-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+  font-weight: 400;
+  font-size: 48px;
+  color: var(--text);
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.custom-cta-{{ section.id }} .subheading {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 32px;
+  max-width: 600px;
+}
+
+.custom-cta-{{ section.id }} .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  color: var(--accent);
+  border: none;
+  border-radius: 6px;
+  padding: 18px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+  margin-bottom: 16px;
+}
+.custom-cta-{{ section.id }} .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.custom-cta-{{ section.id }} .footer-text {
+  font-size: 13px;
+  opacity: 0.9;
+  letter-spacing: .02em;
+}
+
+@media (max-width: 768px) {
+  .custom-cta-{{ section.id }} h2 {
+    font-size: 36px;
+  }
+  .custom-cta-{{ section.id }} .subheading {
+    font-size: 16px;
+  }
+  .custom-cta-{{ section.id }} .btn {
+    width: 100%;
+    padding: 16px;
+  }
+}
+</style>
+
+<div class="custom-cta-{{ section.id }}">
+  <div class="wrap">
+    
+    {% if section.settings.heading != blank %}
+      <h2>{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    {% if section.settings.subheading != blank %}
+      <div class="subheading">{{ section.settings.subheading }}</div>
+    {% endif %}
+
+    {% if section.settings.btn_text != blank %}
+      <a href="{{ section.settings.btn_link | default: '#' }}" class="btn">
+        {{ section.settings.btn_text }}
+      </a>
+    {% endif %}
+
+    {% if section.settings.footer_text != blank %}
+      <div class="footer-text">{{ section.settings.footer_text }}</div>
+    {% endif %}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom CTA Banner",
+  "settings": [
+    {
+      "type": "color_background",
+      "id": "bg_color",
+      "label": "Background Color (or Gradient)",
+      "default": "linear-gradient(90deg, #E65416 0%, #FF8243 100%)"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Vertical Padding",
+      "default": 80
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Stop paying $30 a day for a cold compromise."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "One purchase, and every lunch for the next decade is a hot one."
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "Shop the Lunchbox — $139.99"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "footer_text",
+      "label": "Footer Text (Below Button)",
+      "default": "In stock — Free express shipping AU & NZ — 60-day money back"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom CTA Banner"
+    }
+  ]
+}
+{% endschema %}

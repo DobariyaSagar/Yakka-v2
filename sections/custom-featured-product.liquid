@@ -1,0 +1,531 @@
+<style>
+.custom-featured-product-{{ section.id }} {
+  --text: #1A1815;
+  --text-2: #6B6660;
+  --text-3: #4A4640;
+  --border: #E3DDD4;
+  --accent: #E8500F;
+  --surface: #FFFFFF;
+  --canvas: #F7F4EF;
+  --max: 1180px;
+  font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+  -webkit-font-smoothing: antialiased;
+  padding: {{ section.settings.padding_y }}px 0;
+  background: var(--canvas);
+}
+.custom-featured-product-{{ section.id }} * { box-sizing: border-box; margin: 0; padding: 0; }
+.custom-featured-product-{{ section.id }} .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+.cfp-grid {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 56px;
+  align-items: flex-start;
+}
+
+/* GALLERY */
+.cfp-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+.cfp-main-img-wrap {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--surface);
+  aspect-ratio: 1 / 1;
+}
+.cfp-main-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.cfp-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border-radius: 4px;
+  z-index: 2;
+}
+.cfp-thumbnails {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.cfp-thumbnails::-webkit-scrollbar { display: none; }
+.cfp-thumb {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  flex-shrink: 0;
+}
+.cfp-thumb.active {
+  border-color: var(--accent);
+}
+.cfp-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* INFO */
+.cfp-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.cfp-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+.cfp-title {
+  font-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+  font-weight: 400;
+  font-size: 40px;
+  color: var(--text);
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  margin: 0 0 4px;
+}
+
+.cfp-price-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.cfp-price {
+  font-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+  font-size: 32px;
+  color: var(--text);
+}
+.cfp-compare {
+  font-size: 18px;
+  color: var(--text-2);
+  text-decoration: line-through;
+}
+.cfp-save {
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.cfp-installments {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+/* TABLE */
+.cfp-table {
+  margin: 12px 0;
+}
+.cfp-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.cfp-row:first-child {
+  border-top: 1px solid var(--border);
+}
+.cfp-row span:first-child {
+  color: var(--text-2);
+  flex-shrink: 0;
+  padding-right: 16px;
+}
+.cfp-row span:last-child {
+  color: var(--text);
+  font-weight: 500;
+  text-align: right;
+}
+
+/* VARIANTS */
+.cfp-variants {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cfp-opt-name {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+.cfp-opt-list {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.cfp-opt-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  transition: all .2s;
+}
+.cfp-opt-btn.active {
+  border-color: var(--text);
+}
+.cfp-opt-btn .dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: block;
+}
+
+/* ADD TO CART */
+.cfp-action {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+.cfp-qty {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  height: 56px;
+  padding: 0 16px;
+}
+.cfp-qty button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+}
+.cfp-qty input {
+  width: 32px;
+  text-align: center;
+  border: none;
+  background: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  pointer-events: none;
+}
+.cfp-add {
+  flex-grow: 1;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background .2s;
+}
+.cfp-add:hover {
+  background: #D1450C;
+}
+
+/* TRUST */
+.cfp-trust {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--text-2);
+  margin-top: 4px;
+}
+.cfp-trust span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cfp-trust svg {
+  width: 14px;
+  height: 14px;
+}
+
+@media (max-width: 900px) {
+  .cfp-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .cfp-title {
+    font-size: 32px;
+  }
+  .cfp-price {
+    font-size: 28px;
+  }
+  .cfp-action {
+    flex-direction: column;
+  }
+  .cfp-qty {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .cfp-add {
+    width: 100%;
+  }
+  .cfp-thumb {
+    width: 80px;
+    height: 80px;
+  }
+}
+</style>
+
+{% assign product = section.settings.product %}
+
+<div class="custom-featured-product-{{ section.id }}">
+  <div class="wrap">
+    <div class="cfp-grid">
+      
+      <!-- GALLERY -->
+      <div class="cfp-gallery">
+        {% if product != blank %}
+          <div class="cfp-main-img-wrap">
+            {% if section.settings.badge_text != blank %}
+              <div class="cfp-badge">{{ section.settings.badge_text }}</div>
+            {% endif %}
+            <img id="cfp-main-img-{{ section.id }}" src="{{ product.featured_image | image_url: width: 1000 }}" alt="{{ product.title | escape }}">
+          </div>
+          {% if product.images.size > 1 %}
+            <div class="cfp-thumbnails">
+              {% for image in product.images %}
+                <div class="cfp-thumb {% if forloop.first %}active{% endif %}" onclick="switchImage_{{ section.id | replace: '-', '_' }}('{{ image | image_url: width: 1000 }}', this)">
+                  <img src="{{ image | image_url: width: 150 }}" alt="{{ image.alt | escape }}">
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% else %}
+          <div class="cfp-main-img-wrap">
+            <div class="cfp-badge">SAVE 50% TODAY</div>
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- INFO -->
+      <div class="cfp-info">
+        <div>
+          {% if section.settings.eyebrow != blank %}
+            <div class="cfp-eyebrow">{{ section.settings.eyebrow }}</div>
+          {% endif %}
+          <h1 class="cfp-title">{{ product.title | default: 'Yakka Essential Portable Food Warmer' }}</h1>
+        </div>
+
+        <div class="cfp-price-wrap">
+          {% if product != blank %}
+            <span class="cfp-price" id="cfp-price-{{ section.id }}">{{ product.selected_or_first_available_variant.price | money }}</span>
+            {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
+              <span class="cfp-compare" id="cfp-compare-{{ section.id }}">{{ product.selected_or_first_available_variant.compare_at_price | money }}</span>
+              {% assign save = product.selected_or_first_available_variant.compare_at_price | minus: product.selected_or_first_available_variant.price %}
+              <span class="cfp-save" id="cfp-save-{{ section.id }}">SAVE {{ save | money_without_trailing_zeros }}</span>
+            {% endif %}
+          {% else %}
+            <span class="cfp-price">$139.99</span>
+            <span class="cfp-compare">$279.99</span>
+            <span class="cfp-save">SAVE $140</span>
+          {% endif %}
+        </div>
+
+        {% if section.settings.installments != blank %}
+          <div class="cfp-installments">{{ section.settings.installments }}</div>
+        {% endif %}
+
+        {% if section.blocks.size > 0 %}
+          <div class="cfp-table">
+            {% for block in section.blocks %}
+              <div class="cfp-row" {{ block.shopify_attributes }}>
+                <span>{{ block.settings.label }}</span>
+                <span>{{ block.settings.value }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if product != blank and product.has_only_default_variant == false %}
+          <div class="cfp-variants">
+            {% for option in product.options_with_values %}
+              <div class="cfp-opt-name">{{ option.name }}</div>
+              <div class="cfp-opt-list">
+                {% for value in option.values %}
+                  <div class="cfp-opt-btn {% if option.selected_value == value %}active{% endif %}" onclick="selectVariant_{{ section.id | replace: '-', '_' }}(this, '{{ option.name }}', '{{ value | escape }}')">
+                    {% if option.name == 'Color' or option.name == 'Colour' or option.name == 'COLOUR' %}
+                      {% assign color_down = value | downcase %}
+                      <span class="dot" style="background-color: {{ color_down | replace: ' ', '' }};"></span>
+                    {% endif %}
+                    {{ value }}
+                  </div>
+                {% endfor %}
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <!-- Dummy variants for preview if no product -->
+          {% if product == blank %}
+            <div class="cfp-variants">
+              <div class="cfp-opt-name">COLOUR</div>
+              <div class="cfp-opt-list">
+                <div class="cfp-opt-btn active"><span class="dot" style="background-color: #1A1815;"></span> Matte Black</div>
+                <div class="cfp-opt-btn"><span class="dot" style="background-color: #EFEFEF;"></span> Stone White</div>
+              </div>
+            </div>
+          {% endif %}
+        {% endif %}
+
+        {%- form 'product', product, id: 'product-form-installment', class: 'installment caption-large' -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id | default: '' }}">
+          <div class="cfp-action">
+            <div class="cfp-qty">
+              <button type="button" onclick="changeQty(-1)">-</button>
+              <input type="number" name="quantity" id="cfp-qty-val" value="1" min="1">
+              <button type="button" onclick="changeQty(1)">+</button>
+            </div>
+            <button type="submit" class="cfp-add">
+              Add to cart — <span id="cfp-btn-price">{{ product.selected_or_first_available_variant.price | default: 13999 | money }}</span>
+            </button>
+          </div>
+        {%- endform -%}
+
+        {% if section.settings.trust_text != blank %}
+          <div class="cfp-trust">
+            {{ section.settings.trust_text }}
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function switchImage_{{ section.id | replace: '-', '_' }}(url, el) {
+    document.getElementById('cfp-main-img-{{ section.id }}').src = url;
+    let thumbs = el.parentElement.querySelectorAll('.cfp-thumb');
+    thumbs.forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function changeQty(diff) {
+    let input = document.getElementById('cfp-qty-val');
+    let val = parseInt(input.value) + diff;
+    if(val >= 1) input.value = val;
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Custom Featured Product",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Vertical Padding",
+      "default": 64
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text (on Image)",
+      "default": "SAVE 50% TODAY"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "SELF-HEATING LUNCHBOX"
+    },
+    {
+      "type": "text",
+      "id": "installments",
+      "label": "Installments Text",
+      "default": "or 4 interest-free payments of $35.00"
+    },
+    {
+      "type": "richtext",
+      "id": "trust_text",
+      "label": "Trust Badges HTML/Text",
+      "default": "<p><span>✓ In stock, ships today</span> <span>✓ Free express shipping</span> <span>✓ 60-day money back</span></p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Specification Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label (Left)",
+          "default": "Power"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value (Right)",
+          "default": "100% cordless — USB-C rechargeable"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Featured Product",
+      "blocks": [
+        { "type": "spec", "settings": { "label": "Power", "value": "100% cordless — USB-C rechargeable" } },
+        { "type": "spec", "settings": { "label": "Heat time", "value": "Steaming in ~45 min" } },
+        { "type": "spec", "settings": { "label": "Battery", "value": "2-3 full heat cycles per charge" } },
+        { "type": "spec", "settings": { "label": "Capacity", "value": "1.5L stainless — a full tradie's feed" } },
+        { "type": "spec", "settings": { "label": "Build", "value": "Leak-proof, impact-rated shell" } },
+        { "type": "spec", "settings": { "label": "Included", "value": "Free insulated carry bag" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

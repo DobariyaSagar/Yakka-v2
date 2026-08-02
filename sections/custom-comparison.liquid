@@ -1,0 +1,314 @@
+<style>
+.custom-compare-{{ section.id }} {
+  --text: #1A1815;
+  --text-2: #6B6660;
+  --text-3: #4A4640;
+  --accent: #E8500F;
+  --highlight-bg: #FFF5F0;
+  --surface: #FFFFFF;
+  --border: #E3DDD4;
+  --green: #2B9654;
+  --max: 1180px;
+  font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+  -webkit-font-smoothing: antialiased;
+  padding: {{ section.settings.padding_y }}px 0;
+  background: {{ section.settings.bg_color }};
+}
+.custom-compare-{{ section.id }} * { box-sizing: border-box; margin: 0; padding: 0; }
+.custom-compare-{{ section.id }} .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+.custom-compare-{{ section.id }} .header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.custom-compare-{{ section.id }} .eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-bottom: 12px;
+}
+.custom-compare-{{ section.id }} h2 {
+  font-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+  font-weight: 400;
+  font-size: 40px;
+  color: var(--text);
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  margin: 0 0 16px;
+}
+.custom-compare-{{ section.id }} .subheading {
+  font-size: 16px;
+  color: var(--text-3);
+  line-height: 1.5;
+}
+
+.custom-compare-{{ section.id }} .table-wrap {
+  background: var(--surface);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+.custom-compare-{{ section.id }} table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+  text-align: left;
+}
+.custom-compare-{{ section.id }} th,
+.custom-compare-{{ section.id }} td {
+  padding: 24px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text-2);
+}
+.custom-compare-{{ section.id }} th {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  border-bottom: 1px solid var(--border);
+}
+
+/* First Column (Labels) */
+.custom-compare-{{ section.id }} th:first-child,
+.custom-compare-{{ section.id }} td:first-child {
+  width: 25%;
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* Highlight Column (Yakka) */
+.custom-compare-{{ section.id }} th.highlight {
+  background: var(--highlight-bg);
+  color: var(--accent);
+}
+.custom-compare-{{ section.id }} td.highlight {
+  background: var(--highlight-bg);
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Last Row Border Removal */
+.custom-compare-{{ section.id }} tr:last-child td {
+  border-bottom: none;
+}
+
+.text-green {
+  color: var(--green);
+}
+
+@media (max-width: 768px) {
+  .custom-compare-{{ section.id }} h2 {
+    font-size: 32px;
+  }
+  .custom-compare-{{ section.id }} .header {
+    margin-bottom: 32px;
+  }
+}
+</style>
+
+<div class="custom-compare-{{ section.id }}">
+  <div class="wrap">
+    
+    <div class="header">
+      {% if section.settings.eyebrow != blank %}
+        <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2>{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <div class="subheading">{{ section.settings.subheading }}</div>
+      {% endif %}
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th class="highlight">{{ section.settings.col1_title }}</th>
+            <th>{{ section.settings.col2_title }}</th>
+            <th>{{ section.settings.col3_title }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for block in section.blocks %}
+            <tr {{ block.shopify_attributes }}>
+              <td>{{ block.settings.label }}</td>
+              <td class="highlight">
+                {{ block.settings.col1_val | replace: '[green]', '<span class="text-green">' | replace: '[/green]', '</span>' }}
+              </td>
+              <td>{{ block.settings.col2_val }}</td>
+              <td>{{ block.settings.col3_val }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Comparison Table",
+  "settings": [
+    {
+      "type": "color_background",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F7F4EF"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Vertical Padding",
+      "default": 80
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "THE HONEST COMPARISON"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Against what you're doing now."
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Most tradies are choosing between a queue, a servo, or a cold roll."
+    },
+    {
+      "type": "header",
+      "content": "Table Columns"
+    },
+    {
+      "type": "text",
+      "id": "col1_title",
+      "label": "Column 1 Title (Highlighted)",
+      "default": "YAKKA ESSENTIAL"
+    },
+    {
+      "type": "text",
+      "id": "col2_title",
+      "label": "Column 2 Title",
+      "default": "SITE MICROWAVE"
+    },
+    {
+      "type": "text",
+      "id": "col3_title",
+      "label": "Column 3 Title",
+      "default": "SERVO / TAKEAWAY"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Comparison Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Row Label",
+          "default": "Wait time"
+        },
+        {
+          "type": "text",
+          "id": "col1_val",
+          "label": "Column 1 Value",
+          "info": "Use [green]Text[/green] to make words green.",
+          "default": "None — it's ready"
+        },
+        {
+          "type": "text",
+          "id": "col2_val",
+          "label": "Column 2 Value",
+          "default": "10-20 min queue"
+        },
+        {
+          "type": "text",
+          "id": "col3_val",
+          "label": "Column 3 Value",
+          "default": "Drive + queue"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Comparison Table",
+      "blocks": [
+        {
+          "type": "row",
+          "settings": {
+            "label": "Wait time",
+            "col1_val": "None — it's ready",
+            "col2_val": "10-20 min queue",
+            "col3_val": "Drive + queue"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "label": "Needs power on site",
+            "col1_val": "[green]No[/green] — fully cordless",
+            "col2_val": "Yes",
+            "col3_val": "—"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "label": "Cost per week",
+            "col1_val": "$0 after purchase",
+            "col2_val": "$0",
+            "col3_val": "$85-$150"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "label": "Eat your own food",
+            "col1_val": "[green]Yes[/green]",
+            "col2_val": "Yes",
+            "col3_val": "No"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "label": "Heats evenly",
+            "col1_val": "[green]Yes[/green]",
+            "col2_val": "Hot edges, cold centre",
+            "col3_val": "—"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "label": "Works on a remote site",
+            "col1_val": "[green]Yes[/green]",
+            "col2_val": "No",
+            "col3_val": "No"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
