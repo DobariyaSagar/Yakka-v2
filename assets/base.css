@@ -3705,4 +3705,7 @@ details-disclosure>details {
 .product-form__quantity .quantity__button {
   color: #6B6660 !important;
 }
-
+
+/* ANNOUNCEMENT BAR RICHTEXT FIX */
+.announcement-bar__message p { margin: 0; display: inline; }
+
