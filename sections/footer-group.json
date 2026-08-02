@@ -24,15 +24,15 @@
         "link_list_UqdgeM": {
           "type": "link_list",
           "settings": {
-            "title": "Shop",
-            "menu": ""
+            "title": "Support",
+            "menu": "footer"
           }
         },
         "link_list_x6Ucgd": {
           "type": "link_list",
           "settings": {
-            "title": "Support",
-            "menu": ""
+            "title": "SHop",
+            "menu": "main-menu"
           }
         },
         "newsletter_KYkmYb": {
