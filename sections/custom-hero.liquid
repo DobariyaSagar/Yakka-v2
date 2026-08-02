@@ -51,7 +51,7 @@
 .custom-hero-{{ section.id }} .hero-media::before { content: ""; position: absolute; inset: -8% -10% -4% -6%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,138,43,.34), rgba(255,138,43,0) 72%); filter: blur(6px); }
 .custom-hero-{{ section.id }} .hero-media img { position: relative; width: 100%; aspect-ratio: 1/1.24; object-fit: cover; border-radius: 18px; display: block; }
 {% if section.settings.image_height_auto %}
-.custom-hero-{{ section.id }} .hero-media img { aspect-ratio: auto; }
+.custom-hero-{{ section.id }} .hero-media img { aspect-ratio: auto; height: auto; }
 {% endif %}
 .custom-hero-{{ section.id }} .chip { position: absolute; z-index: 2; background: rgba(255,255,255,.94); backdrop-filter: blur(6px); border: 1px solid rgba(0,0,0,.06); border-radius: 12px; padding: 14px 18px; box-shadow: 0 18px 40px -20px rgba(26,24,21,.5); }
 .custom-hero-{{ section.id }} .chip b { display: block; font-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }}; font-size: 26px; letter-spacing: -.02em; line-height: 1; color: var(--text); }
