@@ -199,6 +199,77 @@
         "text": "Pack it the night before. Press start an hour out from smoko. Sealed, leak-proof and rugged enough to live in the toolbox — it heats your own food properly, instead of keeping someone else's lukewarm."
       }
     },
+    "featured_product_fa4cx7": {
+      "type": "featured-product",
+      "blocks": {
+        "text_6Mebmx": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>Self-Heating Lunchbox</strong>",
+            "text_style": "uppercase"
+          }
+        },
+        "title_zawqqP": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_M3GkhP": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_N4ydEn": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_9QkCgN": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_EcQaPM": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_rikpFa": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+            "share_label": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_6Mebmx",
+        "title_zawqqP",
+        "price_M3GkhP",
+        "variant_picker_N4ydEn",
+        "quantity_selector_9QkCgN",
+        "buy_buttons_EcQaPM",
+        "share_rikpFa"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "yakka-heating-lunchbox",
+        "color_scheme": "scheme-1",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "none",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "custom_steps_U6yVDX": {
       "type": "custom-steps",
       "blocks": {
@@ -307,75 +378,54 @@
         "heading": "Everything you need to know."
       }
     },
-    "featured_product_fa4cx7": {
-      "type": "featured-product",
+    "custom_image_text_BnmyBr": {
+      "type": "custom-image-text",
       "blocks": {
-        "text_6Mebmx": {
-          "type": "text",
+        "list_item_67K3V4": {
+          "type": "list_item",
           "settings": {
-            "text": "<strong>Self-Heating Lunchbox</strong>",
-            "text_style": "uppercase"
+            "title": "Zero waiting.",
+            "text": "Your break is short enough. Skip the queue and eat the moment you sit down."
           }
         },
-        "title_zawqqP": {
-          "type": "title",
+        "list_item_iQpEUK": {
+          "type": "list_item",
           "settings": {
-            "heading_size": "h1"
+            "title": "Completely cordless.",
+            "text": "No outlet, no inverter, no gennie. It runs off its own battery."
           }
         },
-        "price_M3GkhP": {
-          "type": "price",
-          "settings": {}
-        },
-        "variant_picker_N4ydEn": {
-          "type": "variant_picker",
+        "list_item_idCfWx": {
+          "type": "list_item",
           "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
+            "title": "Even-heat technology.",
+            "text": "No hot centre and burnt edges — just perfectly hot food, every time."
           }
         },
-        "quantity_selector_9QkCgN": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "buy_buttons_EcQaPM": {
-          "type": "buy_buttons",
+        "list_item_XPppRz": {
+          "type": "list_item",
           "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
-          }
-        },
-        "share_rikpFa": {
-          "type": "share",
-          "disabled": true,
-          "settings": {
-            "share_label": ""
+            "title": "Built for big appetites.",
+            "text": "1.5L capacity designed to hold a proper, energy-packed feed."
           }
         }
       },
       "block_order": [
-        "text_6Mebmx",
-        "title_zawqqP",
-        "price_M3GkhP",
-        "variant_picker_N4ydEn",
-        "quantity_selector_9QkCgN",
-        "buy_buttons_EcQaPM",
-        "share_rikpFa"
+        "list_item_67K3V4",
+        "list_item_iQpEUK",
+        "list_item_idCfWx",
+        "list_item_XPppRz"
       ],
-      "name": "t:sections.featured-product.presets.name",
+      "name": "Custom Image with Text",
       "settings": {
-        "product": "yakka-heating-lunchbox",
-        "color_scheme": "",
-        "secondary_background": false,
-        "media_size": "medium",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "media_position": "left",
-        "image_zoom": "none",
-        "hide_variants": false,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "bg_color": "#F7F4EF",
+        "padding_y": 64,
+        "layout": "image_right",
+        "eyebrow": "FROM THE SHED TO THE SITE",
+        "heading": "Keep every meal hot.",
+        "lede": "Yakka Essential was built for the way Australians actually work — long drives, no kitchen, and a lunch break that's over before the queue moves. It's the simplest possible fix: charge it, pack it, eat properly.",
+        "image": "shopify://shop_images/Heated_lunchbox_on_Toyota_Hilux_202607130243.jpeg_2K_202607241641.jpg",
+        "image_height_auto": true
       }
     }
   },
@@ -386,8 +436,9 @@
     "featured_collection",
     "custom_stats_fBYfTt",
     "custom_feature_V4Q6N3",
+    "featured_product_fa4cx7",
     "custom_steps_U6yVDX",
     "custom_faq_tkHGWT",
-    "featured_product_fa4cx7"
+    "custom_image_text_BnmyBr"
   ]
 }
