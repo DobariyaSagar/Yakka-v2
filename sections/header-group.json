@@ -36,6 +36,50 @@
         "enable_language_selector": false
       }
     },
+    "custom_marquee_bQgpdL": {
+      "type": "custom-marquee",
+      "blocks": {
+        "text_EK3zjh": {
+          "type": "text",
+          "settings": {
+            "text": "Completely cordless"
+          }
+        },
+        "text_6zBGgg": {
+          "type": "text",
+          "settings": {
+            "text": "Rugged, leak-proof shell"
+          }
+        },
+        "text_DjkCdR": {
+          "type": "text",
+          "settings": {
+            "text": "Free insulated carry bag"
+          }
+        },
+        "text_XRV69y": {
+          "type": "text",
+          "settings": {
+            "text": "Stainless inner, dishwasher safe"
+          }
+        },
+        "text_b3dWaz": {
+          "type": "text",
+          "settings": {
+            "text": "Australian owned & supported"
+          }
+        }
+      },
+      "block_order": [
+        "text_EK3zjh",
+        "text_6zBGgg",
+        "text_DjkCdR",
+        "text_XRV69y",
+        "text_b3dWaz"
+      ],
+      "name": "Custom Marquee",
+      "settings": {}
+    },
     "header": {
       "type": "header",
       "settings": {
@@ -87,36 +131,11 @@
         "cta_text": "Join 1,200+ Aussie tradies who've upgraded their lunch break. Order today and get free express shipping, a 60-day money-back guarantee and a 12-month warranty.",
         "cta_btn_text": "Shop the Lunchbox — $139.99"
       }
-    },
-    "announcement_bar_94Bq8U": {
-      "type": "announcement-bar",
-      "blocks": {
-        "announcement_6HcNci": {
-          "type": "announcement",
-          "settings": {
-            "text": "Welcome to our store",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "announcement_6HcNci"
-      ],
-      "name": "t:sections.announcement-bar.presets.name",
-      "settings": {
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "color_scheme": "",
-        "show_line_separator": true,
-        "show_social": false,
-        "enable_country_selector": false,
-        "enable_language_selector": false
-      }
     }
   },
   "order": [
     "announcement-bar",
-    "announcement_bar_94Bq8U",
+    "custom_marquee_bQgpdL",
     "header",
     "homepage_hero_VMP67T"
   ]
