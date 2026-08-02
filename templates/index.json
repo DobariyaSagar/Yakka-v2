@@ -306,6 +306,76 @@
         "subheading": "Got questions?",
         "heading": "Everything you need to know."
       }
+    },
+    "featured_product_fa4cx7": {
+      "type": "featured-product",
+      "blocks": {
+        "text_6Mebmx": {
+          "type": "text",
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_zawqqP": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_M3GkhP": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_N4ydEn": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_9QkCgN": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_EcQaPM": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_rikpFa": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "text_6Mebmx",
+        "title_zawqqP",
+        "price_M3GkhP",
+        "variant_picker_N4ydEn",
+        "quantity_selector_9QkCgN",
+        "buy_buttons_EcQaPM",
+        "share_rikpFa"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "yakka-heating-lunchbox",
+        "color_scheme": "",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "none",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -316,6 +386,7 @@
     "custom_stats_fBYfTt",
     "custom_feature_V4Q6N3",
     "custom_steps_U6yVDX",
-    "custom_faq_tkHGWT"
+    "custom_faq_tkHGWT",
+    "featured_product_fa4cx7"
   ]
 }
