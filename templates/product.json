@@ -111,11 +111,113 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "custom_image_text_y44BfA": {
+      "type": "custom-image-text",
+      "blocks": {
+        "list_item_TnARLq": {
+          "type": "list_item",
+          "settings": {
+            "title": "Zero waiting.",
+            "text": "Your break is short enough. Skip the queue and eat the moment you sit down."
+          }
+        },
+        "list_item_CmEmQH": {
+          "type": "list_item",
+          "settings": {
+            "title": "Completely cordless.",
+            "text": "No outlet, no inverter, no gennie. It runs off its own battery."
+          }
+        },
+        "list_item_4FQfCN": {
+          "type": "list_item",
+          "settings": {
+            "title": "Even-heat technology.",
+            "text": "No hot centre and burnt edges — just perfectly hot food, every time."
+          }
+        },
+        "list_item_tU68tk": {
+          "type": "list_item",
+          "settings": {
+            "title": "Built for big appetites.",
+            "text": "1.5L capacity designed to hold a proper, energy-packed feed."
+          }
+        }
+      },
+      "block_order": [
+        "list_item_TnARLq",
+        "list_item_CmEmQH",
+        "list_item_4FQfCN",
+        "list_item_tU68tk"
+      ],
+      "name": "Custom Image with Text",
+      "settings": {
+        "bg_color": "#F7F4EF",
+        "padding_y": 64,
+        "layout": "image_right",
+        "eyebrow": "FROM THE SHED TO THE SITE",
+        "heading": "Keep every meal hot.",
+        "lede": "Yakka Essential was built for the way Australians actually work — long drives, no kitchen, and a lunch break that's over before the queue moves. It's the simplest possible fix: charge it, pack it, eat properly.",
+        "image": "shopify://shop_images/Infographic_advertisement_4_steps_2K_202607150550.jpg",
+        "image_height_auto": true
+      }
+    },
+    "custom_image_text_EjD7TT": {
+      "type": "custom-image-text",
+      "blocks": {
+        "list_item_4KgBhE": {
+          "type": "list_item",
+          "settings": {
+            "title": "Zero waiting.",
+            "text": "Your break is short enough. Skip the queue and eat the moment you sit down."
+          }
+        },
+        "list_item_3QqTDV": {
+          "type": "list_item",
+          "settings": {
+            "title": "Completely cordless.",
+            "text": "No outlet, no inverter, no gennie. It runs off its own battery."
+          }
+        },
+        "list_item_whPhNM": {
+          "type": "list_item",
+          "settings": {
+            "title": "Even-heat technology.",
+            "text": "No hot centre and burnt edges — just perfectly hot food, every time."
+          }
+        },
+        "list_item_9aDTDi": {
+          "type": "list_item",
+          "settings": {
+            "title": "Built for big appetites.",
+            "text": "1.5L capacity designed to hold a proper, energy-packed feed."
+          }
+        }
+      },
+      "block_order": [
+        "list_item_4KgBhE",
+        "list_item_3QqTDV",
+        "list_item_whPhNM",
+        "list_item_9aDTDi"
+      ],
+      "name": "Custom Image with Text",
+      "settings": {
+        "bg_color": "#F7F4EF",
+        "padding_y": 64,
+        "layout": "image_left",
+        "eyebrow": "FROM THE SHED TO THE SITE",
+        "heading": "Keep every meal hot.",
+        "lede": "Yakka Essential was built for the way Australians actually work — long drives, no kitchen, and a lunch break that's over before the queue moves. It's the simplest possible fix: charge it, pack it, eat properly.",
+        "image": "shopify://shop_images/Harmonize_scene_unify_lighting_c__202607200000.jpg",
+        "image_height_auto": true
+      }
     }
   },
   "order": [
     "main",
     "disclosures",
-    "related-products"
+    "related-products",
+    "custom_image_text_y44BfA",
+    "custom_image_text_EjD7TT"
   ]
 }
