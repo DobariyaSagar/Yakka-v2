@@ -225,6 +225,7 @@
       "settings": {
         "bg_color": "#F7F4EF",
         "padding_y": 32,
+        "padding_y_mobile": 40,
         "layout": "image_right",
         "eyebrow": "FROM THE SHED TO THE SITE",
         "heading": "Keep every meal hot.",
@@ -259,12 +260,73 @@
       "settings": {
         "bg_color": "#F7F4EF",
         "padding_y": 64,
+        "padding_y_mobile": 40,
         "layout": "image_left",
         "eyebrow": "FROM THE SHED TO THE SITE",
         "heading": "Keep every meal hot.",
         "lede": "Yakka Essential was built for the way Australians actually work — long drives, no kitchen, and a lunch break that's over before the queue moves. It's the simplest possible fix: charge it, pack it, eat properly.",
         "image": "shopify://shop_images/Harmonize_scene_unify_lighting_c__202607200000.jpg",
         "image_height_auto": true
+      }
+    },
+    "custom_faq_3UtaTi": {
+      "type": "custom-faq",
+      "blocks": {
+        "faq_item_4kAnBg": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How does a cordless heated lunchbox work?",
+            "answer": "A built-in rechargeable battery warms your food gently and evenly. Press start, or set the timer and let it come up to temperature while you work."
+          }
+        },
+        "faq_item_fAmTdW": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does the battery last?",
+            "answer": "Two to three full heating cycles per charge — comfortably a full workday, and most blokes get two or three days out of one charge."
+          }
+        },
+        "faq_item_afe8Ep": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do I need power on site?",
+            "answer": "No. That's the whole point. Charge it at home overnight and it runs entirely off its own battery all day."
+          }
+        },
+        "faq_item_t6xcXK": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Will it leak in my toolbox?",
+            "answer": "The stainless inner seals shut and the outer shell is impact-rated. It's built to be thrown in the tray, not carried carefully."
+          }
+        },
+        "faq_item_fHjQre": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is it easy to clean?",
+            "answer": "The stainless container lifts out and goes straight in the dishwasher. Wipe the outer shell down and you're done."
+          }
+        },
+        "faq_item_xNKqw8": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What if I don't like it?",
+            "answer": "Sixty days, full refund, and you keep the unit — you don't pay return freight."
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_4kAnBg",
+        "faq_item_fAmTdW",
+        "faq_item_afe8Ep",
+        "faq_item_t6xcXK",
+        "faq_item_fHjQre",
+        "faq_item_xNKqw8"
+      ],
+      "name": "Custom FAQ",
+      "settings": {
+        "subheading": "Got questions?",
+        "heading": "Everything you need to know."
       }
     }
   },
@@ -274,6 +336,7 @@
     "custom_comparison_kL7cDL",
     "related-products",
     "custom_image_text_y44BfA",
-    "custom_image_text_EjD7TT"
+    "custom_image_text_EjD7TT",
+    "custom_faq_3UtaTi"
   ]
 }
