@@ -68,6 +68,9 @@
   display: block;
   box-shadow: 0 40px 70px -40px rgba(60,35,15,.6);
 }
+{% if section.settings.image_height_auto %}
+.custom-feature-{{ section.id }} .image-col img { aspect-ratio: auto; }
+{% endif %}
 
 @media (max-width: 900px) {
   .custom-feature-{{ section.id }} .card {
@@ -173,6 +176,13 @@
       "type": "image_picker",
       "id": "image",
       "label": "Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_height_auto",
+      "label": "Adapt to image",
+      "info": "Use original image proportions instead of cropping.",
+      "default": false
     },
     {
       "type": "text",
