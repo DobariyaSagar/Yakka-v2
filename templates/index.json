@@ -188,7 +188,7 @@
       "type": "custom-feature",
       "name": "Custom Feature",
       "settings": {
-        "section_bg": "#F7F4EF",
+        "section_bg": "#FFF",
         "card_bg": "linear-gradient(150deg, rgba(252, 239, 231, 1), rgba(244, 228, 214, 1) 52%, rgba(235, 217, 199, 1) 100%)",
         "padding_y": 64,
         "layout": "image_right",
