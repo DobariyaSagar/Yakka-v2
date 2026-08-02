@@ -193,7 +193,7 @@
         "padding_y": 64,
         "layout": "image_right",
         "image": "shopify://shop_images/YAKKA_ESSENTIAL_heated_lunchbox_2K_202607130244_1.png",
-        "image_height_auto": true,
+        "image_height_auto": false,
         "eyebrow": "THE TUCKERBOX™",
         "heading": "Say goodbye to cold sandwiches and site microwave queues.",
         "text": "Pack it the night before. Press start an hour out from smoko. Sealed, leak-proof and rugged enough to live in the toolbox — it heats your own food properly, instead of keeping someone else's lukewarm."
