@@ -182,6 +182,20 @@
       "name": "Custom Stats",
       "settings": {}
     },
+    "custom_feature_V4Q6N3": {
+      "type": "custom-feature",
+      "name": "Custom Feature",
+      "settings": {
+        "section_bg": "#F7F4EF",
+        "card_bg": "linear-gradient(150deg, rgba(252, 239, 231, 1), rgba(244, 228, 214, 1) 52%, rgba(235, 217, 199, 1) 100%)",
+        "padding_y": 64,
+        "layout": "image_right",
+        "image": "shopify://shop_images/Heated_lunchbox_on_Toyota_Hilux_202607130243.jpeg_2K_202607241641.jpg",
+        "eyebrow": "THE TUCKERBOX™",
+        "heading": "Say goodbye to cold sandwiches and site microwave queues.",
+        "text": "Pack it the night before. Press start an hour out from smoko. Sealed, leak-proof and rugged enough to live in the toolbox — it heats your own food properly, instead of keeping someone else's lukewarm."
+      }
+    },
     "custom_steps_U6yVDX": {
       "type": "custom-steps",
       "blocks": {
@@ -237,6 +251,7 @@
     "custom_marquee_8RgJEf",
     "featured_collection",
     "custom_stats_fBYfTt",
+    "custom_feature_V4Q6N3",
     "custom_steps_U6yVDX"
   ]
 }
