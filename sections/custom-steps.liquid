@@ -27,6 +27,7 @@
   text-transform: uppercase;
   color: var(--text-2);
   margin-bottom: 12px;
+  text-align:center;
 }
 .custom-steps-{{ section.id }} h2 {
   font-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
@@ -36,6 +37,8 @@
   letter-spacing: -.02em;
   line-height: 1.1;
   margin: 0;
+  margin-bottom: 1.8ch;
+  text-align:center;
 }
 
 .custom-steps-{{ section.id }} .steps {
@@ -102,14 +105,14 @@
 <div class="custom-steps-{{ section.id }}">
   <div class="wrap">
     {% if section.settings.heading != blank or section.settings.subheading != blank %}
-      <div class="header">
+      
         {% if section.settings.subheading != blank %}
           <span class="eyebrow">{{ section.settings.subheading }}</span>
         {% endif %}
         {% if section.settings.heading != blank %}
           <h2>{{ section.settings.heading }}</h2>
         {% endif %}
-      </div>
+      
     {% endif %}
 
     <div class="steps">
