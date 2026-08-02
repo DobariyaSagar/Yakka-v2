@@ -254,6 +254,7 @@
         "buy_buttons_EcQaPM",
         "share_rikpFa"
       ],
+      "disabled": true,
       "name": "t:sections.featured-product.presets.name",
       "settings": {
         "product": "yakka-heating-lunchbox",
