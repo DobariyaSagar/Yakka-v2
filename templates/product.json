@@ -135,20 +135,12 @@
             "title": "Even-heat technology.",
             "text": "No hot centre and burnt edges — just perfectly hot food, every time."
           }
-        },
-        "list_item_tU68tk": {
-          "type": "list_item",
-          "settings": {
-            "title": "Built for big appetites.",
-            "text": "1.5L capacity designed to hold a proper, energy-packed feed."
-          }
         }
       },
       "block_order": [
         "list_item_TnARLq",
         "list_item_CmEmQH",
-        "list_item_4FQfCN",
-        "list_item_tU68tk"
+        "list_item_4FQfCN"
       ],
       "name": "Custom Image with Text",
       "settings": {
@@ -185,20 +177,12 @@
             "title": "Even-heat technology.",
             "text": "No hot centre and burnt edges — just perfectly hot food, every time."
           }
-        },
-        "list_item_9aDTDi": {
-          "type": "list_item",
-          "settings": {
-            "title": "Built for big appetites.",
-            "text": "1.5L capacity designed to hold a proper, energy-packed feed."
-          }
         }
       },
       "block_order": [
         "list_item_4KgBhE",
         "list_item_3QqTDV",
-        "list_item_whPhNM",
-        "list_item_9aDTDi"
+        "list_item_whPhNM"
       ],
       "name": "Custom Image with Text",
       "settings": {
@@ -211,6 +195,84 @@
         "image": "shopify://shop_images/Harmonize_scene_unify_lighting_c__202607200000.jpg",
         "image_height_auto": true
       }
+    },
+    "custom_comparison_kL7cDL": {
+      "type": "custom-comparison",
+      "blocks": {
+        "row_cY4HXL": {
+          "type": "row",
+          "settings": {
+            "label": "Wait time",
+            "col1_val": "None — it's ready",
+            "col2_val": "10-20 min queue",
+            "col3_val": "Drive + queue"
+          }
+        },
+        "row_F9zCaH": {
+          "type": "row",
+          "settings": {
+            "label": "Needs power on site",
+            "col1_val": "[green]No[/green] — fully cordless",
+            "col2_val": "Yes",
+            "col3_val": "—"
+          }
+        },
+        "row_PLTh9V": {
+          "type": "row",
+          "settings": {
+            "label": "Cost per week",
+            "col1_val": "$0 after purchase",
+            "col2_val": "$0",
+            "col3_val": "$85-$150"
+          }
+        },
+        "row_qQqdt7": {
+          "type": "row",
+          "settings": {
+            "label": "Eat your own food",
+            "col1_val": "[green]Yes[/green]",
+            "col2_val": "Yes",
+            "col3_val": "No"
+          }
+        },
+        "row_Vp98P9": {
+          "type": "row",
+          "settings": {
+            "label": "Heats evenly",
+            "col1_val": "[green]Yes[/green]",
+            "col2_val": "Hot edges, cold centre",
+            "col3_val": "—"
+          }
+        },
+        "row_dm9ANL": {
+          "type": "row",
+          "settings": {
+            "label": "Works on a remote site",
+            "col1_val": "[green]Yes[/green]",
+            "col2_val": "No",
+            "col3_val": "No"
+          }
+        }
+      },
+      "block_order": [
+        "row_cY4HXL",
+        "row_F9zCaH",
+        "row_PLTh9V",
+        "row_qQqdt7",
+        "row_Vp98P9",
+        "row_dm9ANL"
+      ],
+      "name": "Custom Comparison Table",
+      "settings": {
+        "bg_color": "#fff",
+        "padding_y": 80,
+        "eyebrow": "THE HONEST COMPARISON",
+        "heading": "Against what you're doing now.",
+        "subheading": "Most tradies are choosing between a queue, a servo, or a cold roll.",
+        "col1_title": "YAKKA ESSENTIAL",
+        "col2_title": "SITE MICROWAVE",
+        "col3_title": "SERVO / TAKEAWAY"
+      }
     }
   },
   "order": [
@@ -218,6 +280,7 @@
     "disclosures",
     "related-products",
     "custom_image_text_y44BfA",
-    "custom_image_text_EjD7TT"
+    "custom_image_text_EjD7TT",
+    "custom_comparison_kL7cDL"
   ]
 }
