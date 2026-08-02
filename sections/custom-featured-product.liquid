@@ -31,16 +31,20 @@
   position: relative;
 }
 .cfp-main-img-wrap {
-  position: relative;
   border-radius: 20px;
   overflow: hidden;
   background: var(--surface);
   aspect-ratio: 1 / 1;
+  display: flex;
 }
-.cfp-main-img-wrap img {
+.cfp-main-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  flex-shrink: 0;
+  display: none;
+}
+.cfp-main-image.active {
   display: block;
 }
 .cfp-badge {
@@ -292,19 +296,22 @@
   .cfp-price {
     font-size: 28px;
   }
-  .cfp-action {
-    flex-direction: column;
-  }
-  .cfp-qty {
-    width: 100%;
-    justify-content: space-between;
-  }
-  .cfp-add {
-    width: 100%;
-  }
   .cfp-thumb {
     width: 80px;
     height: 80px;
+  }
+  .cfp-main-img-wrap {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .cfp-main-img-wrap::-webkit-scrollbar { display: none; }
+  .cfp-main-image {
+    display: block;
+    scroll-snap-align: start;
+  }
+  .cfp-thumbnails {
+    display: none;
   }
 }
 
@@ -329,26 +336,29 @@
       
       <!-- GALLERY -->
       <div class="cfp-gallery">
-        {% if product != blank %}
-          <div class="cfp-main-img-wrap">
-            {% if section.settings.badge_text != blank %}
-              <div class="cfp-badge">{{ section.settings.badge_text }}</div>
-            {% endif %}
-            <img id="cfp-main-img-{{ section.id }}" src="{{ product.featured_image | image_url: width: 1000 }}" alt="{{ product.title | escape }}">
-          </div>
-          {% if product.images.size > 1 %}
-            <div class="cfp-thumbnails">
-              {% for image in product.images %}
-                <div class="cfp-thumb {% if forloop.first %}active{% endif %}" onclick="switchImage_{{ section.id | replace: '-', '_' }}('{{ image | image_url: width: 1000 }}', this)">
-                  <img src="{{ image | image_url: width: 150 }}" alt="{{ image.alt | escape }}">
-                </div>
-              {% endfor %}
+        {% if section.settings.badge_text != blank %}
+          <div class="cfp-badge">{{ section.settings.badge_text }}</div>
+        {% endif %}
+        
+        <div class="cfp-main-img-wrap" id="cfp-slider-{{ section.id }}">
+          {% if product != blank %}
+            {% for image in product.images %}
+              <img class="cfp-main-image {% if forloop.first %}active{% endif %}" src="{{ image | image_url: width: 1000 }}" alt="{{ image.alt | escape }}">
+            {% endfor %}
+          {% else %}
+            <div class="cfp-main-image active">
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
             </div>
           {% endif %}
-        {% else %}
-          <div class="cfp-main-img-wrap">
-            <div class="cfp-badge">SAVE 50% TODAY</div>
-            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+        
+        {% if product != blank and product.images.size > 1 %}
+          <div class="cfp-thumbnails">
+            {% for image in product.images %}
+              <div class="cfp-thumb {% if forloop.first %}active{% endif %}" onclick="switchImage_{{ section.id | replace: '-', '_' }}({{ forloop.index0 }}, this)">
+                <img src="{{ image | image_url: width: 150 }}" alt="{{ image.alt | escape }}">
+              </div>
+            {% endfor %}
           </div>
         {% endif %}
       </div>
@@ -425,19 +435,29 @@
           {% endif %}
         {% endif %}
 
-        {%- form 'product', product, id: 'product-form-installment', class: 'installment caption-large' -%}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id | default: '' }}">
-          <div class="cfp-action">
-            <div class="cfp-qty">
-              <button type="button" onclick="changeQty(-1)">-</button>
-              <input type="text" name="quantity" id="cfp-qty-val" value="1" min="1">
-              <button type="button" onclick="changeQty(1)">+</button>
-            </div>
-            <button type="submit" class="cfp-add">
-              Add to cart — <span id="cfp-btn-price">{{ product.selected_or_first_available_variant.price | default: 13999 | money }}</span>
-            </button>
+        <product-form class="product-form" data-section-id="{{ section.id }}">
+          <div class="product-form__error-message-wrapper" role="alert" hidden>
+            <span class="svg-wrapper">
+              {{- 'icon-error.svg' | inline_asset_content -}}
+            </span>
+            <span class="product-form__error-message"></span>
           </div>
-        {%- endform -%}
+
+          {%- form 'product', product, id: 'product-form-installment', class: 'installment caption-large', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id | default: '' }}">
+            <div class="cfp-action">
+              <div class="cfp-qty">
+                <button type="button" onclick="changeQty(-1)">-</button>
+                <input type="text" name="quantity" id="cfp-qty-val" value="1" min="1">
+                <button type="button" onclick="changeQty(1)">+</button>
+              </div>
+              <button type="submit" name="add" class="cfp-add product-form__submit" {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}>
+                <span>Add to cart — <span id="cfp-btn-price">{{ product.selected_or_first_available_variant.price | default: 13999 | money }}</span></span>
+                {%- render 'loading-spinner' -%}
+              </button>
+            </div>
+          {%- endform -%}
+        </product-form>
 
         {% if section.settings.trust_text != blank %}
           <div class="cfp-trust">
@@ -450,9 +470,14 @@
   </div>
 </div>
 
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
 <script>
-  function switchImage_{{ section.id | replace: '-', '_' }}(url, el) {
-    document.getElementById('cfp-main-img-{{ section.id }}').src = url;
+  function switchImage_{{ section.id | replace: '-', '_' }}(index, el) {
+    let images = document.querySelectorAll('#cfp-slider-{{ section.id }} .cfp-main-image');
+    images.forEach(img => img.classList.remove('active'));
+    if(images[index]) images[index].classList.add('active');
+
     if(el) {
       let thumbs = el.parentElement.querySelectorAll('.cfp-thumb');
       thumbs.forEach(t => t.classList.remove('active'));
@@ -519,7 +544,20 @@
       }
 
       if (matchedVariant.featured_image) {
-        switchImage_{{ section.id | replace: '-', '_' }}(matchedVariant.featured_image.src, null);
+        let urlToFind = matchedVariant.featured_image.src.split('?')[0].split('.jpg')[0].split('.png')[0];
+        let images = document.querySelectorAll('#cfp-slider-{{ section.id }} .cfp-main-image');
+        let matchedIndex = 0;
+        images.forEach((img, idx) => {
+          if(img.src.includes(urlToFind)) matchedIndex = idx;
+        });
+        
+        switchImage_{{ section.id | replace: '-', '_' }}(matchedIndex, null);
+        
+        let slider = document.getElementById('cfp-slider-{{ section.id }}');
+        if(window.innerWidth <= 990 && slider) {
+          let slideWidth = slider.clientWidth;
+          slider.scrollTo({ left: slideWidth * matchedIndex, behavior: 'smooth' });
+        }
       }
     }
   }

@@ -3617,3 +3617,37 @@ details-disclosure>details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+/* CUSTOM CART BUTTONS AND QTY */
+#CartDrawer-Checkout, #checkout, .cart__checkout-button {
+  background-color: #E8500F !important;
+  color: #FFFFFF !important;
+  border-radius: 6px !important;
+  border: none !important;
+  font-weight: 600 !important;
+  box-shadow: none !important;
+}
+#CartDrawer-Checkout:hover, #checkout:hover, .cart__checkout-button:hover {
+  background-color: #D1450C !important;
+  box-shadow: none !important;
+}
+
+/* Qty Selector */
+.cart-drawer .quantity, .cart-items .quantity, .cart-item .quantity {
+  border: 1px solid #E3DDD4 !important;
+  border-radius: 6px !important;
+  background: #FFFFFF !important;
+  min-height: 48px !important;
+  height: 48px !important;
+}
+.cart-drawer .quantity::after, .cart-items .quantity::after, .cart-drawer .quantity::before, .cart-items .quantity::before {
+  display: none !important;
+}
+.cart-drawer .quantity__input, .cart-items .quantity__input, .cart-item .quantity__input {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #1A1815 !important;
+}
+.cart-drawer .quantity__button, .cart-items .quantity__button, .cart-item .quantity__button {
+  color: #6B6660 !important;
+}
