@@ -105,6 +105,11 @@
     font-size: 36px;
   }
 }
+@media (max-width: 768px) {
+  .custom-image-text-{{ section.id }} {
+    padding: {{ section.settings.padding_y_mobile }}px 0;
+  }
+}
 @media (max-width: 600px) {
   .custom-image-text-{{ section.id }} h2 {
     font-size: 32px;
@@ -174,6 +179,16 @@
       "unit": "px",
       "label": "Vertical Padding",
       "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_y_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Vertical Padding",
+      "default": 40
     },
     {
       "type": "select",
