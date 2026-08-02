@@ -1,0 +1,202 @@
+<style>
+.custom-feature-{{ section.id }} {
+  --text: #1A1815;
+  --text-2: #6B6660;
+  --text-3: #4A4640;
+  --max: 1180px;
+  font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+  -webkit-font-smoothing: antialiased;
+  padding: {{ section.settings.padding_y }}px 0;
+  background: {{ section.settings.section_bg }};
+}
+.custom-feature-{{ section.id }} * { box-sizing: border-box; margin: 0; padding: 0; }
+.custom-feature-{{ section.id }} .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+.custom-feature-{{ section.id }} .card {
+  background: {{ section.settings.card_bg }};
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 52px;
+  padding: 76px 64px;
+}
+
+/* Reverse layout */
+.custom-feature-{{ section.id }} .card.reverse .image-col {
+  order: -1;
+}
+
+.custom-feature-{{ section.id }} .text-col {
+  padding-right: 20px;
+}
+.custom-feature-{{ section.id }} .card.reverse .text-col {
+  padding-right: 0;
+  padding-left: 20px;
+}
+
+.custom-feature-{{ section.id }} .eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  display: block;
+  margin-bottom: 16px;
+}
+.custom-feature-{{ section.id }} h2 {
+  font-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+  font-weight: 400;
+  font-size: 44px;
+  color: var(--text);
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.custom-feature-{{ section.id }} p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-3);
+  margin: 0;
+}
+
+.custom-feature-{{ section.id }} .image-col img {
+  width: 100%;
+  aspect-ratio: 4 / 3.2;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+  box-shadow: 0 40px 70px -40px rgba(60,35,15,.6);
+}
+
+@media (max-width: 900px) {
+  .custom-feature-{{ section.id }} .card {
+    grid-template-columns: 1fr;
+    padding: 48px 32px;
+    gap: 40px;
+  }
+  .custom-feature-{{ section.id }} .card .image-col {
+    order: -1; /* Always show image first on mobile */
+  }
+  .custom-feature-{{ section.id }} .text-col,
+  .custom-feature-{{ section.id }} .card.reverse .text-col {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .custom-feature-{{ section.id }} h2 {
+    font-size: 36px;
+  }
+}
+@media (max-width: 600px) {
+  .custom-feature-{{ section.id }} .card {
+    padding: 32px 24px;
+  }
+  .custom-feature-{{ section.id }} h2 {
+    font-size: 32px;
+  }
+}
+</style>
+
+<div class="custom-feature-{{ section.id }}">
+  <div class="wrap">
+    <div class="card {% if section.settings.layout == 'image_left' %}reverse{% endif %}">
+      
+      <div class="text-col">
+        {% if section.settings.eyebrow != blank %}
+          <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2>{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <div class="text-content">
+            <p>{{ section.settings.text }}</p>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="image-col">
+        {% if section.settings.image != blank %}
+          <img src="{{ section.settings.image | image_url: width: 1000 }}" alt="{{ section.settings.image.alt | escape }}" loading="lazy" width="{{ section.settings.image.width }}" height="{{ section.settings.image.height }}">
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Feature",
+  "settings": [
+    {
+      "type": "color_background",
+      "id": "section_bg",
+      "label": "Section Background",
+      "default": "#F7F4EF"
+    },
+    {
+      "type": "color_background",
+      "id": "card_bg",
+      "label": "Card Background",
+      "default": "linear-gradient(150deg, #FCEFE7 0%, #F4E4D6 52%, #EBD9C7 100%)"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Vertical Padding",
+      "default": 64
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Desktop Layout",
+      "options": [
+        {
+          "value": "image_right",
+          "label": "Image on right"
+        },
+        {
+          "value": "image_left",
+          "label": "Image on left"
+        }
+      ],
+      "default": "image_right"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "THE TUCKERBOX™"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Say goodbye to cold sandwiches and site microwave queues."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Pack it the night before. Press start an hour out from smoko. Sealed, leak-proof and rugged enough to live in the toolbox — it heats your own food properly, instead of keeping someone else's lukewarm."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Feature"
+    }
+  ]
+}
+{% endschema %}
