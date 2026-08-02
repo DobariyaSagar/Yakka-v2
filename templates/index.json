@@ -489,7 +489,7 @@
       ],
       "name": "Custom What You Get",
       "settings": {
-        "bg_color": "#FFF",
+        "bg_color": "#F7F4EF",
         "padding_y": 80,
         "eyebrow": "WHAT YOU GET",
         "heading": "Everything in the box."
