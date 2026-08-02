@@ -57,6 +57,7 @@
 
 .custom-footer-{{ section.id }} .sub {
   display: flex;
+  flex-direction: column;
   gap: 10px;
   margin-top: 16px;
 }
@@ -66,7 +67,7 @@
   background: transparent;
   border: 1px solid #3A342B;
   border-radius: 5px;
-  padding: 0 14px;
+  padding: 15px 14px;
   color: var(--text);
   font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
   font-size: 14px;

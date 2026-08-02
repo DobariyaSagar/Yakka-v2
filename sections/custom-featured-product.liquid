@@ -233,7 +233,7 @@
   width: 24px;
 }
 .cfp-qty input {
-  width: 32px;
+  width: 60px;
   text-align: center;
   border: none;
   background: none;
@@ -281,7 +281,7 @@
   height: 14px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 990px) {
   .cfp-grid {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -305,6 +305,18 @@
   .cfp-thumb {
     width: 80px;
     height: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-featured-product-{{ section.id }} {
+    padding: calc({{ section.settings.padding_y }}px * 0.7) 0;
+  }
+  .cfp-title {
+    font-size: 28px;
+  }
+  .cfp-price {
+    font-size: 24px;
   }
 }
 </style>
@@ -386,7 +398,7 @@
               <div class="cfp-opt-name">{{ option.name }}</div>
               <div class="cfp-opt-list">
                 {% for value in option.values %}
-                  <div class="cfp-opt-btn {% if option.selected_value == value %}active{% endif %}" onclick="selectVariant_{{ section.id | replace: '-', '_' }}(this, '{{ option.name }}', '{{ value | escape }}')">
+                  <div class="cfp-opt-btn {% if option.selected_value == value %}active{% endif %}" data-value="{{ value | escape }}" onclick="selectVariant_{{ section.id | replace: '-', '_' }}(this)">
                     {% if option.name == 'Color' or option.name == 'Colour' or option.name == 'COLOUR' %}
                       {% assign color_down = value | downcase %}
                       <span class="dot" style="background-color: {{ color_down | replace: ' ', '' }};"></span>
@@ -397,6 +409,9 @@
               </div>
             {% endfor %}
           </div>
+          <script type="application/json" id="cfp-variants-json-{{ section.id }}">
+            {{ product.variants | json }}
+          </script>
         {% else %}
           <!-- Dummy variants for preview if no product -->
           {% if product == blank %}
@@ -415,7 +430,7 @@
           <div class="cfp-action">
             <div class="cfp-qty">
               <button type="button" onclick="changeQty(-1)">-</button>
-              <input type="number" name="quantity" id="cfp-qty-val" value="1" min="1">
+              <input type="text" name="quantity" id="cfp-qty-val" value="1" min="1">
               <button type="button" onclick="changeQty(1)">+</button>
             </div>
             <button type="submit" class="cfp-add">
@@ -438,15 +453,75 @@
 <script>
   function switchImage_{{ section.id | replace: '-', '_' }}(url, el) {
     document.getElementById('cfp-main-img-{{ section.id }}').src = url;
-    let thumbs = el.parentElement.querySelectorAll('.cfp-thumb');
-    thumbs.forEach(t => t.classList.remove('active'));
-    el.classList.add('active');
+    if(el) {
+      let thumbs = el.parentElement.querySelectorAll('.cfp-thumb');
+      thumbs.forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+    }
   }
 
   function changeQty(diff) {
     let input = document.getElementById('cfp-qty-val');
     let val = parseInt(input.value) + diff;
     if(val >= 1) input.value = val;
+  }
+
+  function selectVariant_{{ section.id | replace: '-', '_' }}(btn) {
+    let list = btn.closest('.cfp-opt-list');
+    list.querySelectorAll('.cfp-opt-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    let section = btn.closest('.custom-featured-product-{{ section.id }}');
+    let optLists = section.querySelectorAll('.cfp-opt-list');
+    let selectedOptions = Array.from(optLists).map(l => {
+      let activeBtn = l.querySelector('.cfp-opt-btn.active');
+      return activeBtn ? activeBtn.getAttribute('data-value') : null;
+    });
+
+    let variantsJson = document.getElementById('cfp-variants-json-{{ section.id }}');
+    if (!variantsJson) return;
+    let variants = JSON.parse(variantsJson.innerHTML);
+    
+    let matchedVariant = variants.find(v => {
+      return v.options.every((opt, i) => opt === selectedOptions[i]);
+    });
+
+    if (matchedVariant) {
+      let idInput = section.querySelector('input[name="id"]');
+      if (idInput) idInput.value = matchedVariant.id;
+
+      window.history.replaceState({ }, '', '?variant=' + matchedVariant.id);
+
+      let formatMoney = (cents) => {
+        let dollars = (cents / 100).toFixed(2);
+        let shopifyFormat = window.Shopify && Shopify.currency && Shopify.currency.active ? Shopify.currency.active : '$';
+        if (shopifyFormat === 'USD' || shopifyFormat === 'AUD' || shopifyFormat === '$') return '$' + dollars;
+        return '$' + dollars; // Default fallback
+      };
+      
+      let priceEl = section.querySelector('#cfp-price-{{ section.id }}');
+      let btnPriceEl = section.querySelector('#cfp-btn-price');
+      if (priceEl) priceEl.innerText = formatMoney(matchedVariant.price);
+      if (btnPriceEl) btnPriceEl.innerText = formatMoney(matchedVariant.price);
+
+      let compareEl = section.querySelector('#cfp-compare-{{ section.id }}');
+      let saveEl = section.querySelector('#cfp-save-{{ section.id }}');
+      if (matchedVariant.compare_at_price > matchedVariant.price) {
+        if (compareEl) compareEl.innerText = formatMoney(matchedVariant.compare_at_price);
+        if (saveEl) {
+          let save = matchedVariant.compare_at_price - matchedVariant.price;
+          saveEl.innerText = 'SAVE ' + formatMoney(save).replace('.00', '');
+          saveEl.style.display = 'inline-block';
+        }
+      } else {
+        if (compareEl) compareEl.innerText = '';
+        if (saveEl) saveEl.style.display = 'none';
+      }
+
+      if (matchedVariant.featured_image) {
+        switchImage_{{ section.id | replace: '-', '_' }}(matchedVariant.featured_image.src, null);
+      }
+    }
   }
 </script>
 
