@@ -307,6 +307,18 @@
     height: 80px;
   }
 }
+
+@media (max-width: 768px) {
+  .custom-featured-product-{{ section.id }} {
+    padding: calc({{ section.settings.padding_y }}px * 0.7) 0;
+  }
+  .cfp-title {
+    font-size: 28px;
+  }
+  .cfp-price {
+    font-size: 24px;
+  }
+}
 </style>
 
 {% assign product = section.settings.product %}
