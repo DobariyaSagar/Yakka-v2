@@ -428,6 +428,81 @@
         "subheading": "Got questions?",
         "heading": "Everything you need to know."
       }
+    },
+    "custom_contact_4CieLg": {
+      "type": "custom-contact",
+      "name": "Custom Contact",
+      "settings": {
+        "bg_color": "#F7F4EF",
+        "padding_y": 80,
+        "eyebrow": "GET IN TOUCH",
+        "heading": "Questions before you buy?",
+        "text": "Our Australian team answers within 24 hours, Monday to Friday, 9:00am - 5:00pm AEST."
+      }
+    },
+    "custom_featured_product_TAfJYr": {
+      "type": "custom-featured-product",
+      "blocks": {
+        "spec_CchbYz": {
+          "type": "spec",
+          "settings": {
+            "label": "Power",
+            "value": "100% cordless — USB-C rechargeable"
+          }
+        },
+        "spec_t43NbP": {
+          "type": "spec",
+          "settings": {
+            "label": "Heat time",
+            "value": "Steaming in ~45 min"
+          }
+        },
+        "spec_hGrLcA": {
+          "type": "spec",
+          "settings": {
+            "label": "Battery",
+            "value": "2-3 full heat cycles per charge"
+          }
+        },
+        "spec_WWKkna": {
+          "type": "spec",
+          "settings": {
+            "label": "Capacity",
+            "value": "1.5L stainless — a full tradie's feed"
+          }
+        },
+        "spec_Vh9NEi": {
+          "type": "spec",
+          "settings": {
+            "label": "Build",
+            "value": "Leak-proof, impact-rated shell"
+          }
+        },
+        "spec_zfHRG4": {
+          "type": "spec",
+          "settings": {
+            "label": "Included",
+            "value": "Free insulated carry bag"
+          }
+        }
+      },
+      "block_order": [
+        "spec_CchbYz",
+        "spec_t43NbP",
+        "spec_hGrLcA",
+        "spec_WWKkna",
+        "spec_Vh9NEi",
+        "spec_zfHRG4"
+      ],
+      "name": "Custom Featured Product",
+      "settings": {
+        "product": "yakka-heating-lunchbox",
+        "padding_y": 64,
+        "badge_text": "",
+        "eyebrow": "SELF-HEATING LUNCHBOX",
+        "installments": "or 4 interest-free payments of $35.00",
+        "trust_text": "<p>✓ In stock, ships today ✓ Free express shipping ✓ 60-day money back</p>"
+      }
     }
   },
   "order": [
@@ -440,6 +515,8 @@
     "featured_product_fa4cx7",
     "custom_steps_U6yVDX",
     "custom_image_text_BnmyBr",
-    "custom_faq_tkHGWT"
+    "custom_faq_tkHGWT",
+    "custom_contact_4CieLg",
+    "custom_featured_product_TAfJYr"
   ]
 }
