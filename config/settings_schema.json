@@ -235,6 +235,12 @@
     "name": "t:settings_schema.buttons.name",
     "settings": [
       {
+        "type": "checkbox",
+        "id": "enable_button_hover_animation",
+        "label": "Enable button hover animation",
+        "default": true
+      },
+      {
         "type": "header",
         "content": "t:settings_schema.global.settings.header__border.content"
       },
