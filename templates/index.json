@@ -246,6 +246,66 @@
         "subheading": "How it works",
         "heading": "4 simple steps to a hot meal."
       }
+    },
+    "custom_faq_tkHGWT": {
+      "type": "custom-faq",
+      "blocks": {
+        "faq_item_74Eybf": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How does a cordless heated lunchbox work?",
+            "answer": "A built-in rechargeable battery warms your food gently and evenly. Press start, or set the timer and let it come up to temperature while you work."
+          }
+        },
+        "faq_item_K7xxCX": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does the battery last?",
+            "answer": "Two to three full heating cycles per charge — comfortably a full workday, and most blokes get two or three days out of one charge."
+          }
+        },
+        "faq_item_GqWr3Y": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do I need power on site?",
+            "answer": "No. That's the whole point. Charge it at home overnight and it runs entirely off its own battery all day."
+          }
+        },
+        "faq_item_rAYW7a": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Will it leak in my toolbox?",
+            "answer": "The stainless inner seals shut and the outer shell is impact-rated. It's built to be thrown in the tray, not carried carefully."
+          }
+        },
+        "faq_item_cgbJTF": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is it easy to clean?",
+            "answer": "The stainless container lifts out and goes straight in the dishwasher. Wipe the outer shell down and you're done."
+          }
+        },
+        "faq_item_3pWfNw": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What if I don't like it?",
+            "answer": "Sixty days, full refund, and you keep the unit — you don't pay return freight."
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_74Eybf",
+        "faq_item_K7xxCX",
+        "faq_item_GqWr3Y",
+        "faq_item_rAYW7a",
+        "faq_item_cgbJTF",
+        "faq_item_3pWfNw"
+      ],
+      "name": "Custom FAQ",
+      "settings": {
+        "subheading": "Got questions?",
+        "heading": "Everything you need to know."
+      }
     }
   },
   "order": [
@@ -255,6 +315,7 @@
     "featured_collection",
     "custom_stats_fBYfTt",
     "custom_feature_V4Q6N3",
-    "custom_steps_U6yVDX"
+    "custom_steps_U6yVDX",
+    "custom_faq_tkHGWT"
   ]
 }
