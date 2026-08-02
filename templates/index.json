@@ -643,6 +643,19 @@
         "col2_title": "SITE MICROWAVE",
         "col3_title": "SERVO / TAKEAWAY"
       }
+    },
+    "custom_cta_qbMw4U": {
+      "type": "custom-cta",
+      "name": "Custom CTA Banner",
+      "settings": {
+        "bg_color": "linear-gradient(90deg, rgba(230, 84, 22, 1), rgba(255, 130, 67, 1) 100%)",
+        "padding_y": 80,
+        "heading": "Stop paying $30 a day for a cold compromise.",
+        "subheading": "One purchase, and every lunch for the next decade is a hot one.",
+        "btn_text": "Shop the Lunchbox — $139.99",
+        "btn_link": "shopify://products/yakka-heating-lunchbox",
+        "footer_text": "In stock — Free express shipping AU & NZ — 60-day money back"
+      }
     }
   },
   "order": [
@@ -659,6 +672,7 @@
     "custom_image_text_BnmyBr",
     "custom_faq_tkHGWT",
     "custom_contact_4CieLg",
-    "custom_comparison_LpBzTH"
+    "custom_comparison_LpBzTH",
+    "custom_cta_qbMw4U"
   ]
 }
