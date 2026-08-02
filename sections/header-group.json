@@ -17,7 +17,7 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Welcome to our store",
+            "text": "<p>Welcome to our store</p>",
             "link": ""
           }
         }
@@ -35,50 +35,6 @@
         "enable_country_selector": false,
         "enable_language_selector": false
       }
-    },
-    "custom_marquee_bQgpdL": {
-      "type": "custom-marquee",
-      "blocks": {
-        "text_EK3zjh": {
-          "type": "text",
-          "settings": {
-            "text": "Completely cordless"
-          }
-        },
-        "text_6zBGgg": {
-          "type": "text",
-          "settings": {
-            "text": "Rugged, leak-proof shell"
-          }
-        },
-        "text_DjkCdR": {
-          "type": "text",
-          "settings": {
-            "text": "Free insulated carry bag"
-          }
-        },
-        "text_XRV69y": {
-          "type": "text",
-          "settings": {
-            "text": "Stainless inner, dishwasher safe"
-          }
-        },
-        "text_b3dWaz": {
-          "type": "text",
-          "settings": {
-            "text": "Australian owned & supported"
-          }
-        }
-      },
-      "block_order": [
-        "text_EK3zjh",
-        "text_6zBGgg",
-        "text_DjkCdR",
-        "text_XRV69y",
-        "text_b3dWaz"
-      ],
-      "name": "Custom Marquee",
-      "settings": {}
     },
     "header": {
       "type": "header",
@@ -135,7 +91,6 @@
   },
   "order": [
     "announcement-bar",
-    "custom_marquee_bQgpdL",
     "header",
     "homepage_hero_VMP67T"
   ]
