@@ -3648,4 +3648,23 @@ details-disclosure>details {
 }
 .cart-drawer .quantity__button, .cart-items .quantity__button, .cart-item .quantity__button {
   color: #6B6660 !important;
-}
+}
+
+/* GLOBAL BUTTON HOVER ANIMATION */
+.button-hover-animate .button,
+.button-hover-animate .cfp-add,
+.button-hover-animate .shopify-challenge__button,
+.button-hover-animate .customer button,
+.button-hover-animate .shopify-payment-button__button--unbranded {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.2s ease !important;
+}
+
+.button-hover-animate .button:hover:not([disabled]),
+.button-hover-animate .cfp-add:hover:not([disabled]),
+.button-hover-animate .shopify-challenge__button:hover:not([disabled]),
+.button-hover-animate .customer button:hover:not([disabled]),
+.button-hover-animate .shopify-payment-button__button--unbranded:hover:not([disabled]) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
