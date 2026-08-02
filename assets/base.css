@@ -3667,4 +3667,42 @@ details-disclosure>details {
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
 }
+
+/* PRODUCT PAGE STYLES */
+.product-form__submit {
+  background-color: #E8500F !important;
+  color: #FFFFFF !important;
+  border-radius: 6px !important;
+  border: none !important;
+  font-weight: 600 !important;
+  font-family: var(--font-body-family) !important;
+  letter-spacing: normal !important;
+  box-shadow: none !important;
+}
+.product-form__submit::after {
+  display: none !important;
+}
+.product-form__submit:hover:not([disabled]) {
+  background-color: #D1450C !important;
+}
+
+.product-form__quantity .quantity {
+  border: 1px solid #E3DDD4 !important;
+  border-radius: 6px !important;
+  background: #FFFFFF !important;
+  min-height: 48px !important;
+  height: 48px !important;
+}
+.product-form__quantity .quantity::after, 
+.product-form__quantity .quantity::before {
+  display: none !important;
+}
+.product-form__quantity .quantity__input {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #1A1815 !important;
+}
+.product-form__quantity .quantity__button {
+  color: #6B6660 !important;
+}
 
