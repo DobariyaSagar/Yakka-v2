@@ -16,21 +16,17 @@
 .custom-steps-{{ section.id }} .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 
 .custom-steps-{{ section.id }} .header {
-  position: relative;
   text-align: center;
   margin-bottom: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .custom-steps-{{ section.id }} .eyebrow {
-  position: absolute;
-  left: 0;
+  display: block;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: .16em;
   text-transform: uppercase;
   color: var(--text-2);
+  margin-bottom: 12px;
 }
 .custom-steps-{{ section.id }} h2 {
   font-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
@@ -92,19 +88,6 @@
 }
 
 @media (max-width: 900px) {
-  .custom-steps-{{ section.id }} .header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    margin-bottom: 36px;
-  }
-  .custom-steps-{{ section.id }} .eyebrow {
-    position: static;
-  }
-  .custom-steps-{{ section.id }} h2 {
-    font-size: 36px;
-    text-align: left;
-  }
   .custom-steps-{{ section.id }} .steps {
     grid-template-columns: repeat(2, 1fr);
   }
