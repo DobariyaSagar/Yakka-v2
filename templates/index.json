@@ -632,6 +632,7 @@
         "row_Gb3Q3m",
         "row_mRNdAE"
       ],
+      "disabled": true,
       "name": "Custom Comparison Table",
       "settings": {
         "bg_color": "#F7F4EF",
