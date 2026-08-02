@@ -14,6 +14,14 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
+        "announcement_4NKBeQ": {
+          "type": "announcement",
+          "settings": {
+            "text": "<p>60-day money back</p>",
+            "is_live": false,
+            "link": ""
+          }
+        },
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
@@ -21,10 +29,20 @@
             "is_live": true,
             "link": ""
           }
+        },
+        "announcement_HpRBAL": {
+          "type": "announcement",
+          "settings": {
+            "text": "<p>Free express shipping AU & NZ</p>",
+            "is_live": false,
+            "link": ""
+          }
         }
       },
       "block_order": [
-        "announcement-bar-0"
+        "announcement_4NKBeQ",
+        "announcement-bar-0",
+        "announcement_HpRBAL"
       ],
       "settings": {
         "auto_rotate": false,
