@@ -17,7 +17,8 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "<p> Free express shipping AU & NZ </p>",
+            "text": "<p>Free express shipping AU & NZ<br/></p>",
+            "is_live": true,
             "link": ""
           }
         }
