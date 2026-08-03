@@ -8,6 +8,8 @@
   --surface: #FFFFFF;
   --canvas: #F7F4EF;
   --max: 1180px;
+  --thumb-desktop: {{ section.settings.thumbs_desktop | default: 6 }};
+  --thumb-mobile: {{ section.settings.thumbs_mobile | default: 4 }};
   font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
   -webkit-font-smoothing: antialiased;
   padding: {{ section.settings.padding_y }}px 0;
@@ -61,21 +63,71 @@
   border-radius: 4px;
   z-index: 2;
 }
+
+/* THUMBNAILS SLIDER */
+.cfp-thumb-slider-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cfp-thumb-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: all .2s ease;
+  flex-shrink: 0;
+  z-index: 2;
+}
+.cfp-thumb-arrow:hover {
+  background: var(--text);
+  color: #fff;
+  border-color: var(--text);
+}
+.cfp-thumb-arrow:disabled {
+  opacity: .3;
+  cursor: default;
+  pointer-events: none;
+}
+.cfp-thumb-arrow svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 .cfp-thumbnails {
   display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scrollbar-width: none;
+  gap: 12px;
+  overflow: hidden;
+  flex: 1;
 }
-.cfp-thumbnails::-webkit-scrollbar { display: none; }
+.cfp-thumbnails.slider-mode {
+  scroll-behavior: smooth;
+}
 .cfp-thumb {
-  width: 90px;
-  height: 90px;
+  width: calc((100% - 12px * (var(--thumb-desktop) - 1)) / var(--thumb-desktop));
+  min-width: calc((100% - 12px * (var(--thumb-desktop) - 1)) / var(--thumb-desktop));
+  aspect-ratio: 1 / 1;
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
   border: 2px solid transparent;
   flex-shrink: 0;
+  transition: border-color .2s ease, transform .15s ease;
+}
+.cfp-thumb:hover {
+  transform: scale(1.04);
 }
 .cfp-thumb.active {
   border-color: var(--accent);
@@ -297,8 +349,8 @@
     font-size: 28px;
   }
   .cfp-thumb {
-    width: 80px;
-    height: 80px;
+    width: calc((100% - 12px * (var(--thumb-mobile) - 1)) / var(--thumb-mobile));
+    min-width: calc((100% - 12px * (var(--thumb-mobile) - 1)) / var(--thumb-mobile));
   }
   .cfp-main-img-wrap {
     overflow-x: auto;
@@ -310,8 +362,14 @@
     display: block;
     scroll-snap-align: start;
   }
-  .cfp-thumbnails {
-    display: none;
+  .cfp-thumb-arrow {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+  }
+  .cfp-thumb-arrow svg {
+    width: 12px;
+    height: 12px;
   }
 }
 
@@ -339,6 +397,9 @@
 </style>
 
 {% assign product = section.settings.product %}
+{% assign thumbs_desktop = section.settings.thumbs_desktop | default: 6 %}
+{% assign thumbs_mobile = section.settings.thumbs_mobile | default: 4 %}
+{% assign enable_slider = section.settings.enable_thumb_slider %}
 
 <div class="custom-featured-product-{{ section.id }}">
   <div class="wrap">
@@ -363,12 +424,26 @@
         </div>
         
         {% if product != blank and product.images.size > 1 %}
-          <div class="cfp-thumbnails">
-            {% for image in product.images %}
-              <div class="cfp-thumb {% if forloop.first %}active{% endif %}" onclick="switchImage_{{ section.id | replace: '-', '_' }}({{ forloop.index0 }}, this)">
-                <img src="{{ image | image_url: width: 150 }}" alt="{{ image.alt | escape }}">
-              </div>
-            {% endfor %}
+          <div class="cfp-thumb-slider-wrap" id="cfp-thumb-wrap-{{ section.id }}">
+            {% if enable_slider %}
+              <button type="button" class="cfp-thumb-arrow cfp-thumb-prev" id="cfp-prev-{{ section.id }}" aria-label="Previous thumbnails" disabled>
+                <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+            {% endif %}
+
+            <div class="cfp-thumbnails {% if enable_slider %}slider-mode{% endif %}" id="cfp-thumbs-{{ section.id }}">
+              {% for image in product.images %}
+                <div class="cfp-thumb {% if forloop.first %}active{% endif %}" onclick="switchImage_{{ section.id | replace: '-', '_' }}({{ forloop.index0 }}, this)">
+                  <img src="{{ image | image_url: width: 150 }}" alt="{{ image.alt | escape }}">
+                </div>
+              {% endfor %}
+            </div>
+
+            {% if enable_slider %}
+              <button type="button" class="cfp-thumb-arrow cfp-thumb-next" id="cfp-next-{{ section.id }}" aria-label="Next thumbnails">
+                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+            {% endif %}
           </div>
         {% endif %}
       </div>
@@ -493,6 +568,27 @@
       thumbs.forEach(t => t.classList.remove('active'));
       el.classList.add('active');
     }
+
+    /* auto-scroll slider to keep active thumb visible */
+    let thumbSlider = document.getElementById('cfp-thumbs-{{ section.id }}');
+    if (thumbSlider) {
+      let allThumbs = thumbSlider.querySelectorAll('.cfp-thumb');
+      if (allThumbs[index]) {
+        let activeThumb = allThumbs[index];
+        allThumbs.forEach(t => t.classList.remove('active'));
+        activeThumb.classList.add('active');
+
+        /* Scroll into view if needed */
+        let sliderRect = thumbSlider.getBoundingClientRect();
+        let thumbRect = activeThumb.getBoundingClientRect();
+        if (thumbRect.left < sliderRect.left || thumbRect.right > sliderRect.right) {
+          thumbSlider.scrollTo({
+            left: activeThumb.offsetLeft - thumbSlider.offsetLeft,
+            behavior: 'smooth'
+          });
+        }
+      }
+    }
   }
 
   function changeQty(diff) {
@@ -571,6 +667,79 @@
       }
     }
   }
+
+  /* ── Thumbnail Slider Logic ── */
+  (function() {
+    const sectionId = '{{ section.id }}';
+    const enableSlider = {{ enable_slider | json }};
+    const thumbsDesktop = {{ thumbs_desktop }};
+    const thumbsMobile = {{ thumbs_mobile }};
+
+    if (!enableSlider) return;
+
+    const thumbContainer = document.getElementById('cfp-thumbs-' + sectionId);
+    const prevBtn = document.getElementById('cfp-prev-' + sectionId);
+    const nextBtn = document.getElementById('cfp-next-' + sectionId);
+
+    if (!thumbContainer || !prevBtn || !nextBtn) return;
+
+    const allThumbs = thumbContainer.querySelectorAll('.cfp-thumb');
+    const totalThumbs = allThumbs.length;
+    let currentPage = 0;
+
+    function getVisibleCount() {
+      return window.innerWidth <= 990 ? thumbsMobile : thumbsDesktop;
+    }
+
+    function getTotalPages() {
+      let visible = getVisibleCount();
+      if (totalThumbs <= visible) return 1;
+      return Math.ceil(totalThumbs / visible);
+    }
+
+    function getScrollAmount() {
+      if (allThumbs.length === 0) return 0;
+      let thumbWidth = allThumbs[0].offsetWidth;
+      let gap = 12;
+      let visible = getVisibleCount();
+      return (thumbWidth + gap) * visible;
+    }
+
+    function updateArrows() {
+      let maxScroll = thumbContainer.scrollWidth - thumbContainer.clientWidth;
+      prevBtn.disabled = thumbContainer.scrollLeft <= 2;
+      nextBtn.disabled = thumbContainer.scrollLeft >= maxScroll - 2;
+    }
+
+    function slideNext() {
+      let amount = getScrollAmount();
+      thumbContainer.scrollBy({ left: amount, behavior: 'smooth' });
+    }
+
+    function slidePrev() {
+      let amount = getScrollAmount();
+      thumbContainer.scrollBy({ left: -amount, behavior: 'smooth' });
+    }
+
+    /* Enable overflow-x scroll for slider mode */
+    thumbContainer.style.overflowX = 'auto';
+    thumbContainer.style.scrollBehavior = 'smooth';
+    thumbContainer.style.scrollbarWidth = 'none';
+
+    prevBtn.addEventListener('click', slidePrev);
+    nextBtn.addEventListener('click', slideNext);
+    thumbContainer.addEventListener('scroll', updateArrows);
+
+    /* Update on resize */
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(updateArrows, 150);
+    });
+
+    /* Initial state */
+    setTimeout(updateArrows, 100);
+  })();
 </script>
 
 {% schema %}
@@ -615,6 +784,34 @@
       "id": "trust_text",
       "label": "Trust Badges HTML/Text",
       "default": "<p><span>✓ In stock, ships today</span> <span>✓ Free express shipping</span> <span>✓ 60-day money back</span></p>"
+    },
+    {
+      "type": "header",
+      "content": "Thumbnail Settings"
+    },
+    {
+      "type": "range",
+      "id": "thumbs_desktop",
+      "min": 3,
+      "max": 8,
+      "step": 1,
+      "label": "Thumbnails per row (Desktop)",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "thumbs_mobile",
+      "min": 3,
+      "max": 6,
+      "step": 1,
+      "label": "Thumbnails per row (Mobile)",
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_thumb_slider",
+      "label": "Enable thumbnail slider with arrows",
+      "default": true
     }
   ],
   "blocks": [
