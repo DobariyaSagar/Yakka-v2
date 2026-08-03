@@ -1,0 +1,922 @@
+<style>
+.custom-video-reels-{{ section.id }} {
+  --text: #1A1815;
+  --text-2: #6B6660;
+  --accent: #E8500F;
+  --surface: #FFFFFF;
+  --border: #E3DDD4;
+  --canvas: {{ section.settings.bg_color }};
+  --max: 1180px;
+  --cols: {{ section.settings.columns_desktop | default: 3 }};
+  font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+  -webkit-font-smoothing: antialiased;
+  padding: {{ section.settings.padding_y }}px 0;
+  background: var(--canvas);
+}
+.custom-video-reels-{{ section.id }} * { box-sizing: border-box; margin: 0; padding: 0; }
+.custom-video-reels-{{ section.id }} .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+/* ── HEADER ── */
+.cvr-header-{{ section.id }} {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.cvr-eyebrow-{{ section.id }} {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-bottom: 12px;
+}
+.cvr-heading-{{ section.id }} {
+  font-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+  font-weight: 400;
+  font-size: 44px;
+  color: var(--text);
+  letter-spacing: -.02em;
+  line-height: 1.1;
+}
+
+/* ── SLIDER WRAPPER ── */
+.cvr-slider-wrap-{{ section.id }} {
+  position: relative;
+}
+
+/* ── GRID / SLIDER ── */
+.cvr-grid-{{ section.id }} {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  gap: 24px;
+}
+.cvr-grid-{{ section.id }}.slider-active {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.cvr-grid-{{ section.id }}.slider-active::-webkit-scrollbar { display: none; }
+
+/* ── REEL CARD ── */
+.cvr-reel-{{ section.id }} {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 9 / 16;
+  cursor: pointer;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+.cvr-grid-{{ section.id }}.slider-active .cvr-reel-{{ section.id }} {
+  width: calc((100% - 24px * (var(--cols) - 1)) / var(--cols));
+  min-width: calc((100% - 24px * (var(--cols) - 1)) / var(--cols));
+}
+
+.cvr-reel-{{ section.id }} video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* iframe embed (YouTube / Vimeo) */
+.cvr-reel-{{ section.id }} .cvr-iframe-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.cvr-reel-{{ section.id }} .cvr-iframe-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* poster overlay */
+.cvr-poster-{{ section.id }} {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity .3s ease;
+}
+.cvr-poster-{{ section.id }}.hidden { opacity: 0; pointer-events: none; }
+.cvr-poster-{{ section.id }} img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+/* play button */
+.cvr-play-btn-{{ section.id }} {
+  position: relative;
+  z-index: 3;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .25s ease, background .25s ease;
+  cursor: pointer;
+}
+.cvr-play-btn-{{ section.id }}:hover {
+  transform: scale(1.1);
+  background: rgba(255,255,255,.35);
+}
+.cvr-play-btn-{{ section.id }} svg {
+  width: 22px;
+  height: 22px;
+  fill: #fff;
+  margin-left: 3px;
+}
+
+/* pause icon overlay (on playing video) */
+.cvr-pause-overlay-{{ section.id }} {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .2s ease;
+  pointer-events: none;
+}
+.cvr-reel-{{ section.id }}:hover .cvr-pause-overlay-{{ section.id }}.show-on-hover {
+  opacity: 1;
+}
+.cvr-pause-icon-{{ section.id }} {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cvr-pause-icon-{{ section.id }} svg {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+}
+
+/* progress bar */
+.cvr-progress-{{ section.id }} {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255,255,255,.2);
+  z-index: 4;
+}
+.cvr-progress-bar-{{ section.id }} {
+  height: 100%;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s linear;
+}
+
+/* caption overlay */
+.cvr-caption-{{ section.id }} {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  padding: 48px 20px 20px;
+  background: linear-gradient(transparent, rgba(0,0,0,.65));
+  color: #fff;
+  pointer-events: none;
+}
+.cvr-caption-title-{{ section.id }} {
+  font-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+.cvr-caption-sub-{{ section.id }} {
+  font-size: 12px;
+  opacity: .8;
+}
+
+/* sound toggle */
+.cvr-sound-btn-{{ section.id }} {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 6;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+.cvr-reel-{{ section.id }}:hover .cvr-sound-btn-{{ section.id }},
+.cvr-reel-{{ section.id }}.playing .cvr-sound-btn-{{ section.id }} {
+  opacity: 1;
+}
+.cvr-sound-btn-{{ section.id }} svg {
+  width: 16px;
+  height: 16px;
+  fill: #fff;
+}
+
+/* ── ARROWS ── */
+.cvr-arrow-{{ section.id }} {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+.cvr-arrow-{{ section.id }}:hover {
+  background: var(--text);
+  color: #fff;
+  border-color: var(--text);
+}
+.cvr-arrow-{{ section.id }}:disabled {
+  opacity: .3;
+  cursor: default;
+  pointer-events: none;
+}
+.cvr-arrow-{{ section.id }} svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.cvr-prev-{{ section.id }} { left: -22px; }
+.cvr-next-{{ section.id }} { right: -22px; }
+
+/* ── DOTS ── */
+.cvr-dots-{{ section.id }} {
+  display: none;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+.cvr-dots-{{ section.id }}.active {
+  display: flex;
+}
+.cvr-dot-{{ section.id }} {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  cursor: pointer;
+  transition: all .2s ease;
+  padding: 0;
+}
+.cvr-dot-{{ section.id }}.active {
+  background: var(--accent);
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 990px) {
+  .cvr-heading-{{ section.id }} { font-size: 36px; }
+  .cvr-header-{{ section.id }} { margin-bottom: 32px; }
+  .cvr-grid-{{ section.id }} {
+    grid-template-columns: 1fr 1fr;
+  }
+  .cvr-grid-{{ section.id }}.slider-active .cvr-reel-{{ section.id }} {
+    --cols: 2;
+    width: calc((100% - 24px) / 2);
+    min-width: calc((100% - 24px) / 2);
+  }
+  .cvr-arrow-{{ section.id }} {
+    width: 36px;
+    height: 36px;
+  }
+  .cvr-arrow-{{ section.id }} svg { width: 14px; height: 14px; }
+  .cvr-prev-{{ section.id }} { left: -6px; }
+  .cvr-next-{{ section.id }} { right: -6px; }
+}
+
+@media (max-width: 600px) {
+  .custom-video-reels-{{ section.id }} {
+    padding: calc({{ section.settings.padding_y }}px * 0.7) 0;
+  }
+  .cvr-heading-{{ section.id }} { font-size: 28px; }
+  .cvr-grid-{{ section.id }} {
+    grid-template-columns: 1fr;
+  }
+  .cvr-grid-{{ section.id }}.slider-active .cvr-reel-{{ section.id }} {
+    --cols: 1;
+    width: 100%;
+    min-width: 100%;
+  }
+  .cvr-play-btn-{{ section.id }} {
+    width: 52px;
+    height: 52px;
+  }
+  .cvr-play-btn-{{ section.id }} svg {
+    width: 18px;
+    height: 18px;
+  }
+  .cvr-arrow-{{ section.id }} {
+    width: 32px;
+    height: 32px;
+  }
+  .cvr-prev-{{ section.id }} { left: 8px; }
+  .cvr-next-{{ section.id }} { right: 8px; }
+  .cvr-caption-title-{{ section.id }} { font-size: 15px; }
+}
+</style>
+
+<div class="custom-video-reels-{{ section.id }}">
+  <div class="wrap">
+
+    {% if section.settings.eyebrow != blank or section.settings.heading != blank %}
+      <div class="cvr-header-{{ section.id }}">
+        {% if section.settings.eyebrow != blank %}
+          <span class="cvr-eyebrow-{{ section.id }}">{{ section.settings.eyebrow }}</span>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 class="cvr-heading-{{ section.id }}">{{ section.settings.heading }}</h2>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="cvr-slider-wrap-{{ section.id }}">
+
+        {% if section.settings.enable_slider %}
+          <button type="button" class="cvr-arrow-{{ section.id }} cvr-prev-{{ section.id }}" id="cvr-prev-{{ section.id }}" aria-label="Previous" disabled>
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+        {% endif %}
+
+        <div class="cvr-grid-{{ section.id }} {% if section.settings.enable_slider %}slider-active{% endif %}" id="cvr-grid-{{ section.id }}">
+          {% for block in section.blocks %}
+            {%- liquid
+              assign video_source = block.settings.video_source
+              assign external_url = block.settings.video_url
+              assign shopify_video = block.settings.shopify_video
+
+              assign yt_id = ''
+              assign vimeo_id = ''
+
+              if video_source == 'youtube' and external_url != blank
+                if external_url contains 'youtu.be/'
+                  assign yt_id = external_url | split: 'youtu.be/' | last | split: '?' | first
+                elsif external_url contains 'youtube.com/shorts/'
+                  assign yt_id = external_url | split: 'shorts/' | last | split: '?' | first
+                elsif external_url contains 'v='
+                  assign yt_id = external_url | split: 'v=' | last | split: '&' | first
+                endif
+              endif
+
+              if video_source == 'vimeo' and external_url != blank
+                assign vimeo_parts = external_url | split: 'vimeo.com/'
+                if vimeo_parts.size > 1
+                  assign vimeo_id = vimeo_parts | last | split: '?' | first | split: '/' | first
+                endif
+              endif
+            -%}
+
+            <div class="cvr-reel-{{ section.id }}" 
+                 id="cvr-reel-{{ section.id }}-{{ forloop.index0 }}" 
+                 data-index="{{ forloop.index0 }}"
+                 data-source="{{ video_source }}"
+                 {% if video_source == 'youtube' and yt_id != '' %}data-yt-id="{{ yt_id }}"{% endif %}
+                 {% if video_source == 'vimeo' and vimeo_id != '' %}data-vimeo-id="{{ vimeo_id }}"{% endif %}
+                 {{ block.shopify_attributes }}>
+
+              {%- comment -%} ── SHOPIFY HOSTED VIDEO ── {%- endcomment -%}
+              {% if video_source == 'shopify' and shopify_video != blank %}
+                <video 
+                  id="cvr-video-{{ section.id }}-{{ forloop.index0 }}"
+                  playsinline
+                  muted
+                  loop
+                  preload="metadata"
+                  {% if block.settings.poster != blank %}
+                    poster="{{ block.settings.poster | image_url: width: 600 }}"
+                  {% endif %}
+                >
+                  {% for source in shopify_video.sources %}
+                    <source src="{{ source.url }}" type="{{ source.mime_type }}">
+                  {% endfor %}
+                </video>
+
+              {%- comment -%} ── EXTERNAL MP4 URL ── {%- endcomment -%}
+              {% elsif video_source == 'mp4' and external_url != blank %}
+                <video 
+                  id="cvr-video-{{ section.id }}-{{ forloop.index0 }}"
+                  src="{{ external_url }}"
+                  playsinline
+                  muted
+                  loop
+                  preload="metadata"
+                  {% if block.settings.poster != blank %}
+                    poster="{{ block.settings.poster | image_url: width: 600 }}"
+                  {% endif %}
+                ></video>
+
+              {%- comment -%} ── YOUTUBE EMBED ── {%- endcomment -%}
+              {% elsif video_source == 'youtube' and yt_id != '' %}
+                <div class="cvr-iframe-wrap" id="cvr-yt-wrap-{{ section.id }}-{{ forloop.index0 }}">
+                  {%- comment -%} iframe will be injected on play click for performance {%- endcomment -%}
+                </div>
+
+              {%- comment -%} ── VIMEO EMBED ── {%- endcomment -%}
+              {% elsif video_source == 'vimeo' and vimeo_id != '' %}
+                <div class="cvr-iframe-wrap" id="cvr-vimeo-wrap-{{ section.id }}-{{ forloop.index0 }}">
+                  {%- comment -%} iframe will be injected on play click for performance {%- endcomment -%}
+                </div>
+              {% endif %}
+
+              <!-- Poster / Play overlay -->
+              <div class="cvr-poster-{{ section.id }}" id="cvr-poster-{{ section.id }}-{{ forloop.index0 }}">
+                {% if block.settings.poster != blank %}
+                  <img src="{{ block.settings.poster | image_url: width: 600 }}" alt="{{ block.settings.caption | escape }}" loading="lazy">
+                {% elsif video_source == 'youtube' and yt_id != '' %}
+                  <img src="https://img.youtube.com/vi/{{ yt_id }}/maxresdefault.jpg" alt="{{ block.settings.caption | escape }}" loading="lazy">
+                {% endif %}
+                <div class="cvr-play-btn-{{ section.id }}">
+                  <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </div>
+              </div>
+
+              <!-- Pause overlay (on hover while playing) -->
+              <div class="cvr-pause-overlay-{{ section.id }}" id="cvr-pause-ov-{{ section.id }}-{{ forloop.index0 }}">
+                <div class="cvr-pause-icon-{{ section.id }}">
+                  <svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                </div>
+              </div>
+
+              <!-- Sound toggle (only for native video) -->
+              {% if video_source == 'shopify' or video_source == 'mp4' %}
+                <button type="button" class="cvr-sound-btn-{{ section.id }}" id="cvr-sound-{{ section.id }}-{{ forloop.index0 }}" aria-label="Toggle sound">
+                  <svg viewBox="0 0 24 24" class="cvr-muted-icon"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                  <svg viewBox="0 0 24 24" class="cvr-unmuted-icon" style="display:none"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                </button>
+              {% endif %}
+
+              <!-- Progress bar -->
+              <div class="cvr-progress-{{ section.id }}">
+                <div class="cvr-progress-bar-{{ section.id }}" id="cvr-prog-{{ section.id }}-{{ forloop.index0 }}"></div>
+              </div>
+
+              <!-- Caption -->
+              {% if block.settings.caption != blank or block.settings.subcaption != blank %}
+                <div class="cvr-caption-{{ section.id }}">
+                  {% if block.settings.caption != blank %}
+                    <div class="cvr-caption-title-{{ section.id }}">{{ block.settings.caption }}</div>
+                  {% endif %}
+                  {% if block.settings.subcaption != blank %}
+                    <div class="cvr-caption-sub-{{ section.id }}">{{ block.settings.subcaption }}</div>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+
+        {% if section.settings.enable_slider %}
+          <button type="button" class="cvr-arrow-{{ section.id }} cvr-next-{{ section.id }}" id="cvr-next-{{ section.id }}" aria-label="Next">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        {% endif %}
+
+        <!-- Dots -->
+        <div class="cvr-dots-{{ section.id }} {% if section.settings.enable_slider %}active{% endif %}" id="cvr-dots-{{ section.id }}">
+          {% for block in section.blocks %}
+            <button type="button" class="cvr-dot-{{ section.id }} {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></button>
+          {% endfor %}
+        </div>
+
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+<script>
+(function() {
+  const SID = '{{ section.id }}';
+  const sliderEnabled = {{ section.settings.enable_slider | json }};
+  const totalBlocks = {{ section.blocks.size }};
+
+  /* ── Track player state per reel ── */
+  const players = {}; /* index -> { type, element, playing } */
+
+  for (let i = 0; i < totalBlocks; i++) {
+    const reel = document.getElementById('cvr-reel-' + SID + '-' + i);
+    if (!reel) continue;
+
+    const source = reel.getAttribute('data-source');
+    const poster = document.getElementById('cvr-poster-' + SID + '-' + i);
+    const pauseOv = document.getElementById('cvr-pause-ov-' + SID + '-' + i);
+    const progBar = document.getElementById('cvr-prog-' + SID + '-' + i);
+    const soundBtn = document.getElementById('cvr-sound-' + SID + '-' + i);
+
+    players[i] = { type: source, playing: false, initialized: false };
+
+    /* ── NATIVE VIDEO (shopify / mp4) ── */
+    if (source === 'shopify' || source === 'mp4') {
+      const video = document.getElementById('cvr-video-' + SID + '-' + i);
+      if (!video) continue;
+      players[i].element = video;
+
+      reel.addEventListener('click', function(e) {
+        if (e.target.closest('.cvr-sound-btn-' + SID)) return;
+        if (video.paused) {
+          pauseAllExcept(i);
+          video.play().then(() => {
+            if (poster) poster.classList.add('hidden');
+            if (pauseOv) pauseOv.classList.add('show-on-hover');
+            reel.classList.add('playing');
+            players[i].playing = true;
+          }).catch(() => {});
+        } else {
+          video.pause();
+          if (pauseOv) pauseOv.classList.remove('show-on-hover');
+          reel.classList.remove('playing');
+          players[i].playing = false;
+        }
+      });
+
+      video.addEventListener('timeupdate', function() {
+        if (video.duration && progBar) {
+          progBar.style.width = (video.currentTime / video.duration * 100) + '%';
+        }
+      });
+
+      if (soundBtn) {
+        soundBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          video.muted = !video.muted;
+          let mutedIcon = soundBtn.querySelector('.cvr-muted-icon');
+          let unmutedIcon = soundBtn.querySelector('.cvr-unmuted-icon');
+          if (video.muted) {
+            if (mutedIcon) mutedIcon.style.display = 'block';
+            if (unmutedIcon) unmutedIcon.style.display = 'none';
+          } else {
+            if (mutedIcon) mutedIcon.style.display = 'none';
+            if (unmutedIcon) unmutedIcon.style.display = 'block';
+          }
+        });
+      }
+    }
+
+    /* ── YOUTUBE ── */
+    else if (source === 'youtube') {
+      const ytId = reel.getAttribute('data-yt-id');
+      if (!ytId) continue;
+
+      reel.addEventListener('click', function(e) {
+        if (players[i].playing) {
+          /* Pause: destroy iframe */
+          let wrap = document.getElementById('cvr-yt-wrap-' + SID + '-' + i);
+          if (wrap) wrap.innerHTML = '';
+          if (poster) poster.classList.remove('hidden');
+          if (pauseOv) pauseOv.classList.remove('show-on-hover');
+          reel.classList.remove('playing');
+          players[i].playing = false;
+          if (progBar) progBar.style.width = '0%';
+        } else {
+          /* Play */
+          pauseAllExcept(i);
+          let wrap = document.getElementById('cvr-yt-wrap-' + SID + '-' + i);
+          if (wrap) {
+            wrap.innerHTML = '<iframe src="https://www.youtube.com/embed/' + ytId + '?autoplay=1&mute=1&loop=1&playlist=' + ytId + '&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+          }
+          if (poster) poster.classList.add('hidden');
+          if (pauseOv) pauseOv.classList.add('show-on-hover');
+          reel.classList.add('playing');
+          players[i].playing = true;
+          if (progBar) progBar.style.width = '100%';
+        }
+      });
+    }
+
+    /* ── VIMEO ── */
+    else if (source === 'vimeo') {
+      const vimeoId = reel.getAttribute('data-vimeo-id');
+      if (!vimeoId) continue;
+
+      reel.addEventListener('click', function(e) {
+        if (players[i].playing) {
+          /* Pause: destroy iframe */
+          let wrap = document.getElementById('cvr-vimeo-wrap-' + SID + '-' + i);
+          if (wrap) wrap.innerHTML = '';
+          if (poster) poster.classList.remove('hidden');
+          if (pauseOv) pauseOv.classList.remove('show-on-hover');
+          reel.classList.remove('playing');
+          players[i].playing = false;
+          if (progBar) progBar.style.width = '0%';
+        } else {
+          /* Play */
+          pauseAllExcept(i);
+          let wrap = document.getElementById('cvr-vimeo-wrap-' + SID + '-' + i);
+          if (wrap) {
+            wrap.innerHTML = '<iframe src="https://player.vimeo.com/video/' + vimeoId + '?autoplay=1&muted=1&loop=1&background=1&controls=0&playsinline=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+          }
+          if (poster) poster.classList.add('hidden');
+          if (pauseOv) pauseOv.classList.add('show-on-hover');
+          reel.classList.add('playing');
+          players[i].playing = true;
+          if (progBar) progBar.style.width = '100%';
+        }
+      });
+    }
+  }
+
+  /* ── Pause all videos/embeds except given index ── */
+  function pauseAllExcept(exceptIndex) {
+    for (let j = 0; j < totalBlocks; j++) {
+      if (j === exceptIndex) continue;
+      if (!players[j] || !players[j].playing) continue;
+
+      const reel = document.getElementById('cvr-reel-' + SID + '-' + j);
+      const poster = document.getElementById('cvr-poster-' + SID + '-' + j);
+      const pauseOv = document.getElementById('cvr-pause-ov-' + SID + '-' + j);
+      const progBar = document.getElementById('cvr-prog-' + SID + '-' + j);
+
+      if (players[j].type === 'shopify' || players[j].type === 'mp4') {
+        if (players[j].element && !players[j].element.paused) {
+          players[j].element.pause();
+        }
+      } else if (players[j].type === 'youtube') {
+        let wrap = document.getElementById('cvr-yt-wrap-' + SID + '-' + j);
+        if (wrap) wrap.innerHTML = '';
+      } else if (players[j].type === 'vimeo') {
+        let wrap = document.getElementById('cvr-vimeo-wrap-' + SID + '-' + j);
+        if (wrap) wrap.innerHTML = '';
+      }
+
+      if (poster) poster.classList.remove('hidden');
+      if (reel) reel.classList.remove('playing');
+      if (pauseOv) pauseOv.classList.remove('show-on-hover');
+      if (progBar) progBar.style.width = '0%';
+      players[j].playing = false;
+    }
+  }
+
+  /* ── Slider Logic ── */
+  if (!sliderEnabled) return;
+
+  const grid = document.getElementById('cvr-grid-' + SID);
+  const prevBtn = document.getElementById('cvr-prev-' + SID);
+  const nextBtn = document.getElementById('cvr-next-' + SID);
+  const dotsWrap = document.getElementById('cvr-dots-' + SID);
+
+  if (!grid) return;
+
+  function getVisibleCols() {
+    let w = window.innerWidth;
+    if (w <= 600) return 1;
+    if (w <= 990) return 2;
+    return {{ section.settings.columns_desktop | default: 3 }};
+  }
+
+  function getScrollUnit() {
+    let reels = grid.querySelectorAll('.cvr-reel-' + SID);
+    if (reels.length === 0) return 0;
+    return reels[0].offsetWidth + 24;
+  }
+
+  function updateArrows() {
+    if (!prevBtn || !nextBtn) return;
+    let maxScroll = grid.scrollWidth - grid.clientWidth;
+    prevBtn.disabled = grid.scrollLeft <= 2;
+    nextBtn.disabled = grid.scrollLeft >= maxScroll - 2;
+  }
+
+  function updateDots() {
+    if (!dotsWrap) return;
+    let dots = dotsWrap.querySelectorAll('.cvr-dot-' + SID);
+    let scrollUnit = getScrollUnit();
+    if (scrollUnit === 0) return;
+    let currentIndex = Math.round(grid.scrollLeft / scrollUnit);
+    dots.forEach((d, idx) => {
+      d.classList.toggle('active', idx === currentIndex);
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function() {
+      let cols = getVisibleCols();
+      grid.scrollBy({ left: -(getScrollUnit() * cols), behavior: 'smooth' });
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function() {
+      let cols = getVisibleCols();
+      grid.scrollBy({ left: getScrollUnit() * cols, behavior: 'smooth' });
+    });
+  }
+
+  if (dotsWrap) {
+    dotsWrap.querySelectorAll('.cvr-dot-' + SID).forEach(dot => {
+      dot.addEventListener('click', function() {
+        let idx = parseInt(this.getAttribute('data-index'));
+        grid.scrollTo({ left: getScrollUnit() * idx, behavior: 'smooth' });
+      });
+    });
+  }
+
+  grid.addEventListener('scroll', function() {
+    updateArrows();
+    updateDots();
+  });
+
+  let resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      updateArrows();
+      updateDots();
+    }, 150);
+  });
+
+  setTimeout(() => {
+    updateArrows();
+    updateDots();
+  }, 100);
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Custom Video Reels",
+  "settings": [
+    {
+      "type": "color_background",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F7F4EF"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Vertical Padding",
+      "default": 80
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "SEE IT IN ACTION"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Real tradies. Real feeds."
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "label": "Columns (Desktop)",
+      "default": 3
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_slider",
+      "label": "Enable slider with arrows",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "reel",
+      "name": "Video Reel",
+      "settings": [
+        {
+          "type": "select",
+          "id": "video_source",
+          "label": "Video Source",
+          "options": [
+            { "value": "shopify", "label": "Shopify Hosted Video" },
+            { "value": "youtube", "label": "YouTube" },
+            { "value": "vimeo", "label": "Vimeo" },
+            { "value": "mp4", "label": "External MP4 URL" }
+          ],
+          "default": "shopify"
+        },
+        {
+          "type": "video",
+          "id": "shopify_video",
+          "label": "Shopify Video",
+          "info": "Upload a video in Settings > Files, then select it here. Used when source is 'Shopify Hosted Video'."
+        },
+        {
+          "type": "text",
+          "id": "video_url",
+          "label": "Video URL",
+          "info": "Paste YouTube, Vimeo, or direct MP4 URL here. Used when source is YouTube, Vimeo, or External MP4."
+        },
+        {
+          "type": "image_picker",
+          "id": "poster",
+          "label": "Poster / Thumbnail Image",
+          "info": "Optional. For YouTube, auto-fetches thumbnail if left empty."
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption Title",
+          "default": "Lunch on the job"
+        },
+        {
+          "type": "text",
+          "id": "subcaption",
+          "label": "Sub-caption",
+          "default": "@yakka.au"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Video Reels",
+      "blocks": [
+        {
+          "type": "reel",
+          "settings": {
+            "video_source": "shopify",
+            "caption": "Lunch on the job",
+            "subcaption": "@yakka.au"
+          }
+        },
+        {
+          "type": "reel",
+          "settings": {
+            "video_source": "shopify",
+            "caption": "Smoko sorted",
+            "subcaption": "@yakka.au"
+          }
+        },
+        {
+          "type": "reel",
+          "settings": {
+            "video_source": "shopify",
+            "caption": "Hot feed, cold day",
+            "subcaption": "@yakka.au"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
