@@ -328,6 +328,55 @@
         "subheading": "Got questions?",
         "heading": "Everything you need to know."
       }
+    },
+    "custom_video_reels_nzPKn8": {
+      "type": "custom-video-reels",
+      "blocks": {
+        "reel_LjrH6a": {
+          "type": "reel",
+          "settings": {
+            "video_source": "shopify",
+            "shopify_video": "shopify://files/videos/009.mp4",
+            "video_url": "",
+            "caption": "Lunch on the job",
+            "subcaption": "@yakka.au"
+          }
+        },
+        "reel_xVzgzK": {
+          "type": "reel",
+          "settings": {
+            "video_source": "shopify",
+            "shopify_video": "shopify://files/videos/008.mp4",
+            "video_url": "",
+            "caption": "Smoko sorted",
+            "subcaption": "@yakka.au"
+          }
+        },
+        "reel_qMbE9p": {
+          "type": "reel",
+          "settings": {
+            "video_source": "shopify",
+            "shopify_video": "shopify://files/videos/Heated_lunchbox_on_construction_1080p_202607192320.mp4",
+            "video_url": "",
+            "caption": "Hot feed, cold day",
+            "subcaption": "@yakka.au"
+          }
+        }
+      },
+      "block_order": [
+        "reel_LjrH6a",
+        "reel_xVzgzK",
+        "reel_qMbE9p"
+      ],
+      "name": "Custom Video Reels",
+      "settings": {
+        "bg_color": "#F7F4EF",
+        "padding_y": 80,
+        "eyebrow": "SEE IT IN ACTION",
+        "heading": "Real tradies. Real feeds.",
+        "columns_desktop": 3,
+        "enable_slider": true
+      }
     }
   },
   "order": [
@@ -337,6 +386,7 @@
     "related-products",
     "custom_image_text_y44BfA",
     "custom_image_text_EjD7TT",
-    "custom_faq_3UtaTi"
+    "custom_faq_3UtaTi",
+    "custom_video_reels_nzPKn8"
   ]
 }
