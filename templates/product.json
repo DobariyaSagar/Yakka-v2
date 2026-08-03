@@ -101,7 +101,7 @@
           "type": "reel",
           "settings": {
             "video_source": "shopify",
-            "shopify_video": "shopify://files/videos/009.mp4",
+            "shopify_video": "shopify://files/videos/11(1).mp4",
             "video_url": "",
             "caption": "Lunch on the job",
             "subcaption": "@yakkaessential.com"
@@ -111,7 +111,7 @@
           "type": "reel",
           "settings": {
             "video_source": "shopify",
-            "shopify_video": "shopify://files/videos/008.mp4",
+            "shopify_video": "shopify://files/videos/11(2).mp4",
             "video_url": "",
             "caption": "Smoko sorted",
             "subcaption": "@yakkaessential.com"
@@ -121,7 +121,7 @@
           "type": "reel",
           "settings": {
             "video_source": "shopify",
-            "shopify_video": "shopify://files/videos/Heated_lunchbox_on_construction_1080p_202607192320.mp4",
+            "shopify_video": "shopify://files/videos/008-1.mp4",
             "video_url": "",
             "caption": "Hot feed, cold day",
             "subcaption": "@yakkaessential.com"
