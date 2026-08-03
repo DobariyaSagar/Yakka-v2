@@ -332,7 +332,10 @@
         "badge_text": "",
         "eyebrow": "SELF-HEATING LUNCHBOX",
         "installments": "or 4 interest-free payments of $35.00",
-        "trust_text": "<p>✓ In stock, ships today ✓ Free express shipping ✓ 60-day money back</p>"
+        "trust_text": "<p>✓ In stock, ships today ✓ Free express shipping ✓ 60-day money back</p>",
+        "thumbs_desktop": 5,
+        "thumbs_mobile": 4,
+        "enable_thumb_slider": true
       }
     },
     "custom_reviews_pJ9wtz": {
@@ -537,6 +540,7 @@
       "settings": {
         "bg_color": "#F7F4EF",
         "padding_y": 64,
+        "padding_y_mobile": 40,
         "layout": "image_right",
         "eyebrow": "FROM THE SHED TO THE SITE",
         "heading": "Keep every meal hot.",
