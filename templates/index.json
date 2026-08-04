@@ -164,7 +164,7 @@
           "type": "stat",
           "settings": {
             "stat_value": "60 days",
-            "stat_label": "Money back, keep the unit"
+            "stat_label": "Money back or keep the unit"
           }
         },
         "stat_tQLii4": {
