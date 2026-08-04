@@ -33,7 +33,7 @@
         "announcement_HpRBAL": {
           "type": "announcement",
           "settings": {
-            "text": "<p>Free express shipping AU & NZ</p>",
+            "text": "<p>50% Off Sale Is Live Now</p>",
             "is_live": false,
             "link": ""
           }
