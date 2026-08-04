@@ -355,13 +355,6 @@
             "question": "Is it easy to clean?",
             "answer": "The stainless container lifts out and goes straight in the dishwasher. Wipe the outer shell down and you're done."
           }
-        },
-        "faq_item_xNKqw8": {
-          "type": "faq_item",
-          "settings": {
-            "question": "What if I don't like it?",
-            "answer": "Sixty days, full refund, and you keep the unit — you don't pay return freight."
-          }
         }
       },
       "block_order": [
@@ -369,8 +362,7 @@
         "faq_item_fAmTdW",
         "faq_item_afe8Ep",
         "faq_item_t6xcXK",
-        "faq_item_fHjQre",
-        "faq_item_xNKqw8"
+        "faq_item_fHjQre"
       ],
       "name": "Custom FAQ",
       "settings": {
