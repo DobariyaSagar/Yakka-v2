@@ -40,6 +40,8 @@
   elsif section.settings.media_size == 'small'
     assign media_width = 0.45
   endif
+
+  assign thumbnails_per_row = section.settings.thumbnails_per_row | default: 5
 -%}
 
 <media-gallery
@@ -183,11 +185,12 @@
   -%}
     <slider-component
       id="GalleryThumbnails-{{ section.id }}"
-      class="thumbnail-slider slider-mobile-gutter quick-add-hidden{% unless section.settings.gallery_layout contains 'thumbnail' %} medium-hide large-up-hide{% endunless %}{% if section.settings.mobile_thumbnails != 'show' %} small-hide{% endif %}{% if media_count <= 3 %} thumbnail-slider--no-slide{% endif %}"
+      class="thumbnail-slider slider-mobile-gutter quick-add-hidden{% unless section.settings.gallery_layout contains 'thumbnail' %} medium-hide large-up-hide{% endunless %}{% if section.settings.mobile_thumbnails != 'show' %} small-hide{% endif %}{% if media_count <= thumbnails_per_row %} thumbnail-slider--no-slide{% endif %}"
+      style="--thumbnails-per-row: {{ thumbnails_per_row }};"
     >
       <button
         type="button"
-        class="slider-button slider-button--prev{% if media_count <= 3 %} small-hide{% endif %}{% if media_count <= 4 %} medium-hide large-up-hide{% endif %}"
+        class="slider-button slider-button--prev{% if media_count <= 3 %} small-hide{% endif %}{% if media_count <= thumbnails_per_row %} medium-hide large-up-hide{% endif %}"
         name="previous"
         aria-label="{{ 'general.slider.previous_slide' | t }}"
         aria-controls="GalleryThumbnails-{{ section.id }}"
@@ -202,9 +205,9 @@
         class="thumbnail-list list-unstyled slider slider--mobile{% if section.settings.gallery_layout == 'thumbnail_slider' %} slider--tablet-up{% endif %}"
       >
         {%- capture sizes -%}
-          (min-width: {{ settings.page_width }}px) calc(({{ settings.page_width | minus: 100 | times: media_width | round }} - 4rem) / 4),
-          (min-width: 990px) calc(({{ media_width | times: 100 }}vw - 4rem) / 4),
-          (min-width: 750px) calc((100vw - 15rem) / 8),
+          (min-width: {{ settings.page_width }}px) calc(({{ settings.page_width | minus: 100 | times: media_width | round }} - 4rem) / {{ thumbnails_per_row }}),
+          (min-width: 990px) calc(({{ media_width | times: 100 }}vw - 4rem) / {{ thumbnails_per_row }}),
+          (min-width: 750px) calc((100vw - 15rem) / {{ thumbnails_per_row | plus: 1 }}),
           calc((100vw - 8rem) / 3)
         {%- endcapture -%}
 
@@ -317,7 +320,7 @@
       </ul>
       <button
         type="button"
-        class="slider-button slider-button--next{% if media_count <= 3 %} small-hide{% endif %}{% if media_count <= 4 %} medium-hide large-up-hide{% endif %}"
+        class="slider-button slider-button--next{% if media_count <= 3 %} small-hide{% endif %}{% if media_count <= thumbnails_per_row %} medium-hide large-up-hide{% endif %}"
         name="next"
         aria-label="{{ 'general.slider.next_slide' | t }}"
         aria-controls="GalleryThumbnails-{{ section.id }}"

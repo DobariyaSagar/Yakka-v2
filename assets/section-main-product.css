@@ -925,7 +925,7 @@ a.product__text {
 
   .thumbnail-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(var(--thumbnails-per-row, 5), 1fr);
   }
 }
 
@@ -935,15 +935,7 @@ a.product__text {
 
 @media screen and (min-width: 990px) {
   .thumbnail-list {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .product--medium .thumbnail-list {
-    grid-template-columns: repeat(5, 1fr);
-  }
-
-  .product--large .thumbnail-list {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(var(--thumbnails-per-row, 5), 1fr);
   }
 }
 
@@ -992,7 +984,7 @@ a.product__text {
   }
 
   .thumbnail-list.slider--tablet-up .thumbnail-list__item.slider__slide {
-    width: calc(25% - 0.8rem);
+    width: calc(100% / var(--thumbnails-per-row, 5) - 0.8rem);
   }
 
   .product--thumbnail_slider .slider-mobile-gutter .slider-button {
@@ -1001,12 +993,8 @@ a.product__text {
 }
 
 @media screen and (min-width: 900px) {
-  .product--small .thumbnail-list.slider--tablet-up .thumbnail-list__item.slider__slide {
-    width: calc(25% - 0.8rem);
-  }
-
   .thumbnail-list.slider--tablet-up .thumbnail-list__item.slider__slide {
-    width: calc(20% - 0.8rem);
+    width: calc(100% / var(--thumbnails-per-row, 5) - 0.8rem);
   }
 }
 

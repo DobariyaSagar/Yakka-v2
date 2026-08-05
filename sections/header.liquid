@@ -98,6 +98,122 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  /* ── Custom Menu Styling ── */
+  {% if section.settings.menu_text_color != blank and section.settings.menu_text_color != 'rgba(0,0,0,0)' %}
+    .header__menu-item {
+      color: {{ section.settings.menu_text_color }};
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+  {% endif %}
+
+  {% if section.settings.menu_hover_color != blank and section.settings.menu_hover_color != 'rgba(0,0,0,0)' %}
+    .header__menu-item:hover,
+    .header__menu-item:focus {
+      color: {{ section.settings.menu_hover_color }};
+    }
+  {% endif %}
+
+  {% if section.settings.menu_active_color != blank and section.settings.menu_active_color != 'rgba(0,0,0,0)' %}
+    .header__active-menu-item {
+      color: {{ section.settings.menu_active_color }};
+    }
+  {% endif %}
+
+  /* Hover effect: color change (remove underline) */
+  {% if section.settings.menu_hover_style == 'color' %}
+    .header__menu-item:hover span,
+    .header__menu-item:focus span {
+      text-decoration: none !important;
+    }
+    details[open] > .header__menu-item {
+      text-decoration: none;
+    }
+    details[open]:hover > .header__menu-item {
+      text-decoration: none;
+    }
+    .header__active-menu-item {
+      text-decoration: none;
+    }
+    .header__menu-item:hover .header__active-menu-item {
+      text-decoration: none;
+    }
+    .header__submenu .header__menu-item:hover {
+      text-decoration-line: none;
+    }
+  {% elsif section.settings.menu_hover_style == 'background' %}
+    .header__menu-item:hover span,
+    .header__menu-item:focus span {
+      text-decoration: none !important;
+    }
+    .header__menu-item:hover,
+    .header__menu-item:focus {
+      background-color: {{ section.settings.menu_hover_bg | default: '#f5f5f5' }};
+      border-radius: {{ section.settings.menu_item_radius | default: 6 }}px;
+    }
+    details[open] > .header__menu-item {
+      text-decoration: none;
+      background-color: {{ section.settings.menu_hover_bg | default: '#f5f5f5' }};
+      border-radius: {{ section.settings.menu_item_radius | default: 6 }}px;
+    }
+    details[open]:hover > .header__menu-item {
+      text-decoration: none;
+    }
+    .header__active-menu-item {
+      text-decoration: none;
+    }
+    .header__menu-item:hover .header__active-menu-item {
+      text-decoration: none;
+    }
+    .header__submenu .header__menu-item:hover {
+      text-decoration-line: none;
+    }
+  {% endif %}
+
+  /* Menu font settings */
+  {% if section.settings.menu_font_size > 0 %}
+    .header__menu-item {
+      font-size: {{ section.settings.menu_font_size }}px;
+    }
+  {% endif %}
+
+  {% if section.settings.menu_font_weight != 'normal' %}
+    .header__menu-item {
+      font-weight: {{ section.settings.menu_font_weight }};
+    }
+  {% endif %}
+
+  {% if section.settings.menu_letter_spacing > 0 %}
+    .header__menu-item {
+      letter-spacing: {{ section.settings.menu_letter_spacing | times: 0.01 }}em;
+    }
+  {% endif %}
+
+  {% if section.settings.menu_text_transform != 'none' %}
+    .header__menu-item {
+      text-transform: {{ section.settings.menu_text_transform }};
+    }
+  {% endif %}
+
+  /* ── Dropdown Customization ── */
+  .header__submenu.global-settings-popup,
+  .mega-menu__content.global-settings-popup {
+    border-radius: {{ section.settings.dropdown_radius | default: 0 }}px;
+    overflow: hidden;
+    box-shadow: 0 {{ section.settings.dropdown_shadow_y | default: 8 }}px {{ section.settings.dropdown_shadow_blur | default: 24 }}px rgba(0, 0, 0, {{ section.settings.dropdown_shadow_opacity | default: 12 | times: 0.01 }});
+  }
+
+  {% if section.settings.dropdown_item_hover_bg != blank and section.settings.dropdown_item_hover_bg != 'rgba(0,0,0,0)' %}
+    .header__submenu .header__menu-item:hover,
+    .header__submenu .header__menu-item:focus {
+      background-color: {{ section.settings.dropdown_item_hover_bg }};
+    }
+  {% endif %}
+
+  /* Smooth dropdown transition */
+  .header__submenu {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
@@ -584,6 +700,177 @@
       "id": "menu_color_scheme",
       "label": "t:sections.header.settings.menu_color_scheme.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Menu Appearance"
+    },
+    {
+      "type": "select",
+      "id": "menu_hover_style",
+      "options": [
+        {
+          "value": "underline",
+          "label": "Underline (Default)"
+        },
+        {
+          "value": "color",
+          "label": "Color Change"
+        },
+        {
+          "value": "background",
+          "label": "Background Highlight"
+        }
+      ],
+      "default": "color",
+      "label": "Menu hover effect"
+    },
+    {
+      "type": "color",
+      "id": "menu_text_color",
+      "label": "Menu text color",
+      "default": "#555555"
+    },
+    {
+      "type": "color",
+      "id": "menu_hover_color",
+      "label": "Menu hover color",
+      "default": "#E67E22"
+    },
+    {
+      "type": "color",
+      "id": "menu_active_color",
+      "label": "Menu active item color",
+      "default": "#E67E22"
+    },
+    {
+      "type": "color",
+      "id": "menu_hover_bg",
+      "label": "Menu hover background (for Background style)",
+      "default": "#FFF3E6"
+    },
+    {
+      "type": "range",
+      "id": "menu_item_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 6,
+      "label": "Menu item border radius (for Background style)"
+    },
+    {
+      "type": "select",
+      "id": "menu_font_weight",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-Bold"
+        },
+        {
+          "value": "bold",
+          "label": "Bold"
+        }
+      ],
+      "default": "500",
+      "label": "Menu font weight"
+    },
+    {
+      "type": "range",
+      "id": "menu_font_size",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 15,
+      "label": "Menu font size"
+    },
+    {
+      "type": "range",
+      "id": "menu_letter_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 0,
+      "label": "Menu letter spacing"
+    },
+    {
+      "type": "select",
+      "id": "menu_text_transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "none",
+      "label": "Menu text transform"
+    },
+    {
+      "type": "header",
+      "content": "Dropdown Menu"
+    },
+    {
+      "type": "range",
+      "id": "dropdown_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 8,
+      "label": "Dropdown border radius"
+    },
+    {
+      "type": "range",
+      "id": "dropdown_shadow_y",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 8,
+      "label": "Dropdown shadow offset"
+    },
+    {
+      "type": "range",
+      "id": "dropdown_shadow_blur",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 24,
+      "label": "Dropdown shadow blur"
+    },
+    {
+      "type": "range",
+      "id": "dropdown_shadow_opacity",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "default": 12,
+      "label": "Dropdown shadow opacity"
+    },
+    {
+      "type": "color",
+      "id": "dropdown_item_hover_bg",
+      "label": "Dropdown item hover background",
+      "default": "#FFF3E6"
     },
     {
       "type": "header",
