@@ -148,7 +148,7 @@
         "star_color": "#1A1815",
         "card_bg": "#FFFFFF",
         "padding_top": 80,
-        "padding_bottom": 80,
+        "padding_bottom": 0,
         "eyebrow": "REAL MORNINGS, REAL FEEDBACK",
         "heading": "Trusted by early risers and light sleepers alike"
       }
