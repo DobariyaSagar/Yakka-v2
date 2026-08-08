@@ -143,6 +143,34 @@
         "padding_bottom": 36
       }
     },
+    "custom_testimonials": {
+      "type": "custom-testimonials",
+      "blocks": {
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "My partner used to wake me up every morning without meaning to. Now I don't even hear him get up.",
+            "author": "Isabella T.",
+            "label": "Verified buyer"
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "I track my steps all day and it still wakes me up better than my phone ever did.",
+            "author": "Dave M.",
+            "label": "Verified buyer"
+          }
+        },
+        "testimonial_3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "Simple to set up, no app, and the battery has lasted weeks so far.",
+            "author": "Lily S.",
+            "label": "Verified buyer"
     "custom_stats_fBYfTt": {
       "type": "custom-stats",
       "blocks": {
@@ -679,6 +707,20 @@
         }
       },
       "block_order": [
+        "testimonial_1",
+        "testimonial_2",
+        "testimonial_3"
+      ],
+      "settings": {
+        "eyebrow": "REAL MORNINGS, REAL FEEDBACK",
+        "heading": "Trusted by early risers and light sleepers alike"
+      }
+    },
+    "custom_guarantee": {
+      "type": "custom-guarantee",
+      "settings": {
+        "heading": "60-Day Money-Back Guarantee",
+        "text": "If the Tuckerbox doesn't change your lunch game within 60 days, send it back for a full refund — no questions asked. Every unit is pressure-tested and inspected before it ships."
         "row_tqfqt7",
         "row_7tCBj9",
         "row_meBfxD",
@@ -715,6 +757,9 @@
   },
   "order": [
     "image_banner",
+    "featured_collection",
+    "custom_testimonials",
+    "custom_guarantee"
     "custom_hero_MCAdzD",
     "custom_marquee_8RgJEf",
     "featured_collection",

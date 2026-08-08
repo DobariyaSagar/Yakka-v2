@@ -1,0 +1,247 @@
+<style>
+  .custom-guarantee-{{ section.id }} {
+    --g-max: 1180px;
+    font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+    -webkit-font-smoothing: antialiased;
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.section_bg }};
+  }
+  .custom-guarantee-{{ section.id }} * { box-sizing: border-box; margin: 0; padding: 0; }
+  .custom-guarantee-{{ section.id }} .g-wrap { max-width: var(--g-max); margin: 0 auto; padding: 0 24px; }
+
+  /* ── Banner card ── */
+  .custom-guarantee-{{ section.id }} .g-banner {
+    background: {{ section.settings.card_bg }};
+    border-radius: 16px;
+    padding: 36px 44px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  /* ── Icon circle ── */
+  .custom-guarantee-{{ section.id }} .g-icon {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 50%;
+    background: {{ section.settings.icon_bg }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .custom-guarantee-{{ section.id }} .g-icon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    padding: 2px;
+    background: linear-gradient(135deg, #8B6CFF, #FF6B8A, #FF9F43);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  .custom-guarantee-{{ section.id }} .g-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: url(#g-grad-{{ section.id }});
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    position: relative;
+    z-index: 1;
+  }
+  .custom-guarantee-{{ section.id }} .g-icon img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Text ── */
+  .custom-guarantee-{{ section.id }} .g-content {
+    flex: 1;
+  }
+  .custom-guarantee-{{ section.id }} .g-heading {
+    font-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+    font-weight: 600;
+    font-size: 18px;
+    color: {{ section.settings.heading_color }};
+    letter-spacing: -.01em;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .custom-guarantee-{{ section.id }} .g-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: {{ section.settings.text_color }};
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .custom-guarantee-{{ section.id }} .g-banner {
+      padding: 28px 24px;
+      gap: 18px;
+    }
+    .custom-guarantee-{{ section.id }} .g-heading {
+      font-size: 16px;
+    }
+    .custom-guarantee-{{ section.id }} .g-text {
+      font-size: 13px;
+    }
+  }
+  @media (max-width: 480px) {
+    .custom-guarantee-{{ section.id }} .g-banner {
+      flex-direction: column;
+      text-align: center;
+      padding: 28px 20px;
+      gap: 16px;
+    }
+  }
+</style>
+
+{%- comment -%} SVG gradient definition for the icon {%- endcomment -%}
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="g-grad-{{ section.id }}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B6CFF"/>
+      <stop offset="50%" stop-color="#FF6B8A"/>
+      <stop offset="100%" stop-color="#FF9F43"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<div class="custom-guarantee-{{ section.id }}">
+  <div class="g-wrap">
+    <div class="g-banner">
+
+      {%- comment -%} Icon {%- endcomment -%}
+      <div class="g-icon">
+        {% if section.settings.custom_icon != blank %}
+          <img src="{{ section.settings.custom_icon | image_url: width: 80 }}" alt="" loading="lazy" width="28" height="28">
+        {% elsif section.settings.icon == 'shield' %}
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        {% elsif section.settings.icon == 'truck' %}
+          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        {% elsif section.settings.icon == 'refresh' %}
+          <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        {% elsif section.settings.icon == 'check' %}
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        {% elsif section.settings.icon == 'heart' %}
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        {% else %}
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        {% endif %}
+      </div>
+
+      {%- comment -%} Content {%- endcomment -%}
+      <div class="g-content">
+        {% if section.settings.heading != blank %}
+          <div class="g-heading">{{ section.settings.heading }}</div>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <div class="g-text">{{ section.settings.text }}</div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Guarantee Banner",
+  "settings": [
+    {
+      "type": "color_background",
+      "id": "section_bg",
+      "label": "Section Background",
+      "default": "#F0EDEA"
+    },
+    {
+      "type": "color_background",
+      "id": "card_bg",
+      "label": "Card Background",
+      "default": "linear-gradient(135deg, #1A1D2B 0%, #111320 100%)"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#9B9AA3"
+    },
+    {
+      "type": "color_background",
+      "id": "icon_bg",
+      "label": "Icon Background",
+      "default": "linear-gradient(135deg, #2A2640 0%, #1E1B33 100%)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "icon",
+      "label": "Icon",
+      "options": [
+        { "value": "shield", "label": "Shield (Guarantee)" },
+        { "value": "truck", "label": "Truck (Shipping)" },
+        { "value": "refresh", "label": "Refresh (Returns)" },
+        { "value": "check", "label": "Check (Quality)" },
+        { "value": "heart", "label": "Heart (Care)" }
+      ],
+      "default": "shield"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_icon",
+      "label": "Custom Icon (overrides above)",
+      "info": "Upload a custom icon to replace the built-in one."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "60-Day Money-Back Guarantee"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "If the Tuckerbox doesn't change your lunch game within 60 days, send it back for a full refund — no questions asked. Every unit is pressure-tested and inspected before it ships."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Guarantee Banner"
+    }
+  ]
+}
+{% endschema %}
