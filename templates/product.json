@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -6,25 +15,32 @@
         "vendor": {
           "type": "text",
           "settings": {
-            "text": "{{ product.vendor }}",
+            "text": "",
             "text_style": "uppercase"
           }
         },
         "title": {
-          "type": "title"
+          "type": "title",
+          "settings": {}
         },
         "price": {
-          "type": "price"
+          "type": "price",
+          "settings": {}
         },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
             "picker_type": "button",
-            "swatch_shape": "circle"
+            "swatch_shape": "none"
           }
         },
         "quantity_selector": {
-          "type": "quantity_selector"
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
         },
         "buy_buttons": {
           "type": "buy_buttons",
@@ -33,11 +49,9 @@
             "show_gift_card_recipient": true
           }
         },
-        "description": {
-          "type": "description"
-        },
         "share": {
           "type": "share",
+          "disabled": true,
           "settings": {
             "share_label": "Share"
           }
@@ -49,8 +63,8 @@
         "price",
         "variant_picker",
         "quantity_selector",
-        "buy_buttons",
         "description",
+        "buy_buttons",
         "share"
       ],
       "settings": {
@@ -63,6 +77,13 @@
         "media_fit": "contain",
         "image_zoom": "lightbox",
         "mobile_thumbnails": "show",
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "none",
         "hide_variants": true,
         "thumbnails_per_row": 5,
         "enable_video_looping": false,
@@ -73,24 +94,156 @@
     "disclosures": {
       "type": "disclosures",
       "settings": {
+        "heading": "Disclosures",
+        "heading_size": "h2",
+        "open_by_default": false,
+        "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 0
       }
     },
+    "custom_video_reels_nzPKn8": {
+      "type": "custom-video-reels",
+      "blocks": {
+        "reel_LjrH6a": {
+          "type": "reel",
+          "settings": {
+            "video_source": "shopify",
+            "shopify_video": "shopify://files/videos/11(1).mp4",
+            "video_url": "",
+            "caption": "Lunch on the job",
+            "subcaption": "@yakkaessential.com"
+          }
+        },
+        "reel_xVzgzK": {
+          "type": "reel",
+          "settings": {
+            "video_source": "shopify",
+            "shopify_video": "shopify://files/videos/11(2).mp4",
+            "video_url": "",
+            "caption": "Smoko sorted",
+            "subcaption": "@yakkaessential.com"
+          }
+        },
+        "reel_qMbE9p": {
+          "type": "reel",
+          "settings": {
+            "video_source": "shopify",
+            "shopify_video": "shopify://files/videos/008-1.mp4",
+            "video_url": "",
+            "caption": "Hot feed, cold day",
+            "subcaption": "@yakkaessential.com"
+          }
+        }
+      },
+      "block_order": [
+        "reel_LjrH6a",
+        "reel_xVzgzK",
+        "reel_qMbE9p"
+      ],
+      "name": "Custom Video Reels",
+      "settings": {
+        "bg_color": "#F7F4EF",
+        "padding_y": 80,
+        "eyebrow": "SEE IT IN ACTION",
+        "heading": "Real tradies. Real feeds.",
+        "columns_desktop": 3,
+        "enable_slider": false
+      }
+    },
+    "custom_comparison_kL7cDL": {
+      "type": "custom-comparison",
+      "blocks": {
+        "row_cY4HXL": {
+          "type": "row",
+          "settings": {
+            "label": "Wait time",
+            "col1_val": "None — it's ready",
+            "col2_val": "10-20 min queue",
+            "col3_val": "Drive + queue"
+          }
+        },
+        "row_F9zCaH": {
+          "type": "row",
+          "settings": {
+            "label": "Needs power on site",
+            "col1_val": "[green]No[/green] — fully cordless",
+            "col2_val": "Yes",
+            "col3_val": "—"
+          }
+        },
+        "row_PLTh9V": {
+          "type": "row",
+          "settings": {
+            "label": "Cost per week",
+            "col1_val": "$0 after purchase",
+            "col2_val": "$0",
+            "col3_val": "$85-$150"
+          }
+        },
+        "row_qQqdt7": {
+          "type": "row",
+          "settings": {
+            "label": "Eat your own food",
+            "col1_val": "[green]Yes[/green]",
+            "col2_val": "Yes",
+            "col3_val": "No"
+          }
+        },
+        "row_Vp98P9": {
+          "type": "row",
+          "settings": {
+            "label": "Heats evenly",
+            "col1_val": "[green]Yes[/green]",
+            "col2_val": "Hot edges, cold centre",
+            "col3_val": "—"
+          }
+        },
+        "row_dm9ANL": {
+          "type": "row",
+          "settings": {
+            "label": "Works on a remote site",
+            "col1_val": "[green]Yes[/green]",
+            "col2_val": "No",
+            "col3_val": "No"
+          }
+        }
+      },
+      "block_order": [
+        "row_cY4HXL",
+        "row_F9zCaH",
+        "row_PLTh9V",
+        "row_qQqdt7",
+        "row_Vp98P9",
+        "row_dm9ANL"
+      ],
+      "name": "Custom Comparison Table",
+      "settings": {
+        "bg_color": "#F7F4EF",
+        "padding_y": 52,
+        "eyebrow": "THE HONEST COMPARISON",
+        "heading": "Against what you're doing now.",
+        "subheading": "Most tradies are choosing between a queue, a servo, or a cold roll.",
+        "col1_title": "YAKKA ESSENTIAL",
+        "col2_title": "SITE MICROWAVE",
+        "col3_title": "SERVO / TAKEAWAY"
+      }
+    },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
         "products_to_show": 4,
         "columns_desktop": 4,
+        "columns_mobile": "2",
         "color_scheme": "scheme-1",
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
-        "columns_mobile": "2",
         "padding_top": 36,
         "padding_bottom": 28
       }
@@ -123,6 +276,28 @@
             "text": "Simple to set up, no app, and the battery has lasted weeks so far.",
             "author": "Lily S.",
             "label": "Verified buyer"
+    "custom_image_text_y44BfA": {
+      "type": "custom-image-text",
+      "blocks": {
+        "list_item_TnARLq": {
+          "type": "list_item",
+          "settings": {
+            "title": "Zero waiting.",
+            "text": "Your break is short enough. Skip the queue and eat the moment you sit down."
+          }
+        },
+        "list_item_CmEmQH": {
+          "type": "list_item",
+          "settings": {
+            "title": "Completely cordless.",
+            "text": "No outlet, no inverter, no gennie. It runs off its own battery."
+          }
+        },
+        "list_item_4FQfCN": {
+          "type": "list_item",
+          "settings": {
+            "title": "Even-heat technology.",
+            "text": "No hot centre and burnt edges — just perfectly hot food, every time."
           }
         }
       },
@@ -141,6 +316,115 @@
       "settings": {
         "heading": "60-Day Money-Back Guarantee",
         "text": "If the Tuckerbox doesn't change your lunch game within 60 days, send it back for a full refund — no questions asked. Every unit is pressure-tested and inspected before it ships."
+        "list_item_TnARLq",
+        "list_item_CmEmQH",
+        "list_item_4FQfCN"
+      ],
+      "name": "Custom Image with Text",
+      "settings": {
+        "bg_color": "#F7F4EF",
+        "padding_y": 32,
+        "padding_y_mobile": 40,
+        "layout": "image_right",
+        "eyebrow": "FROM THE SHED TO THE SITE",
+        "heading": "Keep every meal hot.",
+        "lede": "Yakka Essential was built for the way Australians actually work — long drives, no kitchen, and a lunch break that's over before the queue moves. It's the simplest possible fix: charge it, pack it, eat properly.",
+        "image": "shopify://shop_images/Infographic_advertisement_4_steps_2K_202607150550.jpg",
+        "image_height_auto": true
+      }
+    },
+    "custom_image_text_EjD7TT": {
+      "type": "custom-image-text",
+      "blocks": {
+        "list_item_4KgBhE": {
+          "type": "list_item",
+          "settings": {
+            "title": "Zero waiting.",
+            "text": "Your break is short enough. Skip the queue and eat the moment you sit down."
+          }
+        },
+        "list_item_whPhNM": {
+          "type": "list_item",
+          "settings": {
+            "title": "Even-heat technology.",
+            "text": "No hot centre and burnt edges — just perfectly hot food, every time."
+          }
+        }
+      },
+      "block_order": [
+        "list_item_4KgBhE",
+        "list_item_whPhNM"
+      ],
+      "name": "Custom Image with Text",
+      "settings": {
+        "bg_color": "#F7F4EF",
+        "padding_y": 64,
+        "padding_y_mobile": 40,
+        "layout": "image_left",
+        "eyebrow": "FROM THE SHED TO THE SITE",
+        "heading": "Keep every meal hot.",
+        "lede": "Yakka Essential was built for the way Australians actually work — long drives, no kitchen, and a lunch break that's over before the queue moves. It's the simplest possible fix: charge it, pack it, eat properly.",
+        "image": "shopify://shop_images/Harmonize_scene_unify_lighting_c__202607200000.jpg",
+        "image_height_auto": true
+      }
+    },
+    "custom_faq_3UtaTi": {
+      "type": "custom-faq",
+      "blocks": {
+        "faq_item_4kAnBg": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How does a cordless heated lunchbox work?",
+            "answer": "A built-in rechargeable battery warms your food gently and evenly. Press start, or set the timer and let it come up to temperature while you work."
+          }
+        },
+        "faq_item_fAmTdW": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does the battery last?",
+            "answer": "Two to three full heating cycles per charge — comfortably a full workday, and most blokes get two or three days out of one charge."
+          }
+        },
+        "faq_item_afe8Ep": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do I need power on site?",
+            "answer": "No. That's the whole point. Charge it at home overnight and it runs entirely off its own battery all day."
+          }
+        },
+        "faq_item_t6xcXK": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Will it leak in my toolbox?",
+            "answer": "The stainless inner seals shut and the outer shell is impact-rated. It's built to be thrown in the tray, not carried carefully."
+          }
+        },
+        "faq_item_fHjQre": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is it easy to clean?",
+            "answer": "The stainless container lifts out and goes straight in the dishwasher. Wipe the outer shell down and you're done."
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_4kAnBg",
+        "faq_item_fAmTdW",
+        "faq_item_afe8Ep",
+        "faq_item_t6xcXK",
+        "faq_item_fHjQre"
+      ],
+      "name": "Custom FAQ",
+      "settings": {
+        "subheading": "Got questions?",
+        "heading": "Everything you need to know."
+      }
+    },
+    "custom_sticky_buy_bar_JFXKxH": {
+      "type": "custom-sticky-buy-bar",
+      "name": "Custom Sticky Buy Bar",
+      "settings": {
+        "enable_sticky_bar": true
       }
     }
   },
@@ -150,5 +434,12 @@
     "related-products",
     "custom_testimonials",
     "custom_guarantee"
+    "custom_video_reels_nzPKn8",
+    "custom_comparison_kL7cDL",
+    "related-products",
+    "custom_image_text_y44BfA",
+    "custom_image_text_EjD7TT",
+    "custom_faq_3UtaTi",
+    "custom_sticky_buy_bar_JFXKxH"
   ]
 }

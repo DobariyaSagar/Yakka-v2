@@ -14,22 +14,40 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
+        "announcement_4NKBeQ": {
+          "type": "announcement",
+          "settings": {
+            "text": "<p>60-day money back</p>",
+            "is_live": false,
+            "link": ""
+          }
+        },
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Welcome to our store",
+            "text": "<p>Free express shipping AU & NZ<br/></p>",
+            "is_live": true,
+            "link": ""
+          }
+        },
+        "announcement_HpRBAL": {
+          "type": "announcement",
+          "settings": {
+            "text": "<p>50% Off Sale Is Live Now</p>",
+            "is_live": false,
             "link": ""
           }
         }
       },
       "block_order": [
-        "announcement-bar-0"
+        "announcement_4NKBeQ",
+        "announcement-bar-0",
+        "announcement_HpRBAL"
       ],
-      "disabled": true,
       "settings": {
         "auto_rotate": false,
         "change_slides_speed": 5,
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-4",
         "show_line_separator": true,
         "show_social": false,
         "enable_country_selector": false,
@@ -39,7 +57,7 @@
     "header": {
       "type": "header",
       "settings": {
-        "logo_position": "middle-left",
+        "logo_position": "middle-center",
         "mobile_logo_position": "center",
         "menu": "main-menu",
         "menu_type_desktop": "dropdown",
@@ -72,6 +90,7 @@
     },
     "homepage_hero_VMP67T": {
       "type": "homepage-hero",
+      "disabled": true,
       "name": "Homepage Hero (Yakka)",
       "settings": {
         "ann_1": "Free express shipping AU & NZ",

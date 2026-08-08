@@ -1,11 +1,64 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "custom_footer_Dz8AFk": {
+      "type": "custom-footer",
+      "blocks": {
+        "text_FiYFzg": {
+          "type": "text",
+          "settings": {
+            "title": "Yakka Essential",
+            "text": "Practical gear for hard-working Australians. Built for work, travel, home and everyday life."
+          }
+        },
+        "link_list_UqdgeM": {
+          "type": "link_list",
+          "settings": {
+            "title": "Support",
+            "menu": "footer"
+          }
+        },
+        "link_list_x6Ucgd": {
+          "type": "link_list",
+          "settings": {
+            "title": "SHop",
+            "menu": "main-menu"
+          }
+        },
+        "newsletter_KYkmYb": {
+          "type": "newsletter",
+          "settings": {
+            "title": "Stay in the loop",
+            "text": "Product drops, field tips and the occasional deal.",
+            "placeholder": "Email address",
+            "btn_text": "Sign up"
+          }
+        }
+      },
+      "block_order": [
+        "text_FiYFzg",
+        "link_list_UqdgeM",
+        "link_list_x6Ucgd",
+        "newsletter_KYkmYb"
+      ],
+      "name": "Custom Footer",
+      "settings": {
+        "bottom_right_text": "Australian owned & operated"
+      }
+    },
     "footer": {
       "type": "footer",
-      "blocks": {},
-      "block_order": [],
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-1",
         "newsletter_enable": true,
@@ -23,6 +76,7 @@
     }
   },
   "order": [
+    "custom_footer_Dz8AFk",
     "footer"
   ]
 }

@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "image_banner": {
@@ -26,36 +35,102 @@
         "heading",
         "button"
       ],
+      "disabled": true,
       "settings": {
         "image_overlay_opacity": 40,
         "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
         "image_behavior": "none",
+        "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
+        "show_text_box": false,
         "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
         "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
         "show_text_below": false
       }
     },
+    "custom_hero_MCAdzD": {
+      "type": "custom-hero",
+      "name": "Custom Hero",
+      "settings": {
+        "stock_text": "In stock — ships today",
+        "headline": "<p>Hot food.<br/>No microwave.<br/><em>No queue.</em></p>",
+        "lede": "Charge it overnight, pack it in the morning, press start before smoko. The Yakka Essential is completely cordless — a proper hot feed anywhere the job takes you.",
+        "rating_text": "<p><strong>4.8</strong> from 1,200+ verified Aussie tradies</p>",
+        "primary_btn_text": "Shop the Lunchbox",
+        "primary_btn_link": "shopify://products/yakka-heating-lunchbox",
+        "secondary_btn_text": "See how it works",
+        "secondary_btn_link": "",
+        "micro_text": "<p>▼ Free express shipping ▼ 60-day money back ▼ AU & NZ support</p>",
+        "image": "shopify://shop_images/Self-heating_lunchbox_banner_design_2K_202607151941.jpg_202607212359_1.png",
+        "image_height_auto": true,
+        "chip_1_value": "30 min",
+        "chip_1_label": "Pack to piping hot",
+        "chip_2_value": "100%",
+        "chip_2_label": "Cordless — no outlet"
+      }
+    },
+    "custom_marquee_8RgJEf": {
+      "type": "custom-marquee",
+      "blocks": {
+        "text_iCzek9": {
+          "type": "text",
+          "settings": {
+            "text": "Completely cordless"
+          }
+        },
+        "text_3z84bn": {
+          "type": "text",
+          "settings": {
+            "text": "Rugged, leak-proof shell"
+          }
+        },
+        "text_BXdyPV": {
+          "type": "text",
+          "settings": {
+            "text": "Free insulated carry bag"
+          }
+        },
+        "text_yhbPGM": {
+          "type": "text",
+          "settings": {
+            "text": "Stainless inner, dishwasher safe"
+          }
+        },
+        "text_EBbiJ3": {
+          "type": "text",
+          "settings": {
+            "text": "Australian owned & supported"
+          }
+        }
+      },
+      "block_order": [
+        "text_iCzek9",
+        "text_3z84bn",
+        "text_BXdyPV",
+        "text_yhbPGM",
+        "text_EBbiJ3"
+      ],
+      "name": "Custom Marquee",
+      "settings": {}
+    },
     "featured_collection": {
       "type": "featured-collection",
+      "disabled": true,
       "settings": {
+        "collection": "all",
+        "products_to_show": 8,
         "title": "Featured products",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
         "columns_desktop": 4,
-        "color_scheme": "scheme-1",
+        "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
+        "color_scheme": "scheme-1",
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -63,6 +138,7 @@
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "2",
+        "swipe_on_mobile": false,
         "padding_top": 44,
         "padding_bottom": 36
       }
@@ -95,6 +171,538 @@
             "text": "Simple to set up, no app, and the battery has lasted weeks so far.",
             "author": "Lily S.",
             "label": "Verified buyer"
+    "custom_stats_fBYfTt": {
+      "type": "custom-stats",
+      "blocks": {
+        "stat_V88VAf": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "10,000+",
+            "stat_label": "Workers eating hot on site"
+          }
+        },
+        "stat_mAYqtw": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "4.8 / 5",
+            "stat_label": "From 1,200+ reviews"
+          }
+        },
+        "stat_fMVjzH": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "60 days",
+            "stat_label": "Money back or keep the unit"
+          }
+        },
+        "stat_tQLii4": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "AU & NZ",
+            "stat_label": "Owned, stocked, supported"
+          }
+        }
+      },
+      "block_order": [
+        "stat_V88VAf",
+        "stat_mAYqtw",
+        "stat_fMVjzH",
+        "stat_tQLii4"
+      ],
+      "name": "Custom Stats",
+      "settings": {}
+    },
+    "custom_feature_V4Q6N3": {
+      "type": "custom-feature",
+      "name": "Custom Feature",
+      "settings": {
+        "section_bg": "#F7F4EF",
+        "card_bg": "linear-gradient(150deg, rgba(252, 239, 231, 1), rgba(244, 228, 214, 1) 52%, rgba(235, 217, 199, 1) 100%)",
+        "padding_y": 64,
+        "layout": "image_right",
+        "image": "shopify://shop_images/YAKKA_ESSENTIAL_heated_lunchbox_2K_202607130244_1.png",
+        "image_height_auto": false,
+        "eyebrow": "Tradie TuckerBox",
+        "heading": "Say goodbye to cold sandwiches and site microwave queues.",
+        "text": "Pack it the night before. Press start an hour out from smoko. Sealed, leak-proof and rugged enough to live in the toolbox — it heats your own food properly, instead of keeping someone else's lukewarm."
+      }
+    },
+    "featured_product_fa4cx7": {
+      "type": "featured-product",
+      "blocks": {
+        "text_6Mebmx": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>Self-Heating Lunchbox</strong>",
+            "text_style": "uppercase"
+          }
+        },
+        "title_zawqqP": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_M3GkhP": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_N4ydEn": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_9QkCgN": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_EcQaPM": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_rikpFa": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+            "share_label": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_6Mebmx",
+        "title_zawqqP",
+        "price_M3GkhP",
+        "variant_picker_N4ydEn",
+        "quantity_selector_9QkCgN",
+        "buy_buttons_EcQaPM",
+        "share_rikpFa"
+      ],
+      "disabled": true,
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "yakka-heating-lunchbox",
+        "color_scheme": "scheme-1",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "none",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "custom_featured_product_TAfJYr": {
+      "type": "custom-featured-product",
+      "blocks": {
+        "spec_CchbYz": {
+          "type": "spec",
+          "settings": {
+            "label": "Power",
+            "value": "100% cordless — USB-C rechargeable"
+          }
+        },
+        "spec_t43NbP": {
+          "type": "spec",
+          "settings": {
+            "label": "Heat time",
+            "value": "Steaming in ~30 min"
+          }
+        },
+        "spec_hGrLcA": {
+          "type": "spec",
+          "settings": {
+            "label": "Battery",
+            "value": "2-3 full heat cycles per charge"
+          }
+        },
+        "spec_WWKkna": {
+          "type": "spec",
+          "settings": {
+            "label": "Capacity",
+            "value": "Up to 1.2L Stainless — a full tradie's feed"
+          }
+        },
+        "spec_Vh9NEi": {
+          "type": "spec",
+          "settings": {
+            "label": "Build",
+            "value": "Leak-proof, impact-rated shell"
+          }
+        },
+        "spec_zfHRG4": {
+          "type": "spec",
+          "settings": {
+            "label": "Included",
+            "value": "Free insulated carry bag"
+          }
+        }
+      },
+      "block_order": [
+        "spec_CchbYz",
+        "spec_t43NbP",
+        "spec_hGrLcA",
+        "spec_WWKkna",
+        "spec_Vh9NEi",
+        "spec_zfHRG4"
+      ],
+      "name": "Custom Featured Product",
+      "settings": {
+        "product": "yakka-heating-lunchbox",
+        "padding_y": 64,
+        "badge_text": "",
+        "eyebrow": "SELF-HEATING LUNCHBOX",
+        "installments": "or 4 interest-free payments of $35.00",
+        "trust_text": "<p>✓ In stock, ships today ✓ Free express shipping ✓ 60-day money back</p>",
+        "thumbs_desktop": 5,
+        "thumbs_mobile": 4,
+        "enable_thumb_slider": true
+      }
+    },
+    "custom_reviews_pJ9wtz": {
+      "type": "custom-reviews",
+      "blocks": {
+        "review_JwjhWU": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/04_dff22476-2404-476d-8c4c-644f5e435cf8.jpg",
+            "rating": 5,
+            "text": "Honestly one of the best things I've bought for work. Hot lunch, no queue for the microwave, no cold servo roll.",
+            "author": "John M.",
+            "role": "Carpenter — Brisbane, QLD",
+            "verified": true
+          }
+        },
+        "review_hHeHVT": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/03.jpg",
+            "rating": 5,
+            "text": "Charge it Sunday night, get three days out of it. Steaming by smoko every single time.",
+            "author": "William S.",
+            "role": "Concreter — Sydney, NSW",
+            "verified": true
+          }
+        },
+        "review_ggkCVc": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/01.jpg",
+            "rating": 5,
+            "text": "Lives in the toolbox and hasn't leaked once. Bought a second one for my apprentice after a fortnight.",
+            "author": "Martin R.",
+            "role": "Electrician — Perth, WA",
+            "verified": true
+          }
+        }
+      },
+      "block_order": [
+        "review_JwjhWU",
+        "review_hHeHVT",
+        "review_ggkCVc"
+      ],
+      "name": "Custom Client Reviews",
+      "settings": {
+        "bg_color": "#F7F4EF",
+        "padding_y": 80,
+        "eyebrow": "FROM THE SITE",
+        "heading": "What the crews are saying."
+      }
+    },
+    "custom_steps_U6yVDX": {
+      "type": "custom-steps",
+      "blocks": {
+        "step_CPKcTM": {
+          "type": "step",
+          "settings": {
+            "tag": "Prep",
+            "title": "Pack your feed.",
+            "text": "Fill the stainless inner with last night's leftovers, soup, or a frozen meal."
+          }
+        },
+        "step_CaiwCd": {
+          "type": "step",
+          "settings": {
+            "tag": "Go",
+            "title": "Take it anywhere.",
+            "text": "Chuck it in the ute or the toolbox. It's fully sealed, leak-proof, and rugged."
+          }
+        },
+        "step_zDG9wh": {
+          "type": "step",
+          "settings": {
+            "tag": "Heat",
+            "title": "Press start.",
+            "text": "Hit the button an hour before smoko. No cords, no finding a plug."
+          }
+        },
+        "step_mCV3fA": {
+          "type": "step",
+          "settings": {
+            "tag": "Eat",
+            "title": "Proper hot food.",
+            "text": "Enjoy a steaming hot meal right where you're working, no queue required."
+          }
+        }
+      },
+      "block_order": [
+        "step_CPKcTM",
+        "step_CaiwCd",
+        "step_zDG9wh",
+        "step_mCV3fA"
+      ],
+      "name": "Custom Steps",
+      "settings": {
+        "subheading": "How it works",
+        "heading": "4 simple steps to a hot meal."
+      }
+    },
+    "custom_what_you_get_TbtTmt": {
+      "type": "custom-what-you-get",
+      "blocks": {
+        "card_b7TRRk": {
+          "type": "card",
+          "settings": {
+            "title": "1.5L Heated Lunchbox",
+            "text": "Matte black or stone white, impact-rated outer shell."
+          }
+        },
+        "card_iP9J4D": {
+          "type": "card",
+          "settings": {
+            "title": "Stainless Inner Container",
+            "text": "Removable, leak-proof, dishwasher safe."
+          }
+        },
+        "card_qVJFBj": {
+          "type": "card",
+          "settings": {
+            "title": "USB-C Fast Charger",
+            "text": "Charges at home, in the ute, or off a power bank."
+          }
+        },
+        "card_DbfGCH": {
+          "type": "card",
+          "settings": {
+            "title": "Insulated Carry Bag",
+            "text": "Free with every order. Built to live in the toolbox."
+          }
+        },
+        "card_nMRi87": {
+          "type": "card",
+          "settings": {
+            "title": "Cutlery Set",
+            "text": "Fork and spoon, stored in the lid. Never left behind."
+          }
+        },
+        "card_CqMwpk": {
+          "type": "card",
+          "settings": {
+            "title": "60-Day Guarantee Card",
+            "text": "Your refund terms, in plain English, in the box."
+          }
+        }
+      },
+      "block_order": [
+        "card_b7TRRk",
+        "card_iP9J4D",
+        "card_qVJFBj",
+        "card_DbfGCH",
+        "card_nMRi87",
+        "card_CqMwpk"
+      ],
+      "name": "Custom What You Get",
+      "settings": {
+        "bg_color": "#F7F4EF",
+        "padding_y": 80,
+        "eyebrow": "WHAT YOU GET",
+        "heading": "Everything in the box."
+      }
+    },
+    "custom_image_text_BnmyBr": {
+      "type": "custom-image-text",
+      "blocks": {
+        "list_item_67K3V4": {
+          "type": "list_item",
+          "settings": {
+            "title": "Zero waiting.",
+            "text": "Your break is short enough. Skip the queue and eat the moment you sit down."
+          }
+        },
+        "list_item_iQpEUK": {
+          "type": "list_item",
+          "settings": {
+            "title": "Completely cordless.",
+            "text": "No outlet, no inverter, no gennie. It runs off its own battery."
+          }
+        },
+        "list_item_idCfWx": {
+          "type": "list_item",
+          "settings": {
+            "title": "Even-heat technology.",
+            "text": "No hot centre and burnt edges — just perfectly hot food, every time."
+          }
+        },
+        "list_item_XPppRz": {
+          "type": "list_item",
+          "settings": {
+            "title": "Built for big appetites.",
+            "text": "1.5L capacity designed to hold a proper, energy-packed feed."
+          }
+        }
+      },
+      "block_order": [
+        "list_item_67K3V4",
+        "list_item_iQpEUK",
+        "list_item_idCfWx",
+        "list_item_XPppRz"
+      ],
+      "name": "Custom Image with Text",
+      "settings": {
+        "bg_color": "#F7F4EF",
+        "padding_y": 64,
+        "padding_y_mobile": 40,
+        "layout": "image_right",
+        "eyebrow": "FROM THE SHED TO THE SITE",
+        "heading": "Keep every meal hot.",
+        "lede": "Yakka Essential was built for the way Australians actually work — long drives, no kitchen, and a lunch break that's over before the queue moves. It's the simplest possible fix: charge it, pack it, eat properly.",
+        "image": "shopify://shop_images/Heated_lunchbox_on_Toyota_Hilux_202607130243.jpeg_2K_202607241641.jpg",
+        "image_height_auto": true
+      }
+    },
+    "custom_faq_tkHGWT": {
+      "type": "custom-faq",
+      "blocks": {
+        "faq_item_74Eybf": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How does a cordless heated lunchbox work?",
+            "answer": "A built-in rechargeable battery warms your food gently and evenly. Press start, or set the timer and let it come up to temperature while you work."
+          }
+        },
+        "faq_item_K7xxCX": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does the battery last?",
+            "answer": "Two to three full heating cycles per charge — comfortably a full workday, and most blokes get two or three days out of one charge."
+          }
+        },
+        "faq_item_GqWr3Y": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do I need power on site?",
+            "answer": "No. That's the whole point. Charge it at home overnight and it runs entirely off its own battery all day."
+          }
+        },
+        "faq_item_rAYW7a": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Will it leak in my toolbox?",
+            "answer": "The stainless inner seals shut and the outer shell is impact-rated. It's built to be thrown in the tray, not carried carefully."
+          }
+        },
+        "faq_item_cgbJTF": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is it easy to clean?",
+            "answer": "The stainless container lifts out and goes straight in the dishwasher. Wipe the outer shell down and you're done."
+          }
+        },
+        "faq_item_3pWfNw": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What if I don't like it?",
+            "answer": "Sixty days, full refund, and you keep the unit — you don't pay return freight."
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_74Eybf",
+        "faq_item_K7xxCX",
+        "faq_item_GqWr3Y",
+        "faq_item_rAYW7a",
+        "faq_item_cgbJTF",
+        "faq_item_3pWfNw"
+      ],
+      "name": "Custom FAQ",
+      "settings": {
+        "subheading": "Got questions?",
+        "heading": "Everything you need to know."
+      }
+    },
+    "custom_contact_4CieLg": {
+      "type": "custom-contact",
+      "name": "Custom Contact",
+      "settings": {
+        "bg_color": "#F7F4EF",
+        "padding_y": 80,
+        "eyebrow": "GET IN TOUCH",
+        "heading": "Questions before you buy?",
+        "text": "Our Australian team answers within 24 hours, Monday to Friday, 9:00am - 5:00pm AEST."
+      }
+    },
+    "custom_comparison_LpBzTH": {
+      "type": "custom-comparison",
+      "blocks": {
+        "row_tqfqt7": {
+          "type": "row",
+          "settings": {
+            "label": "Wait time",
+            "col1_val": "None — it's ready",
+            "col2_val": "10-20 min queue",
+            "col3_val": "Drive + queue"
+          }
+        },
+        "row_7tCBj9": {
+          "type": "row",
+          "settings": {
+            "label": "Needs power on site",
+            "col1_val": "[green]No[/green] — fully cordless",
+            "col2_val": "Yes",
+            "col3_val": "—"
+          }
+        },
+        "row_meBfxD": {
+          "type": "row",
+          "settings": {
+            "label": "Cost per week",
+            "col1_val": "$0 after purchase",
+            "col2_val": "$0",
+            "col3_val": "$85-$150"
+          }
+        },
+        "row_jnK8RX": {
+          "type": "row",
+          "settings": {
+            "label": "Eat your own food",
+            "col1_val": "[green]Yes[/green]",
+            "col2_val": "Yes",
+            "col3_val": "No"
+          }
+        },
+        "row_Gb3Q3m": {
+          "type": "row",
+          "settings": {
+            "label": "Heats evenly",
+            "col1_val": "[green]Yes[/green]",
+            "col2_val": "Hot edges, cold centre",
+            "col3_val": "—"
+          }
+        },
+        "row_mRNdAE": {
+          "type": "row",
+          "settings": {
+            "label": "Works on a remote site",
+            "col1_val": "[green]Yes[/green]",
+            "col2_val": "No",
+            "col3_val": "No"
           }
         }
       },
@@ -113,6 +721,37 @@
       "settings": {
         "heading": "60-Day Money-Back Guarantee",
         "text": "If the Tuckerbox doesn't change your lunch game within 60 days, send it back for a full refund — no questions asked. Every unit is pressure-tested and inspected before it ships."
+        "row_tqfqt7",
+        "row_7tCBj9",
+        "row_meBfxD",
+        "row_jnK8RX",
+        "row_Gb3Q3m",
+        "row_mRNdAE"
+      ],
+      "disabled": true,
+      "name": "Custom Comparison Table",
+      "settings": {
+        "bg_color": "#F7F4EF",
+        "padding_y": 80,
+        "eyebrow": "THE HONEST COMPARISON",
+        "heading": "Against what you're doing now.",
+        "subheading": "Most tradies are choosing between a queue, a servo, or a cold roll.",
+        "col1_title": "YAKKA ESSENTIAL",
+        "col2_title": "SITE MICROWAVE",
+        "col3_title": "SERVO / TAKEAWAY"
+      }
+    },
+    "custom_cta_qbMw4U": {
+      "type": "custom-cta",
+      "name": "Custom CTA Banner",
+      "settings": {
+        "bg_color": "linear-gradient(90deg, rgba(230, 84, 22, 1), rgba(255, 130, 67, 1) 100%)",
+        "padding_y": 80,
+        "heading": "Stop paying $30 a day for a cold compromise.",
+        "subheading": "One purchase, and every lunch for the next decade is a hot one.",
+        "btn_text": "Shop the Lunchbox — $139.99",
+        "btn_link": "shopify://products/yakka-heating-lunchbox",
+        "footer_text": "In stock — Free express shipping AU & NZ — 60-day money back"
       }
     }
   },
@@ -121,5 +760,20 @@
     "featured_collection",
     "custom_testimonials",
     "custom_guarantee"
+    "custom_hero_MCAdzD",
+    "custom_marquee_8RgJEf",
+    "featured_collection",
+    "custom_stats_fBYfTt",
+    "custom_feature_V4Q6N3",
+    "featured_product_fa4cx7",
+    "custom_featured_product_TAfJYr",
+    "custom_reviews_pJ9wtz",
+    "custom_steps_U6yVDX",
+    "custom_what_you_get_TbtTmt",
+    "custom_image_text_BnmyBr",
+    "custom_faq_tkHGWT",
+    "custom_contact_4CieLg",
+    "custom_comparison_LpBzTH",
+    "custom_cta_qbMw4U"
   ]
 }
