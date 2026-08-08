@@ -369,6 +369,13 @@
         "subheading": "Got questions?",
         "heading": "Everything you need to know."
       }
+    },
+    "custom_sticky_buy_bar_JFXKxH": {
+      "type": "custom-sticky-buy-bar",
+      "name": "Custom Sticky Buy Bar",
+      "settings": {
+        "enable_sticky_bar": true
+      }
     }
   },
   "order": [
@@ -379,6 +386,7 @@
     "related-products",
     "custom_image_text_y44BfA",
     "custom_image_text_EjD7TT",
-    "custom_faq_3UtaTi"
+    "custom_faq_3UtaTi",
+    "custom_sticky_buy_bar_JFXKxH"
   ]
 }
