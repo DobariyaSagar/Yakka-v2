@@ -13,7 +13,7 @@
       "type": "main-blog",
       "settings": {
         "layout": "collage",
-        "show_image": true,
+        "show_image": false,
         "image_height": "small",
         "show_date": true,
         "show_author": false,
