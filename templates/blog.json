@@ -12,11 +12,11 @@
     "main": {
       "type": "main-blog",
       "settings": {
-        "layout": "collage",
-        "show_image": false,
+        "layout": "grid",
+        "show_image": true,
         "image_height": "small",
         "show_date": true,
-        "show_author": false,
+        "show_author": true,
         "padding_top": 36,
         "padding_bottom": 36
       }
