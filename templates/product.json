@@ -247,29 +247,37 @@
         "list_item_TnARLq": {
           "type": "list_item",
           "settings": {
-            "title": "Zero waiting.",
-            "text": "Your break is short enough. Skip the queue and eat the moment you sit down."
+            "title": "1. Charge Overnight:",
+            "text": "Plug it into the wall at home so it’s fully juiced up for the day ahead."
           }
         },
         "list_item_CmEmQH": {
           "type": "list_item",
           "settings": {
-            "title": "Completely cordless.",
-            "text": "No outlet, no inverter, no gennie. It runs off its own battery."
+            "title": "2. Pack Your Feed:",
+            "text": "Fill the heavy-duty, food-grade tray with steak, pasta, roasts, or last night's leftovers."
           }
         },
         "list_item_4FQfCN": {
           "type": "list_item",
           "settings": {
-            "title": "Even-heat technology.",
-            "text": "No hot centre and burnt edges — just perfectly hot food, every time."
+            "title": "3. Eat Hot Anywhere:",
+            "text": "No cords, no power outlets, and no dirty site microwaves required. Just pure, cordless heating power wherever your tools are down."
+          }
+        },
+        "list_item_gbdXqV": {
+          "type": "list_item",
+          "settings": {
+            "title": "",
+            "text": "From early morning site starts to late-night shed sessions, the Yakka Essential TuckerBox keeps a proper hot meal ready when you are. It’s tough, leak-proof, and designed to save you thousands of dollars a year on takeaway food."
           }
         }
       },
       "block_order": [
         "list_item_TnARLq",
         "list_item_CmEmQH",
-        "list_item_4FQfCN"
+        "list_item_4FQfCN",
+        "list_item_gbdXqV"
       ],
       "name": "Custom Image with Text",
       "settings": {
@@ -277,9 +285,9 @@
         "padding_y": 32,
         "padding_y_mobile": 40,
         "layout": "image_right",
-        "eyebrow": "FROM THE SHED TO THE SITE",
+        "eyebrow": "Ditch theServo Pies. Upgrade Your Smoko.",
         "heading": "Keep every meal hot.",
-        "lede": "Yakka Essential was built for the way Australians actually work — long drives, no kitchen, and a lunch break that's over before the queue moves. It's the simplest possible fix: charge it, pack it, eat properly.",
+        "lede": "Stop settling for cold lunches and expensive, greasy takeaway. The Yakka Essential™ is the ultimate portable food warmer built specifically for the Australian job site.",
         "image": "shopify://shop_images/Infographic_advertisement_4_steps_2K_202607150550.jpg",
         "image_height_auto": true
       }
