@@ -104,6 +104,7 @@
             "video_source": "shopify",
             "shopify_video": "shopify://files/videos/11(1).mp4",
             "video_url": "",
+            "poster": "shopify://shop_images/x4CY46CqSuqhMCd2GtWB2g.png",
             "caption": "Lunch on the job",
             "subcaption": "@yakkaessential.com"
           }
@@ -114,6 +115,7 @@
             "video_source": "shopify",
             "shopify_video": "shopify://files/videos/11(2).mp4",
             "video_url": "",
+            "poster": "shopify://shop_images/03.jpg",
             "caption": "Smoko sorted",
             "subcaption": "@yakkaessential.com"
           }
@@ -124,6 +126,7 @@
             "video_source": "shopify",
             "shopify_video": "shopify://files/videos/008-1.mp4",
             "video_url": "",
+            "poster": "shopify://shop_images/04.jpg",
             "caption": "Hot feed, cold day",
             "subcaption": "@yakkaessential.com"
           }
